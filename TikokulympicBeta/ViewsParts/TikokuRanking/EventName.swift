@@ -9,7 +9,27 @@ import SwiftUI
 
 struct EventName: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        @State() var Event: String="イベント名"
+        ZStack{
+            HStack(spacing: 0){
+                Image("EventBack")
+                    .resizable()
+                
+                    .frame(width: 268, height: 68)
+                    
+                Spacer()
+            }
+            HStack{
+                Text(Event)
+                    .font(.largeTitle)
+                    .padding(.leading, 40)
+                Spacer()
+            }
+            
+                
+        }
+        
+        
     }
 }
 
