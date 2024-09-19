@@ -16,6 +16,7 @@ import CoreLocation
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var locationManager: CLLocationManager?
+    var currentLocation: CLLocationCoordinate2D?
     
     func application(
         _ application: UIApplication,
@@ -98,15 +99,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let newLocation = locations.last else {
-            return
-        }
-        
-        let location = CLLocationCoordinate2D(
+        guard let newLocation = locations.last else { return }
+
+        currentLocation = CLLocationCoordinate2D(
             latitude: newLocation.coordinate.latitude,
             longitude: newLocation.coordinate.longitude
         )
-        
-        print("緯度: \(location.latitude), 経度: \(location.longitude)")
+
+        print("緯度: \(currentLocation!.latitude), 経度: \(currentLocation!.longitude)")
+
+        // 位置情報の更新を通知
+        NotificationCenter.default.post(
+            name: Notification.Name("LocationDidUpdate"),
+            object: nil,
+            userInfo: ["location": currentLocation!]
+        )
     }
 }
