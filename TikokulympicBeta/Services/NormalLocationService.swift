@@ -10,21 +10,36 @@ import Combine
 import CoreLocation
 import Supabase
 
+
+struct UsersDistance: Identifiable{
+    let id = UUID().uuidString
+    let uid: Int
+    let distance: CLLocationDistance
+}
+
 @MainActor
 class NormalLocationService: ObservableObject {
-    @Published var latitude: Float = 0.0
-    @Published var longitude: Float = 0.0
-    
+    @Published var location: CLLocation = CLLocation(latitude: 11.00, longitude: 11.00)
+    @Published var distance: CLLocationDistance = 0
+    //@Published var userDistances: UsersDistance = []
+    private var meetingLocation: CLLocation = CLLocation(latitude: 11.00, longitude: 11.00)
     let userid: Int
     
     private var cancellables = Set<AnyCancellable>()
     private let client = SupabaseClientManager.shared.client
     private var timer: Timer?
+    private var anycancellable = Set<AnyCancellable>()
     
     init(userid: Int) async {
         self.userid = userid
         await fetchLocation()
         startTimer()
+        $location.sink { [weak self]_ in
+            guard let self = self else {return}
+            let distance = meetingLocation.distance(from: location)
+            self.distance = distance
+        }
+        .store(in: &anycancellable)
     }
     
     deinit {
@@ -49,8 +64,7 @@ class NormalLocationService: ObservableObject {
             let location = try decoder.decode(Location.self, from: response.data)
             
             await MainActor.run {
-                self.latitude = location.latitude
-                self.longitude = location.longitude
+                self.location = CLLocation(latitude: CLLocationDegrees(location.latitude), longitude: CLLocationDegrees(location.longitude))
             }
                     
         } catch {
@@ -88,7 +102,7 @@ class NormalLocationService: ObservableObject {
     
     // Start a timer to update location every 10 seconds
     private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             Task {
                 await self.fetchLocation()
@@ -97,3 +111,4 @@ class NormalLocationService: ObservableObject {
         }
     }
 }
+
