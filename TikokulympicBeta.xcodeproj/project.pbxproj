@@ -68,13 +68,15 @@
 		22E7090E2C8D81310009FE19 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 22E7090D2C8D81310009FE19 /* Supabase */; };
 		22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7093E2C90054C0009FE19 /* AuthViewModel.swift */; };
 		22E709432C904C220009FE19 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E709422C904C220009FE19 /* AuthView.swift */; };
-		A556898F2C9A72EB00E60BC6 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A556898E2C9A72EB00E60BC6 /* Config.xcconfig */; };
-		A55689912C9A75C800E60BC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A55689902C9A75C800E60BC6 /* GoogleService-Info.plist */; };
 		A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */; };
 		A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689992C9AC28100E60BC6 /* Rank.swift */; };
 		A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899B2C9B137200E60BC6 /* LocationInformation.swift */; };
 		A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */; };
 		A55689A22C9B18C000E60BC6 /* MeetingTimeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */; };
+		A5EB268C2C9C0D03000208F9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A5EB268B2C9C0D03000208F9 /* Config.xcconfig */; };
+		A5EB268E2C9C0D99000208F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5EB268D2C9C0D99000208F9 /* GoogleService-Info.plist */; };
+		A5EB26912C9C10E4000208F9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5EB26902C9C10E4000208F9 /* Alamofire */; };
+		A5EB26952C9C12E0000208F9 /* EventName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB26942C9C12E0000208F9 /* EventName.swift */; };
 		A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,13 +101,14 @@
 		22E708EB2C8D6ABA0009FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		22E7093E2C90054C0009FE19 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		22E709422C904C220009FE19 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		A556898E2C9A72EB00E60BC6 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		A55689902C9A75C800E60BC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUserCard.swift; sourceTree = "<group>"; };
 		A55689992C9AC28100E60BC6 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
 		A556899B2C9B137200E60BC6 /* LocationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformation.swift; sourceTree = "<group>"; };
 		A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRanking.swift; sourceTree = "<group>"; };
 		A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTimeInformation.swift; sourceTree = "<group>"; };
+		A5EB268B2C9C0D03000208F9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A5EB268D2C9C0D99000208F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5EB26942C9C12E0000208F9 /* EventName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventName.swift; sourceTree = "<group>"; };
 		A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +206,7 @@
 				22AABD622C8C34DD0086644F /* .gitignore */,
 				22AABD642C8C38CA0086644F /* .swiftlint.yml */,
 				22E708EB2C8D6ABA0009FE19 /* Info.plist */,
-				A556898E2C9A72EB00E60BC6 /* Config.xcconfig */,
+				A5EB268B2C9C0D03000208F9 /* Config.xcconfig */,
 				22220BD62C972A7D00DDB003 /* TikokulympicBeta.entitlements */,
 			);
 			path = TikokulympicBeta;
@@ -212,7 +215,7 @@
 		22AABD4B2C875AE90086644F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A55689902C9A75C800E60BC6 /* GoogleService-Info.plist */,
+				A5EB268D2C9C0D99000208F9 /* GoogleService-Info.plist */,
 				22AABD4C2C875AE90086644F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -322,6 +325,7 @@
 				A556899B2C9B137200E60BC6 /* LocationInformation.swift */,
 				A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */,
 				A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */,
+				A5EB26942C9C12E0000208F9 /* EventName.swift */,
 			);
 			path = TikokuRanking;
 			sourceTree = "<group>";
@@ -441,8 +445,8 @@
 				22AABD4D2C875AE90086644F /* Preview Assets.xcassets in Resources */,
 				22AABD632C8C34DD0086644F /* .gitignore in Resources */,
 				22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */,
-				A556898F2C9A72EB00E60BC6 /* Config.xcconfig in Resources */,
-				A55689912C9A75C800E60BC6 /* GoogleService-Info.plist in Resources */,
+				A5EB268C2C9C0D03000208F9 /* Config.xcconfig in Resources */,
+				A5EB268E2C9C0D99000208F9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +483,7 @@
 				A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */,
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
 				223484602C99ED62006BB113 /* SupabaseService.swift in Sources */,
+				A5EB26952C9C12E0000208F9 /* EventName.swift in Sources */,
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
@@ -628,7 +633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TikokulympicBeta/Preview Content\"";
-				DEVELOPMENT_TEAM = 5285K4Z956;
+				DEVELOPMENT_TEAM = XW65586HQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikokulympicBeta/Info.plist;
@@ -661,7 +666,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TikokulympicBeta/Preview Content\"";
-				DEVELOPMENT_TEAM = 5285K4Z956;
+				DEVELOPMENT_TEAM = XW65586HQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikokulympicBeta/Info.plist;
@@ -735,6 +740,14 @@
 		22AE4EA82C9C492300B0BF82 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		A5EB268F2C9C10E4000208F9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.9.1;
@@ -951,6 +964,11 @@
 		22E7090D2C8D81310009FE19 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Supabase;
+		};
+		A5EB26902C9C10E4000208F9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5EB268F2C9C10E4000208F9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
