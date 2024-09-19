@@ -1,9 +1,9 @@
 import SwiftUI
+import CoreLocation
 import Combine
 import Foundation
 
-
-class LimitTimeViewModel: ObservableObject {
+class LimitTimeViewPropertyFactory: ObservableObject {
     @Published var remainingTime: TimeInterval = 0
     private var cancellablePipeLine: AnyCancellable?
     var meetingTime: Date = Date()
@@ -11,14 +11,13 @@ class LimitTimeViewModel: ObservableObject {
 
     init() {
         let calendar = Calendar.current
-
-
+        
         self.meetingTime = {
                 var components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
                 components.year = 2024
                 components.month = 9
-                components.day = 19
-                components.hour = 19
+                components.day = 20
+                components.hour = 14
                 components.minute = 0
                 return calendar.date(from: components) ?? Date()
         }()
@@ -31,7 +30,6 @@ class LimitTimeViewModel: ObservableObject {
                 self.remainingTime = self.culcLimitTime(meetingTime: self.meetingTime, currentDate: currentDate)
             }
     }
-
 
     func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {//meetingTimeを変更
         return max(meetingTime.timeIntervalSince(currentDate), 0)
