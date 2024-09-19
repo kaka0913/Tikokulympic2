@@ -71,9 +71,12 @@
 		A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899B2C9B137200E60BC6 /* LocationInformation.swift */; };
 		A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */; };
 		A55689A22C9B18C000E60BC6 /* MeetingTimeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */; };
+		A57D502E2C9C19F400237224 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = A57D502D2C9C19F400237224 /* Algorithms */; };
+		A57D50332C9C1E0700237224 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A57D50322C9C1E0700237224 /* Alamofire */; };
+		A57D50352C9C396E00237224 /* TextSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57D50342C9C396E00237224 /* TextSegmentedControl.swift */; };
+		A57D50372C9C982700237224 /* RankingUserCardSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57D50362C9C982700237224 /* RankingUserCardSet.swift */; };
 		A5EB268C2C9C0D03000208F9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A5EB268B2C9C0D03000208F9 /* Config.xcconfig */; };
 		A5EB268E2C9C0D99000208F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5EB268D2C9C0D99000208F9 /* GoogleService-Info.plist */; };
-		A5EB26912C9C10E4000208F9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5EB26902C9C10E4000208F9 /* Alamofire */; };
 		A5EB26952C9C12E0000208F9 /* EventName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB26942C9C12E0000208F9 /* EventName.swift */; };
 		A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +107,8 @@
 		A556899B2C9B137200E60BC6 /* LocationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformation.swift; sourceTree = "<group>"; };
 		A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRanking.swift; sourceTree = "<group>"; };
 		A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTimeInformation.swift; sourceTree = "<group>"; };
+		A57D50342C9C396E00237224 /* TextSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentedControl.swift; sourceTree = "<group>"; };
+		A57D50362C9C982700237224 /* RankingUserCardSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUserCardSet.swift; sourceTree = "<group>"; };
 		A5EB268B2C9C0D03000208F9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A5EB268D2C9C0D99000208F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5EB26942C9C12E0000208F9 /* EventName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventName.swift; sourceTree = "<group>"; };
@@ -120,10 +125,10 @@
 				22AE4E2D2C9BCCC800B0BF82 /* PostgREST in Frameworks */,
 				22AE4E392C9BCCE200B0BF82 /* GoogleSignIn in Frameworks */,
 				22AE4E4A2C9BCD8E00B0BF82 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				A57D50332C9C1E0700237224 /* Alamofire in Frameworks */,
 				22AE4E5C2C9BCD8E00B0BF82 /* FirebaseFirestore in Frameworks */,
 				22AE4E482C9BCD8E00B0BF82 /* FirebaseAnalytics in Frameworks */,
 				22AE4E4E2C9BCD8E00B0BF82 /* FirebaseAppCheck in Frameworks */,
-				A5EB26912C9C10E4000208F9 /* Alamofire in Frameworks */,
 				22AE4E2F2C9BCCC800B0BF82 /* Realtime in Frameworks */,
 				22E7090C2C8D81310009FE19 /* Storage in Frameworks */,
 				22AE4E522C9BCD8E00B0BF82 /* FirebaseAuth in Frameworks */,
@@ -155,6 +160,7 @@
 				22AE4E5E2C9BCD8E00B0BF82 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				22AE4E312C9BCCC800B0BF82 /* Storage in Frameworks */,
 				22E7090E2C8D81310009FE19 /* Supabase in Frameworks */,
+				A57D502E2C9C19F400237224 /* Algorithms in Frameworks */,
 				22E709022C8D80950009FE19 /* Storage in Frameworks */,
 				22E709042C8D81310009FE19 /* Auth in Frameworks */,
 				22AE4E542C9BCD8E00B0BF82 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -323,6 +329,8 @@
 				A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */,
 				A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */,
 				A5EB26942C9C12E0000208F9 /* EventName.swift */,
+				A57D50342C9C396E00237224 /* TextSegmentedControl.swift */,
+				A57D50362C9C982700237224 /* RankingUserCardSet.swift */,
 			);
 			path = TikokuRanking;
 			sourceTree = "<group>";
@@ -387,7 +395,8 @@
 				22AE4E672C9BCD8E00B0BF82 /* FirebaseStorage */,
 				22AE4E692C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community */,
 				22AE4E6B2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview */,
-				A5EB26902C9C10E4000208F9 /* Alamofire */,
+				A57D502D2C9C19F400237224 /* Algorithms */,
+				A57D50322C9C1E0700237224 /* Alamofire */,
 			);
 			productName = TikokulympicBeta;
 			productReference = 22AABD422C875AE80086644F /* TikokulympicBeta.app */;
@@ -421,7 +430,8 @@
 				22AE4E272C9BCCC800B0BF82 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				22AE4E372C9BCCE200B0BF82 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				22AE4E3C2C9BCD1F00B0BF82 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				A5EB268F2C9C10E4000208F9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A57D502C2C9C19F400237224 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				A57D50312C9C1E0700237224 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 22AABD432C875AE80086644F /* Products */;
 			projectDirPath = "";
@@ -480,7 +490,9 @@
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
 				223484602C99ED62006BB113 /* SupabaseService.swift in Sources */,
 				A5EB26952C9C12E0000208F9 /* EventName.swift in Sources */,
+				A57D50372C9C982700237224 /* RankingUserCardSet.swift in Sources */,
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
+				A57D50352C9C396E00237224 /* TextSegmentedControl.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */,
@@ -733,7 +745,15 @@
 				minimumVersion = 11.2.0;
 			};
 		};
-		A5EB268F2C9C10E4000208F9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		A57D502C2C9C19F400237224 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		A57D50312C9C1E0700237224 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -943,9 +963,14 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Supabase;
 		};
-		A5EB26902C9C10E4000208F9 /* Alamofire */ = {
+		A57D502D2C9C19F400237224 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A5EB268F2C9C10E4000208F9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = A57D502C2C9C19F400237224 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		A57D50322C9C1E0700237224 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A57D50312C9C1E0700237224 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
