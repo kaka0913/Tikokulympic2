@@ -8,9 +8,10 @@ struct TikokuRankingView: View {
         VStack {
             ZStack {
                 Rectangle()
-                    .frame(height: 328)
+                    .frame(height: 355)
                     .foregroundColor(.darkred)
                 VStack{
+                    EventName()
                     LimitTime(limitTime: $viewModel.remainingTime)
                     MeetingTimeInformation()
                     LocationInformation()

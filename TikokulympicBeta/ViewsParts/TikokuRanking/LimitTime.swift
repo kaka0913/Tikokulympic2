@@ -1,13 +1,27 @@
 import SwiftUI
 import Combine
+import Foundation
+
 
 class LimitTimeViewModel: ObservableObject {
     @Published var remainingTime: TimeInterval = 0
     private var cancellablePipeLine: AnyCancellable?
-    var meetingTime: Date
+    var meetingTime: Date = Date()
 
-    init(meetingTime: Date = Calendar.current.date(byAdding: .minute, value: 10, to: Date()) ?? Date()) {
-        self.meetingTime = meetingTime
+
+    init() {
+        let calendar = Calendar.current
+
+
+        self.meetingTime = {
+                var components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+                components.year = 2024
+                components.month = 9
+                components.day = 19
+                components.hour = 19
+                components.minute = 0
+                return calendar.date(from: components) ?? Date()
+        }()
         cancellablePipeLine = Timer
             .publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -18,7 +32,8 @@ class LimitTimeViewModel: ObservableObject {
             }
     }
 
-    func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {
+
+    func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {//meetingTimeを変更
         return max(meetingTime.timeIntervalSince(currentDate), 0)
     }
 }
