@@ -19,6 +19,7 @@
 		22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */; };
 		22872B092C9CCFB20045B653 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22872B082C9CCFB20045B653 /* CoreLocation.framework */; };
 		22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0A2C9CD20A0045B653 /* AppDelegate.swift */; };
+		22872B0D2C9CDF7A0045B653 /* SignupRequsest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */; };
 		22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */; };
 		22AABD482C875AE80086644F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD472C875AE80086644F /* ContentView.swift */; };
 		22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AABD492C875AE90086644F /* Assets.xcassets */; };
@@ -100,6 +101,7 @@
 		22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingViewModel.swift; sourceTree = "<group>"; };
 		22872B082C9CCFB20045B653 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22872B0A2C9CD20A0045B653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequsest.swift; sourceTree = "<group>"; };
 		22AABD422C875AE80086644F /* TikokulympicBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikokulympicBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokulympicBetaApp.swift; sourceTree = "<group>"; };
 		22AABD472C875AE80086644F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				22220BD42C97103300DDB003 /* APIClient.swift */,
 				22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */,
 				22242E072C996F6A001BEB14 /* ArrivalRequest.swift */,
+				22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
+				22872B0D2C9CDF7A0045B653 /* SignupRequsest.swift in Sources */,
 				22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
 				A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */,
