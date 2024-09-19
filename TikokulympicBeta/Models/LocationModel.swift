@@ -13,3 +13,9 @@ struct Location: Codable {
     let latitude: Float
     let longitude: Float
 }
+
+struct LocatinInfo: Codable {
+    let latitude: Double
+    let longitude: Double
+    var createAt = Date()
+}

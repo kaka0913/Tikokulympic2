@@ -20,6 +20,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>GIDClientID</key>
 	<string>979114525545-g95lagpg83b83bkv7rgel366nb588i92.apps.googleusercontent.com</string>
 </dict>
