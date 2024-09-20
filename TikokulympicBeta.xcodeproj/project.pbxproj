@@ -60,7 +60,6 @@
 		22AE4E6A2C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E692C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community */; };
 		22AE4E6C2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E6B2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview */; };
 		22AE4E6E2C9C22F100B0BF82 /* RealTimeDataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */; };
-		22AE4ED42C9C5EDF00B0BF82 /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED32C9C5EDF00B0BF82 /* UserLocationService.swift */; };
 		22AE4ED62C9C8BF800B0BF82 /* NormalLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */; };
 		22AE4EDA2C9C922300B0BF82 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED92C9C922300B0BF82 /* LocationModel.swift */; };
 		22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */; };
@@ -112,7 +111,6 @@
 		22AABD6D2C8C42490086644F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22AABD712C8C42730086644F /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeDataBaseService.swift; sourceTree = "<group>"; };
-		22AE4ED32C9C5EDF00B0BF82 /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalLocationService.swift; sourceTree = "<group>"; };
 		22AE4ED92C9C922300B0BF82 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -273,8 +271,8 @@
 				22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */,
 				22220BD42C97103300DDB003 /* APIClient.swift */,
 				22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */,
-				22242E072C996F6A001BEB14 /* ArrivalRequest.swift */,
 				22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */,
+				22242E072C996F6A001BEB14 /* ArrivalRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -329,7 +327,6 @@
 				22242E042C994AB1001BEB14 /* TikokuRankingService.swift */,
 				2234845F2C99ED62006BB113 /* SupabaseService.swift */,
 				22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */,
-				22AE4ED32C9C5EDF00B0BF82 /* UserLocationService.swift */,
 				22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */,
 			);
 			path = Services;
@@ -540,7 +537,6 @@
 				22220BD52C97103300DDB003 /* APIClient.swift in Sources */,
 				22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */,
 				22872B022C9CC68B0045B653 /* TextSegmentControll.swift in Sources */,
-				22AE4ED42C9C5EDF00B0BF82 /* UserLocationService.swift in Sources */,
 				A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +546,7 @@
 /* Begin XCBuildConfiguration section */
 		22AABD4E2C875AE90086644F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -613,6 +610,7 @@
 		};
 		22AABD4F2C875AE90086644F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -669,6 +667,7 @@
 		};
 		22AABD512C875AE90086644F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -703,6 +702,7 @@
 		};
 		22AABD522C875AE90086644F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
