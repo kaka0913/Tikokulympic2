@@ -54,6 +54,7 @@ class AuthViewModel: ObservableObject {
                     print("Supabase Sign-in Success")
                 }
                 
+                //mockデータ
                 let request = SignupRequest(token: "hogehoge", user_name: "APIのテストだよん", auth_id: 777)
                 let response = try await apiclient.call(request: request)
 
