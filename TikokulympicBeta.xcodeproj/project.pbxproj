@@ -20,6 +20,7 @@
 		22872B092C9CCFB20045B653 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22872B082C9CCFB20045B653 /* CoreLocation.framework */; };
 		22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0A2C9CD20A0045B653 /* AppDelegate.swift */; };
 		22872B0D2C9CDF7A0045B653 /* SignupRequsest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */; };
+		22872B0F2C9D271E0045B653 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0E2C9D271E0045B653 /* User.swift */; };
 		22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */; };
 		22AABD482C875AE80086644F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD472C875AE80086644F /* ContentView.swift */; };
 		22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AABD492C875AE90086644F /* Assets.xcassets */; };
@@ -61,7 +62,7 @@
 		22AE4E6C2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E6B2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview */; };
 		22AE4E6E2C9C22F100B0BF82 /* RealTimeDataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */; };
 		22AE4ED62C9C8BF800B0BF82 /* NormalLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */; };
-		22AE4EDA2C9C922300B0BF82 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED92C9C922300B0BF82 /* LocationModel.swift */; };
+		22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED92C9C922300B0BF82 /* Location.swift */; };
 		22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */; };
 		22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */; };
 		22E708E82C8D66EF0009FE19 /* APIKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */; };
@@ -101,6 +102,7 @@
 		22872B082C9CCFB20045B653 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22872B0A2C9CD20A0045B653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequsest.swift; sourceTree = "<group>"; };
+		22872B0E2C9D271E0045B653 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22AABD422C875AE80086644F /* TikokulympicBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikokulympicBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokulympicBetaApp.swift; sourceTree = "<group>"; };
 		22AABD472C875AE80086644F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,7 +114,7 @@
 		22AABD712C8C42730086644F /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeDataBaseService.swift; sourceTree = "<group>"; };
 		22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalLocationService.swift; sourceTree = "<group>"; };
-		22AE4ED92C9C922300B0BF82 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		22AE4ED92C9C922300B0BF82 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyManager.swift; sourceTree = "<group>"; };
@@ -250,7 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				22AABD572C8C328D0086644F /* API */,
-				22AE4ED92C9C922300B0BF82 /* LocationModel.swift */,
+				22AE4ED92C9C922300B0BF82 /* Location.swift */,
+				22872B0E2C9D271E0045B653 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -515,9 +518,10 @@
 				22872B002C9CC6670045B653 /* RankingUserCardSet.swift in Sources */,
 				A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */,
 				22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */,
-				22AE4EDA2C9C922300B0BF82 /* LocationModel.swift in Sources */,
+				22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */,
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
 				223484602C99ED62006BB113 /* SupabaseService.swift in Sources */,
+				22872B0F2C9D271E0045B653 /* User.swift in Sources */,
 				22AE4E6E2C9C22F100B0BF82 /* RealTimeDataBaseService.swift in Sources */,
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
