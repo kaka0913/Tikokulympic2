@@ -4,23 +4,15 @@ import SwiftUI
 
 struct AuthView: View {
     @StateObject private var viewModel = AuthViewModel()
+    let apiclient = APIClient.shared
 
     var body: some View {
         VStack {
+
             Image("TikokuGorin")
                 .resizable()
                 .scaledToFit()
-            
-//            Image("TigerLine")
-//                .resizable()
-//                .scaledToFit()
-//                .padding(.top,100)
-//            Image("Tikokuou2")
-//                .resizable()
-//                .scaledToFit()
-//            Image("TigerLine")
-//                .resizable()
-//                .scaledToFit()
+
             if viewModel.isSignedIn {
                 Text("Signed in successfully!")
                     .font(.title)
@@ -33,8 +25,8 @@ struct AuthView: View {
                 GoogleSignInButton {
                     viewModel.signInWithGoogle()
                 }
-                .frame(width: 220, height: 50)
-                .padding()
+            } label: {
+                Text("あああ")
             }
         }
     }

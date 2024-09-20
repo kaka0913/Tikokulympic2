@@ -24,7 +24,7 @@ protocol RequestProtocol: Encodable {
 
 extension RequestProtocol {
     var baseUrl: String {
-        return "https://example.com"
+        return "https://watnow-hack2024.onrender.com"
     }
     var encoding: Alamofire.ParameterEncoding {
         return JSONEncoding.default
