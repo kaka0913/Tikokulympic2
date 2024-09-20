@@ -15,21 +15,25 @@ struct AuthView: View {
 
     var body: some View {
         VStack {
-            Button {
-                Task {
-                    let request = SignupRequest(token: "hogehoge", user_name: "APIのテストだよん", auth_id: 777)
-                    print(request)
-                    do {
-                        let response = try await apiclient.call(request: request)
-                        print("😁response--------------------")
-                        print("id: \(response.id)    \n")
-                        print("--------------------")
-                    } catch {
-                        print("Error occurred: \(error)")
+            Image("TikokuGorin")
+                .resizable()
+                .scaledToFit()
+            if viewModel.isSignedIn {
+                Text("Signed in successfully!")
+                    .font(.title)
+                    .padding()
+            } else {
+                Text("Sign in with Google")
+                    .font(.title)
+                    .padding()
+
+                GoogleSignInButton {
+                    Task {
+                        await viewModel.signInWithGoogle()
                     }
                 }
-            } label: {
-                Text("あああ")
+                .frame(width: 220, height: 50)
+                .padding()
             }
         }
     }
