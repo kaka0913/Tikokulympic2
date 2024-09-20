@@ -19,7 +19,6 @@
 		22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */; };
 		22872B092C9CCFB20045B653 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22872B082C9CCFB20045B653 /* CoreLocation.framework */; };
 		22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0A2C9CD20A0045B653 /* AppDelegate.swift */; };
-		22872B0D2C9CDF7A0045B653 /* SignupRequsest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */; };
 		22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */; };
 		22AABD482C875AE80086644F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD472C875AE80086644F /* ContentView.swift */; };
 		22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AABD492C875AE90086644F /* Assets.xcassets */; };
@@ -79,12 +78,12 @@
 		22E7090E2C8D81310009FE19 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 22E7090D2C8D81310009FE19 /* Supabase */; };
 		22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7093E2C90054C0009FE19 /* AuthViewModel.swift */; };
 		22E709432C904C220009FE19 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E709422C904C220009FE19 /* AuthView.swift */; };
-		A55689912C9A75C800E60BC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A55689902C9A75C800E60BC6 /* GoogleService-Info.plist */; };
 		A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */; };
 		A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689992C9AC28100E60BC6 /* Rank.swift */; };
 		A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899B2C9B137200E60BC6 /* LocationInformation.swift */; };
 		A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */; };
 		A55689A22C9B18C000E60BC6 /* MeetingTimeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */; };
+		A5BA22A82C9D135100B40E2B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */; };
 		A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +100,6 @@
 		22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingViewModel.swift; sourceTree = "<group>"; };
 		22872B082C9CCFB20045B653 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22872B0A2C9CD20A0045B653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequsest.swift; sourceTree = "<group>"; };
 		22AABD422C875AE80086644F /* TikokulympicBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikokulympicBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokulympicBetaApp.swift; sourceTree = "<group>"; };
 		22AABD472C875AE80086644F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,12 +119,12 @@
 		22E708EB2C8D6ABA0009FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		22E7093E2C90054C0009FE19 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		22E709422C904C220009FE19 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		A55689902C9A75C800E60BC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUserCard.swift; sourceTree = "<group>"; };
 		A55689992C9AC28100E60BC6 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
 		A556899B2C9B137200E60BC6 /* LocationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformation.swift; sourceTree = "<group>"; };
 		A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRanking.swift; sourceTree = "<group>"; };
 		A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTimeInformation.swift; sourceTree = "<group>"; };
+		A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,7 +240,7 @@
 		22AABD4B2C875AE90086644F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A55689902C9A75C800E60BC6 /* GoogleService-Info.plist */,
+				A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */,
 				22AABD4C2C875AE90086644F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -274,7 +272,6 @@
 				22220BD42C97103300DDB003 /* APIClient.swift */,
 				22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */,
 				22242E072C996F6A001BEB14 /* ArrivalRequest.swift */,
-				22872B0C2C9CDF7A0045B653 /* SignupRequsest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -481,7 +478,7 @@
 				22AABD632C8C34DD0086644F /* .gitignore in Resources */,
 				22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */,
 				22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */,
-				A55689912C9A75C800E60BC6 /* GoogleService-Info.plist in Resources */,
+				A5BA22A82C9D135100B40E2B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +522,6 @@
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
-				22872B0D2C9CDF7A0045B653 /* SignupRequsest.swift in Sources */,
 				22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
 				A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */,

@@ -1,10 +1,3 @@
-//
-//  AuthView.swift
-//  TikokulympicBeta
-//
-//  Created by 株丹優一郎 on 2024/09/10.
-//
-
 import GoogleSignIn
 import GoogleSignInSwift
 import SwiftUI
@@ -14,6 +7,20 @@ struct AuthView: View {
 
     var body: some View {
         VStack {
+            Image("TikokuGorin")
+                .resizable()
+                .scaledToFit()
+            
+//            Image("TigerLine")
+//                .resizable()
+//                .scaledToFit()
+//                .padding(.top,100)
+//            Image("Tikokuou2")
+//                .resizable()
+//                .scaledToFit()
+//            Image("TigerLine")
+//                .resizable()
+//                .scaledToFit()
             if viewModel.isSignedIn {
                 Text("Signed in successfully!")
                     .font(.title)
