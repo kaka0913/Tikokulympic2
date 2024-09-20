@@ -16,7 +16,6 @@ struct ProfileView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            // Top title (称号 and title)
             HStack {
 
                 Text("称号")
@@ -30,14 +29,9 @@ struct ProfileView: View {
             }
             .padding(.top, 16)
             
-            // Profile info section
             VStack(spacing: 20) {
                 HStack(spacing: 16) {
-                    // User profile image
-
-                    
                     VStack(alignment: .leading, spacing: 8) {
-                        // Name and edit button
                         HStack {
                             Image(systemName: "person.circle.fill")
                                 .resizable()
@@ -48,7 +42,6 @@ struct ProfileView: View {
                             Image(systemName: "pencil")
                         }
                         
-                        // Stats: Late count, On-time count, Total late time
                         VStack(alignment: .leading, spacing: 12) {
                             HStack {
                                 Image(systemName: "clock.fill")
@@ -81,7 +74,7 @@ struct ProfileView: View {
             
             Spacer()
         }
-        .background(Color.green) // Green background for ProfileView only
+        .background(Color.green)
         .cornerRadius(20)
         .padding(.all, 10)
     }
