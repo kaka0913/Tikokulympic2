@@ -1,10 +1,3 @@
-//
-//  AuthView.swift
-//  TikokulympicBeta
-//
-//  Created by 株丹優一郎 on 2024/09/10.
-//
-
 import GoogleSignIn
 import GoogleSignInSwift
 import SwiftUI
@@ -15,18 +8,22 @@ struct AuthView: View {
 
     var body: some View {
         VStack {
-            Button {
-                Task {
-                    let request = SignupRequest(token: "hogehoge", user_name: "APIのテストだよん", auth_id: 777)
-                    print(request)
-                    do {
-                        let response = try await apiclient.call(request: request)
-                        print("😁response--------------------")
-                        print("id: \(response.id)    \n")
-                        print("--------------------")
-                    } catch {
-                        print("Error occurred: \(error)")
-                    }
+
+            Image("TikokuGorin")
+                .resizable()
+                .scaledToFit()
+
+            if viewModel.isSignedIn {
+                Text("Signed in successfully!")
+                    .font(.title)
+                    .padding()
+            } else {
+                Text("Sign in with Google")
+                    .font(.title)
+                    .padding()
+
+                GoogleSignInButton {
+                    viewModel.signInWithGoogle()
                 }
             } label: {
                 Text("あああ")
