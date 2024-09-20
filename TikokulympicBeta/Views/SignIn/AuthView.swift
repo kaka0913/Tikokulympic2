@@ -8,7 +8,6 @@ struct AuthView: View {
 
     var body: some View {
         VStack {
-
             Image("TikokuGorin")
                 .resizable()
                 .scaledToFit()
@@ -23,10 +22,12 @@ struct AuthView: View {
                     .padding()
 
                 GoogleSignInButton {
-                    viewModel.signInWithGoogle()
+                    Task {
+                        await viewModel.signInWithGoogle()
+                    }
                 }
-            } label: {
-                Text("あああ")
+                .frame(width: 220, height: 50)
+                .padding()
             }
         }
     }
