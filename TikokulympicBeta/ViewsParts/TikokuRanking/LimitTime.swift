@@ -33,10 +33,11 @@ class LimitTimeViewPropertyFactory: ObservableObject {
             }
     }
 
-    func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {  //meetingTimeを変更
+    func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {
         return max(meetingTime.timeIntervalSince(currentDate), 0)
     }
 }
+
 struct LimitTime: View {
     @Binding var limitTime: Double
     var body: some View {
