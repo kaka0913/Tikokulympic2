@@ -13,7 +13,8 @@ import SwiftUI
 //AuthViewModelはAuthViewのみに対して使用したいため、ViewModelを作成
 class AuthViewModel: ObservableObject {
     @Published var isSignedIn: Bool = false
-    let apiclient = APIClient.shared
+    let authService = AuthService.shared
+    
     // Googleサインイン
     func signInWithGoogle() async {
         GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) {
@@ -54,11 +55,12 @@ class AuthViewModel: ObservableObject {
                     self.isSignedIn = true
                     print("Supabase Sign-in Success")
                 }
-
-                //mockデータ
-                let request = SignupRequest(
-                    token: "hogehoge", user_name: "APIのテストだよん", auth_id: 777)
-                let response = try await apiclient.call(request: request)
+                
+                let response = try await authService.postSignup(
+                    token: "hogehoge", 
+                    userName: "APIのテストだよん",
+                    authId: 777
+                )
 
             } catch let error as APIError {
                 print("😁Supabase Sign-in Error: \(error.localizedDescription)")

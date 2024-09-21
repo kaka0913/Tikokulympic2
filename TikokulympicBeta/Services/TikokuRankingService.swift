@@ -10,6 +10,7 @@ import Foundation
 
 class TikokuRankingService {
     private let apiClient = APIClient.shared
+    static let shared = TikokuRankingService()
 
     func postArrival(userId: String, eventId: String, isArrival: Bool, arrivalTime: Date) async {
         let request = ArrivalRequest(
@@ -19,7 +20,7 @@ class TikokuRankingService {
             arrivalTime: arrivalTime
         )
         do {
-            _ = try await apiClient.call(request: request)
+            let response = try await apiClient.call(request: request)
         } catch {
             print("イベント会場到着情報の送信に失敗しました: \(error)")
         }
