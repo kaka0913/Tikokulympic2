@@ -61,7 +61,6 @@
 		22AE4E682C9BCD8E00B0BF82 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E672C9BCD8E00B0BF82 /* FirebaseStorage */; };
 		22AE4E6A2C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E692C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community */; };
 		22AE4E6C2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E6B2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview */; };
-		22AE4E6E2C9C22F100B0BF82 /* RealTimeDataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */; };
 		22AE4ED62C9C8BF800B0BF82 /* NormalLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */; };
 		22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED92C9C922300B0BF82 /* Location.swift */; };
 		22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */; };
@@ -113,7 +112,6 @@
 		22AABD642C8C38CA0086644F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		22AABD6D2C8C42490086644F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22AABD712C8C42730086644F /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
-		22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeDataBaseService.swift; sourceTree = "<group>"; };
 		22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalLocationService.swift; sourceTree = "<group>"; };
 		22AE4ED92C9C922300B0BF82 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -329,7 +327,6 @@
 			children = (
 				22242E042C994AB1001BEB14 /* TikokuRankingService.swift */,
 				2234845F2C99ED62006BB113 /* SupabaseService.swift */,
-				22AE4E6D2C9C22F100B0BF82 /* RealTimeDataBaseService.swift */,
 				22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */,
 			);
 			path = Services;
@@ -523,7 +520,6 @@
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
 				223484602C99ED62006BB113 /* SupabaseService.swift in Sources */,
 				22872B0F2C9D271E0045B653 /* User.swift in Sources */,
-				22AE4E6E2C9C22F100B0BF82 /* RealTimeDataBaseService.swift in Sources */,
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
