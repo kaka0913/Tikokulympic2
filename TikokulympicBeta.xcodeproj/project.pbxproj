@@ -21,6 +21,7 @@
 		22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0A2C9CD20A0045B653 /* AppDelegate.swift */; };
 		22872B0F2C9D271E0045B653 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B0E2C9D271E0045B653 /* User.swift */; };
 		22872B112C9D356C0045B653 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B102C9D356C0045B653 /* SignupRequest.swift */; };
+		228F57402C9EC81D00EEA6E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 228F573F2C9EC81D00EEA6E1 /* GoogleService-Info.plist */; };
 		22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */; };
 		22AABD482C875AE80086644F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD472C875AE80086644F /* ContentView.swift */; };
 		22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AABD492C875AE90086644F /* Assets.xcassets */; };
@@ -84,7 +85,6 @@
 		A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899B2C9B137200E60BC6 /* LocationInformation.swift */; };
 		A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */; };
 		A55689A22C9B18C000E60BC6 /* MeetingTimeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */; };
-		A5BA22A82C9D135100B40E2B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */; };
 		A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +103,7 @@
 		22872B0A2C9CD20A0045B653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22872B0E2C9D271E0045B653 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22872B102C9D356C0045B653 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
+		228F573F2C9EC81D00EEA6E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22AABD422C875AE80086644F /* TikokulympicBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikokulympicBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokulympicBetaApp.swift; sourceTree = "<group>"; };
 		22AABD472C875AE80086644F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		A556899B2C9B137200E60BC6 /* LocationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformation.swift; sourceTree = "<group>"; };
 		A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRanking.swift; sourceTree = "<group>"; };
 		A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTimeInformation.swift; sourceTree = "<group>"; };
-		A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,8 +242,8 @@
 		22AABD4B2C875AE90086644F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */,
 				22AABD4C2C875AE90086644F /* Preview Assets.xcassets */,
+				228F573F2C9EC81D00EEA6E1 /* GoogleService-Info.plist */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -481,7 +481,7 @@
 				22AABD632C8C34DD0086644F /* .gitignore in Resources */,
 				22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */,
 				22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */,
-				A5BA22A82C9D135100B40E2B /* GoogleService-Info.plist in Resources */,
+				228F57402C9EC81D00EEA6E1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
