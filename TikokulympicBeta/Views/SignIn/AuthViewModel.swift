@@ -16,7 +16,8 @@ class AuthViewModel: ObservableObject {
     let apiclient = APIClient.shared
     // Googleサインイン
     func signInWithGoogle() async {
-        GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { signInResult, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) {
+            signInResult, error in
             guard let result = signInResult else {
                 if let error = error {
                     print("Error signing in: \(error.localizedDescription)")
@@ -53,12 +54,12 @@ class AuthViewModel: ObservableObject {
                     self.isSignedIn = true
                     print("Supabase Sign-in Success")
                 }
-                
+
                 //mockデータ
-                let request = SignupRequest(token: "hogehoge", user_name: "APIのテストだよん", auth_id: 777)
+                let request = SignupRequest(
+                    token: "hogehoge", user_name: "APIのテストだよん", auth_id: 777)
                 let response = try await apiclient.call(request: request)
 
-                
             } catch let error as APIError {
                 print("😁Supabase Sign-in Error: \(error.localizedDescription)")
                 switch error {
@@ -72,7 +73,7 @@ class AuthViewModel: ObservableObject {
                     print("デコードエラーが発生しました: \(underlyingError.localizedDescription)")
                 case .unknownError:
                     print("不明なエラーが発生しました。")
-                case .clientError(statusCode: let statusCode, data: let data):
+                case .clientError(let statusCode, let data):
                     print("クライアント側でのエラーが発生しました。")
                 }
             }

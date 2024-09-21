@@ -1,37 +1,39 @@
-import SwiftUI
-import CoreLocation
 import Combine
+import CoreLocation
 import Foundation
+import SwiftUI
 
 class LimitTimeViewPropertyFactory: ObservableObject {
     @Published var remainingTime: TimeInterval = 0
     private var cancellablePipeLine: AnyCancellable?
     var meetingTime: Date = Date()
 
-
     init() {
         let calendar = Calendar.current
-        
+
         self.meetingTime = {
-                var components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
-                components.year = 2024
-                components.month = 9
-                components.day = 20
-                components.hour = 14
-                components.minute = 0
-                return calendar.date(from: components) ?? Date()
+            var components = calendar.dateComponents(
+                [.year, .month, .day, .hour, .minute], from: Date())
+            components.year = 2024
+            components.month = 9
+            components.day = 20
+            components.hour = 14
+            components.minute = 0
+            return calendar.date(from: components) ?? Date()
         }()
-        cancellablePipeLine = Timer
+        cancellablePipeLine =
+            Timer
             .publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 let currentDate = Date()
-                self.remainingTime = self.culcLimitTime(meetingTime: self.meetingTime, currentDate: currentDate)
+                self.remainingTime = self.culcLimitTime(
+                    meetingTime: self.meetingTime, currentDate: currentDate)
             }
     }
 
-    func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {//meetingTimeを変更
+    func culcLimitTime(meetingTime: Date, currentDate: Date) -> TimeInterval {  //meetingTimeを変更
         return max(meetingTime.timeIntervalSince(currentDate), 0)
     }
 }

@@ -1,5 +1,5 @@
-import SwiftUI
 import CoreLocation
+import SwiftUI
 
 struct TikokuRankingView: View {
     @State var timerHandler: Timer?
@@ -19,9 +19,9 @@ struct TikokuRankingView: View {
                 }
             }
             .padding(.bottom)
-            
+
             TextSegmentedControl()
-            
+
             RankingUserCardSet()
         }
     }

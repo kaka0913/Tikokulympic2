@@ -19,7 +19,7 @@ class APIClient {
 
         let method = request.method
         let headers = request.headers
-        
+
         // ベースURLとパスを結合
         var urlComponents = URLComponents(string: requestUrl)
 
@@ -34,14 +34,13 @@ class APIClient {
         }
 
         guard let url = urlComponents?.url else {
-            
+
             throw APIError.invalidResponse
         }
 
         var urlRequest = URLRequest(url: url)
         urlRequest.method = method
         urlRequest.headers = headers ?? HTTPHeaders()
-
 
         if let bodyParameters = request.parameters {
             do {
@@ -51,12 +50,12 @@ class APIClient {
             }
         }
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(urlRequest)
                 .validate()
                 .responseDecodable(of: T.Response.self, decoder: request.decoder) { response in
-                    let statusCode = response.response?.statusCode ?? -1      
+                    let statusCode = response.response?.statusCode ?? -1
                     switch response.result {
                     case .success(let result):
                         continuation.resume(returning: result)

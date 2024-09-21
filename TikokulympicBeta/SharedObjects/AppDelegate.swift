@@ -5,19 +5,19 @@
 //  Created by 株丹優一郎 on 2024/09/20.
 //
 
-import Foundation
+import CoreLocation
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
+import Foundation
 import GoogleSignIn
 import SwiftUI
 import UserNotifications
-import CoreLocation
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var locationManager: CLLocationManager?
     var currentLocation: CLLocationCoordinate2D?
-    
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -25,7 +25,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         // 通知の許可をリクエスト
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
             if let error = error {
                 print("通知の許可リクエストでエラーが発生しました: \(error)")
                 return
@@ -41,10 +42,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         UNUserNotificationCenter.current().delegate = self
-        
+
         locationManager = CLLocationManager()
         locationManager?.delegate = self
-        
+
         locationManager?.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {

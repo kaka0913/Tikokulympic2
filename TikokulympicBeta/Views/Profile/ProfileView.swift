@@ -13,7 +13,7 @@ struct ProfileView: View {
     let onTimeCount = 0
     let totalLateTime = "1h20m"
     let title = "警察なのに遅刻"
-    
+
     var body: some View {
         VStack(spacing: 20) {
             HStack {
@@ -22,13 +22,13 @@ struct ProfileView: View {
                     .foregroundColor(.white)
                     .font(.headline)
                     .padding(.trailing, 8)
-                
+
                 Text(title)
                     .foregroundColor(.white)
                     .font(.headline)
             }
             .padding(.top, 16)
-            
+
             VStack(spacing: 20) {
                 HStack(spacing: 16) {
                     VStack(alignment: .leading, spacing: 8) {
@@ -41,20 +41,20 @@ struct ProfileView: View {
                                 .font(.title3)
                             Image(systemName: "pencil")
                         }
-                        
+
                         VStack(alignment: .leading, spacing: 12) {
                             HStack {
                                 Image(systemName: "clock.fill")
                                 Text("遅刻回数: \(lateCount)")
                                     .font(.title2)
                             }
-                            
+
                             HStack {
                                 Image(systemName: "hand.raised.fill")
                                 Text("間に合った回数: \(onTimeCount)")
                                     .font(.title2)
                             }
-                            
+
                             HStack {
                                 Image(systemName: "hourglass.bottomhalf.fill")
                                 Text("総遅刻時間: \(totalLateTime)")
@@ -71,7 +71,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
             }
             .padding(.top, 20)
-            
+
             Spacer()
         }
         .background(Color.green)
@@ -79,7 +79,6 @@ struct ProfileView: View {
         .padding(.all, 10)
     }
 }
-
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {

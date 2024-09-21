@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum Rank{
+enum Rank {
     case first
     case secound
     case third

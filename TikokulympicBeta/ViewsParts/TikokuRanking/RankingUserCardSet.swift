@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RankingUserCardSet: View {
     var body: some View {
-        
+
         List(sortedUserCards.enumerated().map({ $1 })) { userCard in
             RankingUserCard(
                 name: userCard.name,
@@ -23,7 +23,7 @@ struct RankingUserCardSet: View {
             .listRowInsets(EdgeInsets())
         }
     }
-    
+
     var sortedUserCards: [RankingUserCard] {
         // distanceの数値に基づいて降順で並べ替え
         var sorted = userCards.sorted {
@@ -32,7 +32,7 @@ struct RankingUserCardSet: View {
             }
             return distance1 > distance2
         }
-        
+
         // 順番に基づいてrankStateを適用
         for (index, _) in sorted.enumerated() {
             switch index {
@@ -46,7 +46,7 @@ struct RankingUserCardSet: View {
                 sorted[index].rankState = .normal
             }
         }
-        
+
         return sorted
     }
 }

@@ -15,7 +15,7 @@ struct TikokuRankingView: View {
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                     Text("00:00:00")
-                    
+
                         .font(.custom("", size: 100))
                         .foregroundColor(.white)
                     Rectangle()
