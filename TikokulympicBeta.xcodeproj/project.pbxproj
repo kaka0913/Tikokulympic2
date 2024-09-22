@@ -26,6 +26,9 @@
 		228F574D2C9FFB0800EEA6E1 /* UserProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */; };
 		228F57532C9FFD4C00EEA6E1 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */; };
 		228F57552CA04C8C00EEA6E1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57542CA04C8C00EEA6E1 /* ProfileViewModel.swift */; };
+		228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */; };
+		228F575F2CA072D000EEA6E1 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F575E2CA072D000EEA6E1 /* TestView.swift */; };
+		228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */; };
 		22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */; };
 		22AABD482C875AE80086644F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD472C875AE80086644F /* ContentView.swift */; };
 		22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AABD492C875AE90086644F /* Assets.xcassets */; };
@@ -65,7 +68,6 @@
 		22AE4E682C9BCD8E00B0BF82 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E672C9BCD8E00B0BF82 /* FirebaseStorage */; };
 		22AE4E6A2C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E692C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community */; };
 		22AE4E6C2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E6B2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview */; };
-		22AE4ED62C9C8BF800B0BF82 /* NormalLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */; };
 		22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED92C9C922300B0BF82 /* Location.swift */; };
 		22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */; };
 		22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */; };
@@ -110,6 +112,9 @@
 		228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRequest.swift; sourceTree = "<group>"; };
 		228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		228F57542CA04C8C00EEA6E1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		228F575E2CA072D000EEA6E1 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		22AABD422C875AE80086644F /* TikokulympicBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikokulympicBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokulympicBetaApp.swift; sourceTree = "<group>"; };
 		22AABD472C875AE80086644F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,7 +124,6 @@
 		22AABD642C8C38CA0086644F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		22AABD6D2C8C42490086644F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22AABD712C8C42730086644F /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
-		22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalLocationService.swift; sourceTree = "<group>"; };
 		22AE4ED92C9C922300B0BF82 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				22AABD572C8C328D0086644F /* API */,
+				228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */,
 				22AE4ED92C9C922300B0BF82 /* Location.swift */,
 				22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */,
 			);
@@ -316,6 +321,7 @@
 				22AABD682C8C3F950086644F /* EventList */,
 				22AABD692C8C3FCE0086644F /* Profile */,
 				22AABD672C8C3F7C0086644F /* TikokuRanking */,
+				228F575E2CA072D000EEA6E1 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,7 +359,6 @@
 				22242E042C994AB1001BEB14 /* TikokuRankingService.swift */,
 				228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */,
 				2234845F2C99ED62006BB113 /* SupabaseService.swift */,
-				22AE4ED52C9C8BF800B0BF82 /* NormalLocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				22872AFF2C9CC6660045B653 /* RankingUserCardSet.swift */,
 				22872B012C9CC68B0045B653 /* TextSegmentControll.swift */,
 				22872B032C9CC8EF0045B653 /* EventName.swift */,
+				228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */,
 			);
 			path = TikokuRanking;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */,
 				228F574D2C9FFB0800EEA6E1 /* UserProfileRequest.swift in Sources */,
+				228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */,
 				228F57552CA04C8C00EEA6E1 /* ProfileViewModel.swift in Sources */,
@@ -548,10 +555,11 @@
 				22872B042C9CC8EF0045B653 /* EventName.swift in Sources */,
 				22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */,
 				228F57532C9FFD4C00EEA6E1 /* UserProfileService.swift in Sources */,
-				22AE4ED62C9C8BF800B0BF82 /* NormalLocationService.swift in Sources */,
 				22E709432C904C220009FE19 /* AuthView.swift in Sources */,
+				228F575F2CA072D000EEA6E1 /* TestView.swift in Sources */,
 				A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */,
 				22AABD722C8C42730086644F /* EventListView.swift in Sources */,
+				228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */,
 				22220BD32C970C7600DDB003 /* APIError.swift in Sources */,
 				22220BD52C97103300DDB003 /* APIClient.swift in Sources */,
 				228F57432C9F484900EEA6E1 /* TikokuRankingView.swift in Sources */,

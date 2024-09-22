@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var userProfileModel = UserProfileModel()
 
     var body: some View {
         TabView {
@@ -23,11 +24,13 @@ struct ContentView: View {
                     Text("掲示板")
                 }
 
-            ProfileView()
+            ProfileImageView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("プロフィール")
                 }
+                .environment(userProfileModel)
+                
         }
         //AuthView()
     }
