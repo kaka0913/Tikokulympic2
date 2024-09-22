@@ -10,7 +10,7 @@ import Foundation
 
 class UserProfileService {
     private let apiClient = APIClient.shared
-    static let shared = TikokuRankingService()
+    static let shared = UserProfileService()
 
     func getProfile(userId: Int) async {
         let request = UserProfileRequest(userId: userId)
