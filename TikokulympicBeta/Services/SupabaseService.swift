@@ -24,3 +24,44 @@ class SupabaseClientManager {
         debugPrint("SupabaseClient initialized")
     }
 }
+
+class SupabaseService {
+    let client = SupabaseClientManager.shared.client
+    
+    func uploadImage(imageData: Data, userid: Int, bucketName: String) async throws {
+        guard let client = client else {
+            throw NSError(
+                domain: "SupabaseClientManager", code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
+        }
+        let storage = client.storage.from(bucketName)
+        let filePath = "images/\(userid)"
+        let options = FileOptions(cacheControl: "3600", upsert: true)//同じパスであれば画像の上書きを実行する
+
+        do {
+            let response = try await storage.upload(
+                path: filePath,
+                file: imageData,
+                options: options
+            )
+            print("画像のアップロードに成功しました: \(response)")
+        } catch {
+            print("画像のアップロードに失敗しました: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    func downloadProfileImage(userID: Int) async throws -> Data {
+        guard let client = client else {
+            throw NSError(
+                domain: "SupabaseClientManager",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
+        }
+        let storage = client.storage.from("profileImages")
+        let filePath = "profiles/\(userID).jpg"
+        let url = try await storage.createSignedURL(path: filePath, expiresIn: 60 * 60) // 1時間有効なURLを取得
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return data
+    }
+}
