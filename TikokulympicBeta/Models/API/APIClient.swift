@@ -80,6 +80,7 @@ class APIClient {
                             continuation.resume(
                                 throwing: APIError.unknownError(
                                     statusCode: statusCode, data: data, error: error))
+                            print("🫅")
                         }
                     }
                 }

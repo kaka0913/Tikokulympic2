@@ -25,7 +25,7 @@ class ProfileViewModel: ObservableObject {
             let profile = try await userProfileService.getProfile()
             self.profile = profile
             print("プロフィールの取得に成功しました")
-            print("profile: \(self.profile)")
+            print("profile: \(String(describing: self.profile))")
         } catch {
             print("プロフィールの取得に失敗しました: \(error)")
         }

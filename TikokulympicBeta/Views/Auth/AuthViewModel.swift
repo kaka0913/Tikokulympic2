@@ -63,7 +63,11 @@ class AuthViewModel: ObservableObject {
                     authId: 777
                 )
                 
+                print("👩‍🚀\(response)")
+                
+                print("🥷\(response.id)")
                 UserDefaults.standard.set(response.id, forKey: "userId")
+                
 
             } catch let error as APIError {
                 print("😁Supabase Sign-in Error: \(error.localizedDescription)")

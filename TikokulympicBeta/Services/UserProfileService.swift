@@ -13,7 +13,10 @@ class UserProfileService {
     static let shared = UserProfileService()
    
     func getProfile() async throws -> UserProfileResponse {
-        let userId = UserDefaults.standard.integer(forKey: "userId")
+        //let userId = UserDefaults.standard.integer(forKey: "userId")
+        let userId = 1
+        print("UserDefaultsからuserIdを取得")
+        print("userId: \(userId)")
         let request = UserProfileRequest(userId: userId)
         do {
            return try await apiClient.call(request: request)
