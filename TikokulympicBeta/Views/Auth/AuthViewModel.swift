@@ -56,11 +56,14 @@ class AuthViewModel: ObservableObject {
                     print("Supabase Sign-in Success")
                 }
                 
+                //TOOD: モックデータでAPI実行
                 let response = try await authService.postSignup(
                     token: "hogehoge", 
                     userName: "APIのテストだよん",
                     authId: 777
                 )
+                
+                UserDefaults.standard.set(response.id, forKey: "userId")
 
             } catch let error as APIError {
                 print("😁Supabase Sign-in Error: \(error.localizedDescription)")
