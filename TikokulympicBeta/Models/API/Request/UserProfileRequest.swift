@@ -9,7 +9,12 @@ import Foundation
 import Alamofire
 
 struct UserProfileResponse: ResponseProtocol {
-    let message: String
+    let name: String
+    let alias: String
+    let late_count: Int
+    let total_late_time: Int
+    let late_percentage: Float
+    let on_time_count: Int
 }
 
 struct UserProfileRequest: RequestProtocol {

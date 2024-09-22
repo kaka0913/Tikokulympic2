@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject var vm = ProfileViewModel()
+    
     // Mock data
     let userName = "あああ"
     let lateCount = 2
