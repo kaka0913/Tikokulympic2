@@ -14,7 +14,7 @@ class UserProfileService {
    
     func getProfile() async throws -> UserProfileResponse {
         //let userId = UserDefaults.standard.integer(forKey: "userId")
-        let userId = 1
+        let userId = 1 //TODO: 修正
         print("UserDefaultsからuserIdを取得")
         print("userId: \(userId)")
         let request = UserProfileRequest(userId: userId)
