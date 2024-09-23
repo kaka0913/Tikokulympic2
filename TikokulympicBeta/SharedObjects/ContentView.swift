@@ -18,7 +18,7 @@ struct ContentView: View {
                     Text("ランキング")
                 }
 
-            AuthView()  //時間の都合上作成できなかった画面の位置に一旦認証画面を差し込んでいる
+            EventListView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("掲示板")
