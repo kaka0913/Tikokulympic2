@@ -12,7 +12,6 @@ struct ProfileImageView: View {
     @State private var isShowingImagePicker = false
     @Environment(\.userProfileModel) var userProfileModel: UserProfileModel
     
-
     var body: some View {
         VStack(spacing: 20) {
             // アップロードされた画像があれば表示
