@@ -8,7 +8,6 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var vm = ProfileViewModel()
-    @State private var isShowingImagePicker = false
     
     // Mock data
     let userName = "あああ"
@@ -16,8 +15,6 @@ struct ProfileView: View {
     let onTimeCount = 0
     let totalLateTime = "1h20m"
     let title = "警察なのに遅刻"
-    
-    @Environment(\.userProfileModel) var userProfileModel: UserProfileModel
 
     var body: some View {
         VStack(spacing: 20) {
@@ -37,37 +34,7 @@ struct ProfileView: View {
                 HStack(spacing: 16) {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            ZStack(alignment: .topTrailing) {
-                                if let image = userProfileModel.uploadedImage {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(Circle())
-                                        .shadow(radius: 10)
-                                        .onTapGesture {
-                                            isShowingImagePicker = true
-                                        }
-                                } else {
-                                    Image(systemName: "person.crop.circle.fill")
-                                        .resizable()
-                                        .foregroundColor(.gray)
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(Circle())
-                                }
-                                
-                                Image(systemName: "camera.circle.fill")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(.white)
-                                    .background(Color.black.opacity(0.7))
-                                    .clipShape(Circle())
-                                    .padding(2)
-                                    .onTapGesture {
-                                        isShowingImagePicker = true
-                                    }
-                            }
-
+                            AuthProfileImage()
                             Text("名前: \(userName)")
                                 .font(.title3)
                             Image(systemName: "pencil")
@@ -108,14 +75,6 @@ struct ProfileView: View {
         .background(Color.green)
         .cornerRadius(20)
         .padding(.all, 10)
-        .sheet(isPresented: $isShowingImagePicker) {
-            ImagePicker()
-        }
-        .onAppear {
-            Task {
-                await userProfileModel.downloadProfileImage()
-            }
-        }
     }
 }
 
