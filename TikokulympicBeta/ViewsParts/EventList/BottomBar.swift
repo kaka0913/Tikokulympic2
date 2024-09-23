@@ -15,7 +15,9 @@ struct BottomBar: View {
         HStack {
             Spacer()
             
-            NavigationLink(destination: Text("前のイベント"), tag: -1, selection: $currentEventIndex) {
+            Button(action: {
+                //TODO: ここに前のイベントに遷移する処理を書く
+            }) {
                 Image(systemName: "arrowtriangle.backward.fill")
                     .resizable()
                     .frame(width: 15, height: 30)
@@ -27,7 +29,7 @@ struct BottomBar: View {
             Button("投票する", action: onVote)
                 .padding(.horizontal, 50)
                 .padding(.vertical, 12)
-                .background(accentBlue)
+                .background(ThemeColor.accentBlue)
                 .foregroundColor(.white)
                 .cornerRadius(20)
                 .padding(.leading, 30)
@@ -35,7 +37,9 @@ struct BottomBar: View {
             
             Spacer()
             
-            NavigationLink(destination: Text("次のイベント"), tag: 1, selection: $currentEventIndex) {
+            Button(action: {
+                //TODO: ここに次のイベントに遷移する処理を書く
+            }) {
                 Image(systemName: "arrowtriangle.right.fill")
                     .resizable()
                     .frame(width: 15, height: 30)
@@ -45,8 +49,22 @@ struct BottomBar: View {
             Spacer()
         }
         .padding()
+        .background(ThemeColor.customBlue)
+        
+        .navigationDestination(isPresented: Binding(
+            get: { currentEventIndex == -1 },
+            set: { if !$0 { currentEventIndex = nil } }
+        )) {
+            Text("前のイベント")
+        }
+        
+        .navigationDestination(isPresented: Binding(
+            get: { currentEventIndex == 1 },
+            set: { if !$0 { currentEventIndex = nil } }
+        )) {
+            Text("次のイベント")
+        }
     }
-    
 }
 
 #Preview {

@@ -12,14 +12,14 @@ struct EventDetailsSection: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            EventHeader()
+            EventHeader(title: event.title)
             
             HStack {
                 Spacer()
                 
                 Text(event.description)
                     .font(.subheadline)
-                .foregroundColor(customBlue)
+                .foregroundColor(ThemeColor.customBlue)
                 
                 Spacer()
             }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EventHeader: View {
+    let title: String
+    
     var body: some View {
         VStack(spacing: 0) {
             Rectangle()
@@ -17,7 +19,7 @@ struct EventHeader: View {
             
             HStack(spacing: 0) {
                 
-                Text("秋プロFB")
+                Text(title)
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(Color.blue)
                     .padding(.leading, 120)
@@ -42,6 +44,3 @@ struct EventHeader: View {
     }
 }
 
-#Preview {
-    EventHeader()
-}

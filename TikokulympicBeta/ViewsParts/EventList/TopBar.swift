@@ -23,7 +23,7 @@ struct TopBar: View {
                 Image(systemName: "plus")
                     .resizable()
                     .frame(width: 15, height: 15)
-                    .foregroundColor(customBlue)
+                    .foregroundColor(ThemeColor.customBlue)
                     .padding(8)
                     .background(Color.white)
                     .clipShape(Circle())
@@ -32,7 +32,7 @@ struct TopBar: View {
             
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }
-        .background(customBlue)
+        .background(ThemeColor.customBlue)
     }
 }
 
