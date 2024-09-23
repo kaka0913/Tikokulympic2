@@ -9,6 +9,19 @@ import Foundation
 import Combine
 import SwiftUI
 
+struct UserProfileModelKey: EnvironmentKey {
+    // デフォルト値が指定できる
+    static let defaultValue: UserProfileModel = UserProfileModel()
+}
+
+extension EnvironmentValues {
+    var userProfileModel: UserProfileModel {
+        get { self[UserProfileModelKey.self] }
+        set { self[UserProfileModelKey.self] = newValue }
+    }
+}
+
+
 @Observable
 class UserProfileModel {
     var selectedImage: UIImage? // ユーザーが選択した画像
@@ -40,8 +53,7 @@ class UserProfileModel {
                 let userid = 1
                 try await supabaseService.uploadImage(
                     imageData: imageData,
-                    userid: userid,
-                    bucketName: "profileImages"
+                    userid: userid
                 )
                 // アップロード成功後、画像をダウンロードして表示
                 await downloadProfileImage()

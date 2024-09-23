@@ -90,9 +90,13 @@ struct ProfileImageView: View {
         .sheet(isPresented: $isShowingImagePicker) {
             ImagePicker()
         }
-        .onChange(of: userProfileModel.selectedImage) { _ in
-            // 必要に応じて、選択後すぐにアップロードする場合はコメントアウトを外す
-            // userProfileModel.uploadImage()
+        .onChange(of: userProfileModel.selectedImage) {
+            userProfileModel.uploadImage()
+        }
+        .onAppear() {
+            Task {
+               await userProfileModel.downloadProfileImage()
+            }
         }
     }
 }

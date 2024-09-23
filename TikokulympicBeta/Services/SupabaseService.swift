@@ -28,13 +28,13 @@ class SupabaseClientManager {
 class SupabaseService {
     let client = SupabaseClientManager.shared.client
     
-    func uploadImage(imageData: Data, userid: Int, bucketName: String) async throws {
+    func uploadImage(imageData: Data, userid: Int) async throws {
         guard let client = client else {
             throw NSError(
                 domain: "SupabaseClientManager", code: 0,
                 userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
         }
-        let storage = client.storage.from(bucketName)
+        let storage = client.storage.from("profileImages")
         let filePath = "images/\(userid)"
         let options = FileOptions(cacheControl: "3600", upsert: true)//同じパスであれば画像の上書きを実行する
 
@@ -59,7 +59,7 @@ class SupabaseService {
                 userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
         }
         let storage = client.storage.from("profileImages")
-        let filePath = "profiles/\(userID).jpg"
+        let filePath = "images/\(userID)"
         let url = try await storage.createSignedURL(path: filePath, expiresIn: 60 * 60) // 1時間有効なURLを取得
         let (data, _) = try await URLSession.shared.data(from: url)
         return data
