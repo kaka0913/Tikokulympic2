@@ -42,6 +42,9 @@ struct AuthProfileImage: View {
                     isShowingImagePicker = true
                 }
         }
+        .onChange(of: userProfileModel.selectedImage) {
+            userProfileModel.uploadImage()
+        }
         .sheet(isPresented: $isShowingImagePicker) {
             ImagePicker()
         }
