@@ -24,13 +24,13 @@ struct ContentView: View {
                     Text("掲示板")
                 }
 
-            ProfileImageView()
+            ProfileView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("プロフィール")
                 }
                 .environment(userProfileModel)
-                
+            
         }
         //AuthView()
     }
