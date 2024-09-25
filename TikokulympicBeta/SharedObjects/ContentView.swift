@@ -15,18 +15,21 @@ struct ContentView: View {
             TikokuRankingView()
                 .tabItem {
                     Image(systemName: "house.fill")
+                        .background(ThemeColor.vividRed)
                     Text("ランキング")
                 }
 
             EventListView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
+                        .background(ThemeColor.accentBlue)
                     Text("掲示板")
                 }
 
             ProfileView()
                 .tabItem {
                     Image(systemName: "gear")
+                        .background(ThemeColor.customGreen)
                     Text("プロフィール")
                 }
                 .environment(userProfileModel)

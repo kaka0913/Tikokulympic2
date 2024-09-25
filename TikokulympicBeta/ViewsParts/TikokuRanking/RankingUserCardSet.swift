@@ -1,4 +1,0 @@
-//
-//  RankingUserCardSet.swift
-//  TikokulympicBeta
-//
