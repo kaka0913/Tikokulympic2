@@ -392,6 +392,7 @@ struct RankingUserCard: View {
 
             }
             .cornerRadius(15)
+            .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
             
             HStack(spacing: 10) {
                 
@@ -430,11 +431,6 @@ struct RankingUserCard: View {
                     .frame(width: 130, height: 80)
             }
         }
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-        )
-        .shadow(radius: 5)
     }
 }
 
