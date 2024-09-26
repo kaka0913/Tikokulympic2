@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TopBar: View {
+    @State private var isNavigating = false
+    
     var body: some View {
         HStack(spacing: 0) {
             Spacer()
@@ -18,7 +20,7 @@ struct TopBar: View {
                 .padding(.trailing, 40)
             Spacer()
             Button(action: {
-                //TODO: ここに処理を追加
+                isNavigating = true
             }) {
                 Image(systemName: "plus")
                     .resizable()
@@ -29,7 +31,10 @@ struct TopBar: View {
                     .clipShape(Circle())
                     .shadow(radius: 5)
             }
-            
+            .navigationDestination(isPresented: $isNavigating) {
+                EventEditView()
+                .navigationBarBackButtonHidden(true)
+            }
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }
         .background(ThemeColor.customBlue)

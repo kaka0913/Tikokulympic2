@@ -13,7 +13,7 @@ struct EventListView: View {
     @State private var selectedStatus: ParticipationStatus?
     
     var body: some View {
-        NavigationView {
+        NavigationStack{
             VStack(spacing: 0) {
                 TopBar()
                 ScrollView {
