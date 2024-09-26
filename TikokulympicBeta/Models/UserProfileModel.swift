@@ -24,6 +24,9 @@ extension EnvironmentValues {
 
 @Observable
 class UserProfileModel {
+    var userName: String?
+    var realName: String?
+    var fcmtoken: String?
     var selectedImage: UIImage? // ユーザーが選択した画像
     var uploadedImage: UIImage? // Supabaseからダウンロードした画像
     var isUploading: Bool = false
@@ -31,14 +34,50 @@ class UserProfileModel {
     var errorMessage: String? // エラーメッセージ表示用
 
     private let supabaseService = SupabaseService()
-    private let userID = 1 //TODO: ここを修正
+    let authService = AuthService.shared
 
     init() {
         Task {
             await downloadProfileImage()
         }
     }
+ 
+    //TODO: realNameをまだ登録できない
+    func registerNewUser(userName: String, realName: String) async throws {
+        //バリデーション
+        guard let userName = self.userName, !userName.isEmpty,
+              let realName = self.realName, !realName.isEmpty else {
+            self.errorMessage = "ユーザーネームと本名を入力してください。"
+            return
+        }
 
+        guard let selectedImage = self.selectedImage else {
+            self.errorMessage = "画像を選択してください。"
+            return
+        }
+            
+        Task {
+            do {
+                let fcmToken = UserDefaults.standard.string(forKey: "fcmToken")
+
+                let authId = 123 //TODO: authIDを取得する必要あり
+                
+                let response = try await authService.postSignup(
+                    token: fcmToken ?? "getfcmtokenFailure ",
+                    userName: userName,
+                    authId: authId
+                )
+                
+                UserDefaults.standard.set(response.id, forKey: "userId")
+                
+                self.uploadImage()
+                
+            } catch {
+                self.errorMessage = "登録に失敗しました: \(error.localizedDescription)"
+            }
+        }
+    }
+    
     // 選択した画像をアップロードする関数
     func uploadImage() {
         guard let image = selectedImage,
@@ -46,14 +85,15 @@ class UserProfileModel {
             self.errorMessage = "アップロードする画像を選択してください。"
             return
         }
+        
+        let userId = UserDefaults.standard.integer(forKey: "userId")
 
         isUploading = true
         Task {
             do {
-                let userid = 1 //TODO: 修正
                 try await supabaseService.uploadImage(
                     imageData: imageData,
-                    userid: userid
+                    userid: userId
                 )
                 // アップロード成功後、画像をダウンロードして表示
                 await downloadProfileImage()
@@ -72,7 +112,8 @@ class UserProfileModel {
     func downloadProfileImage() async {
         isDownloading = true
         do {
-            let data = try await supabaseService.downloadProfileImage(userID: userID)
+            let userId = UserDefaults.standard.integer(forKey: "userId")
+            let data = try await supabaseService.downloadProfileImage(userID: userId)
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     self.uploadedImage = image
