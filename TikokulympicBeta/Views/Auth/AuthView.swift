@@ -2,38 +2,42 @@ import GoogleSignIn
 import GoogleSignInSwift
 import SwiftUI
 
+
 struct AuthView: View {
-    @StateObject private var viewModel = AuthViewModel()
-    let apiclient = APIClient.shared
 
     var body: some View {
-        VStack {
-            Image("TikokuGorin")
-                .resizable()
-                .scaledToFit()
+        NavigationStack {
+            VStack {
+                Image("TikokuGorin")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 350, height: 80)
+                    .padding(.bottom, 200)
 
-            if viewModel.isSignedIn {
-                Text("Signed in successfully!")
-                    .font(.title)
-                    .padding()
-            } else {
-                Text("Sign in with Google")
-                    .font(.title)
-                    .padding()
-
-                GoogleSignInButton {
-                    Task {
-                        await viewModel.signInWithGoogle()
-                    }
+                NavigationLink(destination: SignUpView()) {
+                    Text("新規登録")
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 45)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
-                .frame(width: 220, height: 50)
-                .padding()
+                .padding(.bottom, 20)
+
+                NavigationLink(destination: SignInView()) {
+                    Text("ログイン")
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 45)
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                }
             }
         }
     }
 }
 
-struct GoogleSignInView_Previews: PreviewProvider {
+struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView()
     }
