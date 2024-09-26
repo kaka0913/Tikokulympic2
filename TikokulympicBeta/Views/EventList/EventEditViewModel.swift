@@ -31,9 +31,3 @@ class EventEditViewModel: ObservableObject {
         // 編集完了の処理を実装
     }
 }
-
-struct EventEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventEditView()
-    }
-}

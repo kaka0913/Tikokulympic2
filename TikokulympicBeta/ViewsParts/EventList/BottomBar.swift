@@ -29,7 +29,7 @@ struct BottomBar: View {
             Button("投票する", action: onVote)
                 .padding(.horizontal, 50)
                 .padding(.vertical, 12)
-                .background(ThemeColor.accentBlue)
+                .background(.blue)
                 .foregroundColor(.white)
                 .cornerRadius(20)
                 .padding(.leading, 30)
