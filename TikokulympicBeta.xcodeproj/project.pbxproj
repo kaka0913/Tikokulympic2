@@ -79,11 +79,16 @@
 		22E7090E2C8D81310009FE19 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 22E7090D2C8D81310009FE19 /* Supabase */; };
 		22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7093E2C90054C0009FE19 /* AuthViewModel.swift */; };
 		22E709432C904C220009FE19 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E709422C904C220009FE19 /* AuthView.swift */; };
+		A505F2162CA1A6EB0005A140 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505F2152CA1A6EB0005A140 /* Title.swift */; };
+		A505F21A2CA1A82F0005A140 /* FullLateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505F2192CA1A82F0005A140 /* FullLateTime.swift */; };
+		A52EE8852CA1025500FF6DF8 /* Profileview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52EE8842CA1025500FF6DF8 /* Profileview.swift */; };
 		A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */; };
 		A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689992C9AC28100E60BC6 /* Rank.swift */; };
 		A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899B2C9B137200E60BC6 /* LocationInformation.swift */; };
 		A556899E2C9B141B00E60BC6 /* TikokuRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */; };
 		A55689A22C9B18C000E60BC6 /* MeetingTimeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */; };
+		A59CBCA32CA67E7D00BD93F5 /* UserName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CBCA22CA67E7D00BD93F5 /* UserName.swift */; };
+		A59CBCA52CA67ED600BD93F5 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CBCA42CA67ED600BD93F5 /* UserInformation.swift */; };
 		A5BA22A82C9D135100B40E2B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */; };
 		A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */; };
 /* End PBXBuildFile section */
@@ -121,11 +126,16 @@
 		22E708EB2C8D6ABA0009FE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		22E7093E2C90054C0009FE19 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		22E709422C904C220009FE19 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		A505F2152CA1A6EB0005A140 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
+		A505F2192CA1A82F0005A140 /* FullLateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullLateTime.swift; sourceTree = "<group>"; };
+		A52EE8842CA1025500FF6DF8 /* Profileview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profileview.swift; sourceTree = "<group>"; };
 		A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUserCard.swift; sourceTree = "<group>"; };
 		A55689992C9AC28100E60BC6 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
 		A556899B2C9B137200E60BC6 /* LocationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformation.swift; sourceTree = "<group>"; };
 		A556899D2C9B141B00E60BC6 /* TikokuRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRanking.swift; sourceTree = "<group>"; };
 		A55689A12C9B18C000E60BC6 /* MeetingTimeInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTimeInformation.swift; sourceTree = "<group>"; };
+		A59CBCA22CA67E7D00BD93F5 /* UserName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserName.swift; sourceTree = "<group>"; };
+		A59CBCA42CA67ED600BD93F5 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		A5BA22A72C9D135100B40E2B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F60FA42C9BBC0E00C06780 /* LimitTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -344,9 +354,22 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
+		A52EE8812CA101D600FF6DF8 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A52EE8842CA1025500FF6DF8 /* Profileview.swift */,
+				A505F2152CA1A6EB0005A140 /* Title.swift */,
+				A505F2192CA1A82F0005A140 /* FullLateTime.swift */,
+				A59CBCA22CA67E7D00BD93F5 /* UserName.swift */,
+				A59CBCA42CA67ED600BD93F5 /* UserInformation.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		A55689942C9A82FF00E60BC6 /* ViewsParts */ = {
 			isa = PBXGroup;
 			children = (
+				A52EE8812CA101D600FF6DF8 /* Profile */,
 				A55689962C9A836200E60BC6 /* TikokuRanking */,
 			);
 			path = ViewsParts;
@@ -529,10 +552,13 @@
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				22E7093F2C90054C0009FE19 /* AuthViewModel.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
+				A52EE8852CA1025500FF6DF8 /* Profileview.swift in Sources */,
+				A59CBCA52CA67ED600BD93F5 /* UserInformation.swift in Sources */,
 				A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */,
 				22242E082C996F6A001BEB14 /* ArrivalRequest.swift in Sources */,
 				22872B042C9CC8EF0045B653 /* EventName.swift in Sources */,
 				22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */,
+				A505F21A2CA1A82F0005A140 /* FullLateTime.swift in Sources */,
 				22AE4ED62C9C8BF800B0BF82 /* NormalLocationService.swift in Sources */,
 				22E709432C904C220009FE19 /* AuthView.swift in Sources */,
 				A556899C2C9B137200E60BC6 /* LocationInformation.swift in Sources */,
@@ -542,6 +568,8 @@
 				22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */,
 				22872B022C9CC68B0045B653 /* TextSegmentControll.swift in Sources */,
 				A5F60FA52C9BBC0E00C06780 /* LimitTime.swift in Sources */,
+				A505F2162CA1A6EB0005A140 /* Title.swift in Sources */,
+				A59CBCA32CA67E7D00BD93F5 /* UserName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,7 @@ class LimitTimeViewPropertyFactory: ObservableObject {
                 components.year = 2024
                 components.month = 9
                 components.day = 20
-                components.hour = 14
+                components.hour = 18
                 components.minute = 0
                 return calendar.date(from: components) ?? Date()
         }()
