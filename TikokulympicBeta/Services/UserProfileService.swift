@@ -18,7 +18,8 @@ class UserProfileService {
         do {
            return try await apiClient.call(request: request)
         } catch {
-            print("ユーザプロフィールの取得に失敗しました: \(error)")
+            //しょうまがAPI直すまでこのエラーを無視する
+            //print("ユーザプロフィールの取得に失敗しました: \(error)")
             throw error
         }
     }
