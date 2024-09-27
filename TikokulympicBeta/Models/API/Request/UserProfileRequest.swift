@@ -20,7 +20,7 @@ struct UserProfileResponse: ResponseProtocol {
 struct UserProfileRequest: RequestProtocol {
     typealias Response = UserProfileResponse
     var method: HTTPMethod { .get }
-    var path: String { "/users/\(userId)/profile" }
+    var path: String { "/users/\(userid)/profile" }
 
-    let userId: Int
+    let userid: Int
 }

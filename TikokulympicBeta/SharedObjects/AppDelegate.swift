@@ -24,6 +24,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        UserDefaults.standard.set(51, forKey: "userid") //TODO: 開発中はデフォルトの値を入れておく
         // 通知の許可をリクエスト
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in

@@ -32,6 +32,8 @@ struct AuthView: View {
                         .foregroundColor(.white)
                         .cornerRadius(20)
                 }
+                .disabled(true)
+                .opacity(0.5)
             }
         }
     }

@@ -44,14 +44,18 @@ class UserProfileModel {
  
     //TODO: realNameをまだ登録できない
     func registerNewUser(userName: String, realName: String) async throws {
-        //バリデーション
-        guard let userName = self.userName, !userName.isEmpty,
-              let realName = self.realName, !realName.isEmpty else {
+        //文字のバリデーション
+        guard !userName.isEmpty,
+              !realName.isEmpty else {
             self.errorMessage = "ユーザーネームと本名を入力してください。"
             return
         }
+        
+        self.userName = userName
+        self.realName = realName
 
-        guard let selectedImage = self.selectedImage else {
+        //画像のバリデーション
+        guard self.selectedImage != nil else {
             self.errorMessage = "画像を選択してください。"
             return
         }
@@ -68,7 +72,8 @@ class UserProfileModel {
                     authId: authId
                 )
                 
-                UserDefaults.standard.set(response.id, forKey: "userId")
+                
+                UserDefaults.standard.set(response.id, forKey: "userid")
                 
                 self.uploadImage()
                 
@@ -86,14 +91,14 @@ class UserProfileModel {
             return
         }
         
-        let userId = UserDefaults.standard.integer(forKey: "userId")
+        let userid = UserDefaults.standard.integer(forKey: "userid")
 
         isUploading = true
         Task {
             do {
                 try await supabaseService.uploadImage(
                     imageData: imageData,
-                    userid: userId
+                    userid: userid
                 )
                 // アップロード成功後、画像をダウンロードして表示
                 await downloadProfileImage()
@@ -112,8 +117,8 @@ class UserProfileModel {
     func downloadProfileImage() async {
         isDownloading = true
         do {
-            let userId = UserDefaults.standard.integer(forKey: "userId")
-            let data = try await supabaseService.downloadProfileImage(userID: userId)
+            let userid = UserDefaults.standard.integer(forKey: "userid")
+            let data = try await supabaseService.downloadProfileImage(userid: userid)
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     self.uploadedImage = image
