@@ -24,6 +24,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        UserDefaults.standard.set(51, forKey: "userid") //TODO: 開発中はデフォルトの値を入れておく
         // 通知の許可をリクエスト
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
@@ -42,6 +43,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         UNUserNotificationCenter.current().delegate = self
+
+        
 
         locationManager = CLLocationManager()
         locationManager?.delegate = self
@@ -63,11 +66,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) {
         print("Failed to register for remote notifications with error \(error)")
     }
+    
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase token: \(String(describing: fcmToken))")
+        if let token = fcmToken {
+            UserDefaults.standard.set(token, forKey: "fcmToken")
+        } else {
+            print("FCM tokenの取得に失敗しました")
+        }
+        
     }
 }
 

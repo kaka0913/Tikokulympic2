@@ -51,7 +51,7 @@ class SupabaseService {
         }
     }
     
-    func downloadProfileImage(userID: Int) async throws -> Data {
+    func downloadProfileImage(userid: Int) async throws -> Data {
         guard let client = client else {
             throw NSError(
                 domain: "SupabaseClientManager",
@@ -59,7 +59,7 @@ class SupabaseService {
                 userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
         }
         let storage = client.storage.from("profileImages")
-        let filePath = "images/\(userID)"
+        let filePath = "images/\(userid)"
         let url = try await storage.createSignedURL(path: filePath, expiresIn: 60 * 60) // 1時間有効なURLを取得
         let (data, _) = try await URLSession.shared.data(from: url)
         return data
