@@ -35,7 +35,6 @@ struct ContentView: View {
                 .environment(userProfileModel)
             
         }
-        //AuthView()
     }
 }
 
