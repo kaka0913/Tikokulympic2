@@ -7,18 +7,18 @@
 
 import CoreLocation
 import UIKit
+import SwiftUI
 
 class TikokuRankingViewModel: ObservableObject {
     @Published var userRankings: [UserRankingData] = []
-    @Published var eventName: String = "イベント名"
-    @Published var meetingTime: Date = Date()
-    @Published var meetingLocation: String = "立命館大学"
-    
-    private var timer: Timer?
+    @AppStorage("latitude") var latitude: Double = 0.0
+    @AppStorage("longitude") var longitude: Double = 0.0
+   
     private let locationManager = CLLocationManager()
-    private let destinationLocation = CLLocation(latitude: 34.6937, longitude: 135.5023)//TODO: 取得
+    private var destinationLocation: CLLocation?
     
     init() {
+        destinationLocation = CLLocation(latitude: latitude, longitude: longitude)
         setupLocationManager()
         setupMockData()
     }
@@ -41,7 +41,7 @@ class TikokuRankingViewModel: ObservableObject {
     
     func updateDistances() {
         for i in 0..<userRankings.count {
-            userRankings[i].distance = userRankings[i].currentLocation.distance(from: destinationLocation) / 1000
+            userRankings[i].distance = userRankings[i].currentLocation.distance(from: destinationLocation!) / 1000
         }
     }
 }
