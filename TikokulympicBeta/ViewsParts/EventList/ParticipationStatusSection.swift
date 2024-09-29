@@ -17,9 +17,10 @@ struct ParticipationStatusSection: View {
                 .bold()
             
             ForEach(ParticipationStatus.allCases, id: \.self) { status in
-                ParticipationStatusRow(status: status, participants: participants.filter { $0.status == status })
+                ParticipationStatusRow(status: status, participants: participants.filter { $0.status == status
+                }
+                )
             }
         }
-        .padding(.horizontal, 8)
     }
 }

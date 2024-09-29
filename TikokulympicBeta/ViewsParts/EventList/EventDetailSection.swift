@@ -45,6 +45,14 @@ struct EventDetailsSection: View {
             EventInfoRow(icon: "mappin.and.ellipse", text: event.locationName)
             
             EventInfoRow(icon: "yensign.circle", text: "\(event.cost)円")
+            VStack(alignment: .leading) {
+                Text("連絡事項")
+                    .font(.system(size: 15))
+                    .bold()
+                Text(event.message)
+                    .font(.system(size: 15))
+            }
+            .padding(.leading, 20)
         }
     }
     

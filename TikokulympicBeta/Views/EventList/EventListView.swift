@@ -8,23 +8,45 @@
 import SwiftUI
 
 struct EventListView: View {
-    @StateObject var viewModel: EventListViewModel = EventListViewModel()
+    @StateObject var viewModel = MockViewModelInfo()
     @State private var showingVoteAlert = false
     @State private var selectedStatus: ParticipationStatus?
     
     var body: some View {
-        ScrollView(.horizontal) {
-            GeometryReader { geo in
-                ForEach(viewModel.events) { event in
-                    HStack {
-                        EventDetailsSection(event: event)
-                            .frame(height: geo.size.height)
+        GeometryReader { proxy in
+            NavigationStack {
+                VStack(spacing: 0) {
+                    TopBar()
+                            ForEach(viewModel.events) { event in
+                                ScrollView {
+                                    EventListCard(event: event)
+                                        .frame(width: proxy.size.width * 0.9, height: proxy.size.height * 0.9)
+                                }
+                            }
+
+                        BottomBar(onVote: {
+                            self.showingVoteAlert = true
+                        })
+                    
+                    Spacer()
+                    
+                    .alert("参加状況を選択", isPresented: $showingVoteAlert) {
+                        Button("参加") {  }
+                        Button("不参加") { }
+                        Button("途中参加") { }
+                        Button("キャンセル", role: .cancel) { }
                     }
                 }
+                .background(ThemeColor.customBlue)
+                .frame(alignment: .center)
             }
+            .frame(width: proxy.size.width, height: proxy.size.height)
+            .background(ThemeColor.customBlue)
         }
     }
 }
+
+
 
 //let mock = EventListViewModel(
 //    event:
