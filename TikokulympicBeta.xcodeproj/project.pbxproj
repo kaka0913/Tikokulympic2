@@ -90,6 +90,7 @@
 		22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F91F2CA5D53700C636C9 /* SignInView.swift */; };
 		22C4F9222CA5D54300C636C9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9212CA5D54300C636C9 /* SignUpView.swift */; };
 		22CA076D2CA6DD2800F0B60D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22CA076C2CA6DD2800F0B60D /* GoogleService-Info.plist */; };
+		22CA07702CA7ABD600F0B60D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA076F2CA7ABD600F0B60D /* ProfileImageView.swift */; };
 		22E321872CA3DBE000457237 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E321862CA3DBE000457237 /* HeaderView.swift */; };
 		22E3218B2CA3DC1400457237 /* EventDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3218A2CA3DC1400457237 /* EventDateLabel.swift */; };
 		22E3218D2CA3DC4000457237 /* MeetingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3218C2CA3DC4000457237 /* MeetingInfoView.swift */; };
@@ -165,6 +166,7 @@
 		22C4F91F2CA5D53700C636C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		22C4F9212CA5D54300C636C9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		22CA076C2CA6DD2800F0B60D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/遅刻/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22CA076F2CA7ABD600F0B60D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		22E321862CA3DBE000457237 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		22E3218A2CA3DC1400457237 /* EventDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDateLabel.swift; sourceTree = "<group>"; };
 		22E3218C2CA3DC4000457237 /* MeetingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingInfoView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,14 @@
 			path = EventEdit;
 			sourceTree = "<group>";
 		};
+		22CA076E2CA7AB4000F0B60D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				22CA076F2CA7ABD600F0B60D /* ProfileImageView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		22E321852CA3D9F400457237 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +460,7 @@
 		A55689942C9A82FF00E60BC6 /* ViewsParts */ = {
 			isa = PBXGroup;
 			children = (
+				22CA076E2CA7AB4000F0B60D /* Common */,
 				22C4F9052CA526EB00C636C9 /* EventEdit */,
 				22E321852CA3D9F400457237 /* Profile */,
 				228F57662CA1A15400EEA6E1 /* EventList */,
@@ -645,6 +656,7 @@
 				228F57822CA1DE0500EEA6E1 /* ThemeColor.swift in Sources */,
 				22C4F9162CA54A8B00C636C9 /* InputField.swift in Sources */,
 				228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */,
+				22CA07702CA7ABD600F0B60D /* ProfileImageView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				228F57782CA1A5D800EEA6E1 /* ParticipationStatusSection.swift in Sources */,
 				22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */,
