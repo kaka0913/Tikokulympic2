@@ -6,3 +6,17 @@
 //
 
 import Foundation
+import Alamofire
+
+
+struct EventsResponse: ResponseProtocol {
+    let events: [Event]
+}
+
+struct EventsRequest: RequestProtocol {
+    typealias Response = EventsResponse
+    var method: HTTPMethod { .get }
+    var path: String { "/evnents/board" }
+}
+
+

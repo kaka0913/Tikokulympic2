@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+final class EventService {
+    let apiClient = APIClient.shared
+    static let shered = EventService()
+
+    func fetchEvents() async throws -> EventsResponse {
+        let request = EventsRequest()
+
+        do {
+            let response = try await apiClient.call(request: request)
+            return response
+        } catch {
+            throw error
+        }
+    }
+}

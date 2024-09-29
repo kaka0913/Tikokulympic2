@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Event: Identifiable {
-    let id = UUID()
+struct Event: Decodable, Identifiable {
+    var id = UUID()
+    let auther: Auther
     let title: String
     let description: String
     let isAllDay: Bool
@@ -21,16 +22,24 @@ struct Event: Identifiable {
     let managerId: Int
     let latitude: String
     let longitude: String
-    let options: [Option]
+    let options: Option
 }
 
-struct Option: Identifiable {
-    let id = UUID()
+struct Option: Decodable, Identifiable {
+    var id = UUID()
     let title: String
+    let participantCount: Int
+    let participants: [Participant]
 }
 
-struct Participant: Identifiable {
-    let id = UUID()
+struct Auther: Decodable, Identifiable {
+    var id = UUID()
+    let autherId: Int
+    let autherName: String
+}
+
+struct Participant: Decodable , Identifiable {
+    var id = UUID()
     let name: String
     let status: ParticipationStatus
 }

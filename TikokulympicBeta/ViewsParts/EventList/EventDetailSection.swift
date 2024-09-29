@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventDetailsSection: View {
     let event: Event
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             EventHeader(title: event.title)
