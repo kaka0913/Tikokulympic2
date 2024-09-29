@@ -45,11 +45,7 @@ struct RankingUserCard: View {
                         .frame(width: 80, height: 80)
                         .padding(.leading, -20)
                     
-                    Image("Shoma") //TODO: 差し替え
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
-                        .padding(.leading, -10)
+                    ProfileImageView(userid: user.id)
                     
                     VStack(alignment: .leading, spacing: 10) {
                         Text(user.name)

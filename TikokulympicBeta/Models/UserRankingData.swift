@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 struct UserRankingData: Identifiable {
-    let id = UUID()
+    let id: Int
     let name: String
     let title: String
     var distance: Double

@@ -24,7 +24,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        UserDefaults.standard.set(51, forKey: "userid") //TODO: 開発中はデフォルトの値を入れておく
+        
+        UserDefaults.standard.set(51, forKey: "userid") //TODO: 開発中はデフォルトのuseridを入れておく
+        
+        //TODO: 通知できるまではデフォルトの値を入れておく
+        let title = "ハッカソン"
+        let location = "立命館大学OIC"
+        let latitude: Double = 34.8103
+        let longitude: Double = 135.5610
+        let startTime: String = "2024-09-29T10:00:00"
+
+        UserDefaults.standard.set(latitude, forKey: "latitude")
+        UserDefaults.standard.set(longitude, forKey: "longitude")
+        UserDefaults.standard.set(startTime, forKey: "start_time")
+        UserDefaults.standard.set(title, forKey: "title")
+        UserDefaults.standard.set(location, forKey: "location")
+        
+
         // 通知の許可をリクエスト
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in

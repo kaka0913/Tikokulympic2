@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct EventDateLabel: View {
-    let title: Date
+    @AppStorage("start_time") var startTime: String = ""
 
     var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        return formatter.string(from: title)
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        if let date = inputFormatter.date(from: startTime) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "yyyy/MM/dd"
+            return outputFormatter.string(from: date)
+        } else {
+            return "Invalid Date"
+        }
     }
     
     struct SlantedShape: Shape {

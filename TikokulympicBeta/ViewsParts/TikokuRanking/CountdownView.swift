@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CountdownView: View {
-    let targetTime: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-    
+    @AppStorage("start_time") var startTime: String = ""
     @State private var remainingTime: TimeInterval = 0
     
     var body: some View {
@@ -33,13 +32,23 @@ struct CountdownView: View {
     }
     
     private func startCountdown() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        // startTimeが有効な日時かチェック
+        guard let startDate = formatter.date(from: startTime), startDate > Date() else {
+            remainingTime = 0
+            return
+        }
+        
+        // Timerを設定してカウントダウンを実行
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             let currentTime = Date()
-            remainingTime = targetTime.timeIntervalSince(currentTime)
+            remainingTime = startDate.timeIntervalSince(currentTime)
             
             if remainingTime <= 0 {
                 remainingTime = 0
-                timer.invalidate()
+                timer.invalidate() // カウントダウン終了
             }
         }
     }
