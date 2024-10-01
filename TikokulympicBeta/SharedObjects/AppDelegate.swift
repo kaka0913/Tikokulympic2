@@ -13,10 +13,14 @@ import Foundation
 import GoogleSignIn
 import SwiftUI
 import UserNotifications
+import UIKit
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
     var locationManager: CLLocationManager?
     var currentLocation: CLLocationCoordinate2D?
+    var backgroundSessionCompletionHandler: (() -> Void)? //TODO: バックグラウンド処理が完了したら呼び出される処理
+    var backgroundUploader: BackgroundLocationUploader!
 
     func application(
         _ application: UIApplication,
@@ -24,7 +28,24 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        
+
+        // デフォルトのユーザー情報を設定
+        setupDefaultUserInfo()
+
+        // 通知の許可をリクエスト
+        requestNotificationAuthorization()
+
+        // 位置情報マネージャのセットアップ
+        setupLocationManager()
+
+        // バックグラウンドアップローダーの初期化
+        backgroundUploader = BackgroundLocationUploader(delegate: self)
+
+        return true
+    }
+
+    // MARK: - Setup Methods
+    private func setupDefaultUserInfo() {
         UserDefaults.standard.set(51, forKey: "userid") //TODO: 開発中はデフォルトのuseridを入れておく
         
         //TODO: 通知できるまではデフォルトの値を入れておく
@@ -39,9 +60,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(startTime, forKey: "start_time")
         UserDefaults.standard.set(title, forKey: "title")
         UserDefaults.standard.set(location, forKey: "location")
-        
+    }
 
-        // 通知の許可をリクエスト
+    private func requestNotificationAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
             if let error = error {
@@ -59,31 +80,55 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         UNUserNotificationCenter.current().delegate = self
-
-        
-
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-
-        locationManager?.requestWhenInUseAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager?.distanceFilter = 10
-            locationManager?.activityType = .fitness
-            locationManager?.startUpdatingLocation()
-        }
-
-        return true
     }
 
+    private func setupLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.distanceFilter = 10
+        locationManager?.activityType = .fitness
+        locationManager?.allowsBackgroundLocationUpdates = true
+        locationManager?.pausesLocationUpdatesAutomatically = false
+
+        // 位置情報の使用許可をリクエスト
+        locationManager?.requestAlwaysAuthorization()
+
+        // 集合時間の12時間以内かどうかを確認して位置情報サービスの利用を開始
+        if CLLocationManager.locationServicesEnabled() {
+            if shouldStartLocationUpdates() {
+                locationManager?.startUpdatingLocation()
+            }
+        }
+    }
+
+    // MARK: - Background URL Session Handling
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        // バックグラウンドセッションの処理
+        backgroundSessionCompletionHandler = completionHandler
+        backgroundUploader = BackgroundLocationUploader(delegate: self)
+    }
+
+    // MARK: - start_timeから1日以内かどうかを判定
+    func shouldStartLocationUpdates() -> Bool {
+        if let savedDate = UserDefaults.standard.object(forKey: "start_time") as? Date {
+            let currentDate = Date()
+            let timeInterval = currentDate.timeIntervalSince(savedDate)
+            return timeInterval <= 43200 // 12時間
+        }
+        return false
+    }
+
+    // MARK: - Remote Notification Failure Handling
     func application(
         _ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
         print("Failed to register for remote notifications with error \(error)")
     }
-    
 }
+
+
+// MARK: - MessagingDelegate
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
@@ -92,9 +137,11 @@ extension AppDelegate: MessagingDelegate {
         } else {
             print("FCM tokenの取得に失敗しました")
         }
-        
     }
 }
+
+
+// MARK: - UNUserNotificationCenterDelegate
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
@@ -123,6 +170,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
+
+// MARK: - CLLocationManagerDelegate
+
 extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
@@ -140,5 +190,56 @@ extension AppDelegate: CLLocationManagerDelegate {
             object: nil,
             userInfo: ["location": currentLocation!]
         )
+
+        // ユーザーデフォルトの日付が1日以内の場合のみ位置情報を送信
+        if shouldStartLocationUpdates() {
+            backgroundUploader.sendLocation(newLocation)
+        } else {
+            // 位置情報の更新を停止
+            locationManager?.stopUpdatingLocation()
+        }
+    }
+}
+
+
+// MARK: - URLSessionDelegate
+
+extension AppDelegate: URLSessionDelegate {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        if let completionHandler = backgroundSessionCompletionHandler {
+            backgroundSessionCompletionHandler = nil
+            DispatchQueue.main.async {
+                completionHandler()
+            }
+        }
+    }
+}
+
+
+// MARK: - 実装は別の箇所で行なってかつ中身も変更する予定
+//TODO: websocketの実装が必要
+
+class BackgroundLocationUploader {
+    private var session: URLSession!
+
+    init(delegate: URLSessionDelegate) {
+        let configuration = URLSessionConfiguration.background(withIdentifier: "com.yourapp.background")
+        configuration.sessionSendsLaunchEvents = true
+        configuration.isDiscretionary = false
+        session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+    }
+
+    func sendLocation(_ location: CLLocation) {
+        var request = URLRequest(url: URL(string: "https://your-server.com/upload")!)
+        request.httpMethod = "POST"
+        let body: [String: Any] = [
+            "latitude": location.coordinate.latitude,
+            "longitude": location.coordinate.longitude,
+            "timestamp": location.timestamp.timeIntervalSince1970
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = session.uploadTask(with: request, from: request.httpBody!)
+        task.resume()
     }
 }
