@@ -19,7 +19,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var currentLocation: CLLocationCoordinate2D?
-    var backgroundSessionCompletionHandler: (() -> Void)? //TODO: バックグラウンド処理が完了したら呼び出される処理
+    var backgroundSessionCompletionHandler: (() -> Void)? // TODO: バックグラウンド処理が完了したら呼び出される処理
     var backgroundUploader: BackgroundLocationUploader!
 
     func application(
@@ -46,14 +46,22 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Setup Methods
     private func setupDefaultUserInfo() {
-        UserDefaults.standard.set(51, forKey: "userid") //TODO: 開発中はデフォルトのuseridを入れておく
+        UserDefaults.standard.set(51, forKey: "userid") // TODO: 開発中はデフォルトのuseridを入れておく
         
-        //TODO: 通知できるまではデフォルトの値を入れておく
+        // TODO: 通知できるまではデフォルトの値を入れておく
         let title = "ハッカソン"
         let location = "立命館大学OIC"
         let latitude: Double = 34.8103
         let longitude: Double = 135.5610
-        let startTime: String = "2024-09-29T10:00:00"
+
+        // TODO: 時間はいったん現在の1時間後に設定
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.current // 必要に応じて設定
+
+        let startTimeDate = Date().addingTimeInterval(3600) // 1時間後
+        let startTime = dateFormatter.string(from: startTimeDate)
 
         UserDefaults.standard.set(latitude, forKey: "latitude")
         UserDefaults.standard.set(longitude, forKey: "longitude")
@@ -94,10 +102,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // 位置情報の使用許可をリクエスト
         locationManager?.requestAlwaysAuthorization()
 
-        // 集合時間の12時間以内かどうかを確認して位置情報サービスの利用を開始
+        // 集合時間の1日以内かどうかを確認して位置情報サービスの利用を開始
         if CLLocationManager.locationServicesEnabled() {
             if shouldStartLocationUpdates() {
                 locationManager?.startUpdatingLocation()
+            } else {
+                print("位置情報の更新を開始しません")
             }
         }
     }
@@ -111,10 +121,22 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - start_timeから1日以内かどうかを判定
     func shouldStartLocationUpdates() -> Bool {
-        if let savedDate = UserDefaults.standard.object(forKey: "start_time") as? Date {
-            let currentDate = Date()
-            let timeInterval = currentDate.timeIntervalSince(savedDate)
-            return timeInterval <= 43200 // 12時間
+        if let savedDateString = UserDefaults.standard.string(forKey: "start_time") {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.timeZone = TimeZone.current // 必要に応じて設定
+
+            if let savedDate = dateFormatter.date(from: savedDateString) {
+                let currentDate = Date()
+                let timeInterval = savedDate.timeIntervalSince(currentDate)
+                print("savedDate: \(savedDate), currentDate: \(currentDate), timeInterval: \(timeInterval)")
+                return timeInterval <= 86400 && timeInterval >= 0 // 1日以内
+            } else {
+                print("日付のパースに失敗しました")
+            }
+        } else {
+            print("start_timeが設定されていません")
         }
         return false
     }
@@ -193,10 +215,13 @@ extension AppDelegate: CLLocationManagerDelegate {
 
         // ユーザーデフォルトの日付が1日以内の場合のみ位置情報を送信
         if shouldStartLocationUpdates() {
-            backgroundUploader.sendLocation(newLocation)
+            print("current 緯度: \(currentLocation!.latitude), 経度: \(currentLocation!.longitude)")
+            print("newLocation 送信する位置情報: 緯度 \(newLocation.coordinate.latitude), 経度 \(newLocation.coordinate.longitude)")
+            // backgroundUploader.sendLocation(newLocation) // TODO: ここで送信する処理を書く
         } else {
             // 位置情報の更新を停止
             locationManager?.stopUpdatingLocation()
+            print("位置情報の更新を停止しました")
         }
     }
 }
