@@ -10,7 +10,6 @@ struct ProfileView: View {
     @StateObject var vm = ProfileViewModel()
     
     // Mock data
-    let userName = "あああ"
     let lateCount = 2
     let onTimeCount = 0
     let totalLateTime = "1h20m"
@@ -48,9 +47,7 @@ struct ProfileView: View {
                             VStack(alignment: .leading, spacing: 15) {
                                 HStack {
                                     AuthProfileImage()
-                                    Text("名前: \(userName)")
-                                        .font(.title3)
-                                    Image(systemName: "pencil")
+                                    NameEdit()
                                 }
 
                                 VStack(alignment: .leading, spacing: 15) {
