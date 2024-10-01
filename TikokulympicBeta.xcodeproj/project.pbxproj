@@ -22,7 +22,6 @@
 		228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57462C9F4EBE00EEA6E1 /* AuthService.swift */; };
 		228F574D2C9FFB0800EEA6E1 /* UserProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */; };
 		228F57532C9FFD4C00EEA6E1 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */; };
-		228F57552CA04C8C00EEA6E1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57542CA04C8C00EEA6E1 /* ProfileViewModel.swift */; };
 		228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */; };
 		228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */; };
 		228F57652CA15D7600EEA6E1 /* AuthProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57642CA15D7600EEA6E1 /* AuthProfileImage.swift */; };
@@ -130,7 +129,6 @@
 		228F57462C9F4EBE00EEA6E1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRequest.swift; sourceTree = "<group>"; };
 		228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
-		228F57542CA04C8C00EEA6E1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		228F57642CA15D7600EEA6E1 /* AuthProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImage.swift; sourceTree = "<group>"; };
@@ -411,7 +409,6 @@
 		22AABD692C8C3FCE0086644F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				228F57542CA04C8C00EEA6E1 /* ProfileViewModel.swift */,
 				22AABD6D2C8C42490086644F /* ProfileView.swift */,
 			);
 			path = Profile;
@@ -660,7 +657,6 @@
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				228F57782CA1A5D800EEA6E1 /* ParticipationStatusSection.swift in Sources */,
 				22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */,
-				228F57552CA04C8C00EEA6E1 /* ProfileViewModel.swift in Sources */,
 				223AF0E62CA3D7B60091A44F /* UserRankingData.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
 				A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */,
