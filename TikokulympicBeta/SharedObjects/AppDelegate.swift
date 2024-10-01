@@ -18,9 +18,9 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var locationManager: CLLocationManager?
-    var currentLocation: CLLocationCoordinate2D?
     var backgroundSessionCompletionHandler: (() -> Void)? // TODO: バックグラウンド処理が完了したら呼び出される処理
     var backgroundUploader: BackgroundLocationUploader!
+    var locationTimer: Timer?
 
     func application(
         _ application: UIApplication,
@@ -40,6 +40,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // バックグラウンドアップローダーの初期化
         backgroundUploader = BackgroundLocationUploader(delegate: self)
+
+        // 10秒ごとに位置情報を取得するタイマーを開始
+        startLocationTimer()
 
         return true
     }
@@ -94,21 +97,29 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.distanceFilter = 10
-        locationManager?.activityType = .fitness
         locationManager?.allowsBackgroundLocationUpdates = true
         locationManager?.pausesLocationUpdatesAutomatically = false
 
         // 位置情報の使用許可をリクエスト
         locationManager?.requestAlwaysAuthorization()
+    }
 
-        // 集合時間の1日以内かどうかを確認して位置情報サービスの利用を開始
-        if CLLocationManager.locationServicesEnabled() {
-            if shouldStartLocationUpdates() {
-                locationManager?.startUpdatingLocation()
-            } else {
-                print("位置情報の更新を開始しません")
-            }
+    // 10秒ごとに位置情報を取得するタイマーを開始
+    private func startLocationTimer() {
+        locationTimer?.invalidate() // 既存のタイマーがあれば無効化
+        locationTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(requestCurrentLocation), userInfo: nil, repeats: true)
+        RunLoop.main.add(locationTimer!, forMode: .common)
+    }
+
+    // タイマーによって呼び出されるメソッド
+    @objc private func requestCurrentLocation() {
+        if shouldStartLocationUpdates() {
+            locationManager?.requestLocation()
+        } else {
+            // 位置情報の取得を停止し、タイマーを無効化
+            locationTimer?.invalidate()
+            locationTimer = nil
+            print("位置情報の取得を停止しました")
         }
     }
 
@@ -199,33 +210,19 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
 
-        currentLocation = CLLocationCoordinate2D(
-            latitude: newLocation.coordinate.latitude,
-            longitude: newLocation.coordinate.longitude
-        )
+        let latitude = newLocation.coordinate.latitude
+        let longitude = newLocation.coordinate.longitude
+        print("現在の位置情報: 緯度 \(latitude), 経度 \(longitude)")
 
-        print("緯度: \(currentLocation!.latitude), 経度: \(currentLocation!.longitude)")
+        // 必要であれば、ここで位置情報を送信する処理を追加
+        // backgroundUploader.sendLocation(newLocation)
+    }
 
-        // 位置情報の更新を通知
-        NotificationCenter.default.post(
-            name: Notification.Name("LocationDidUpdate"),
-            object: nil,
-            userInfo: ["location": currentLocation!]
-        )
-
-        // ユーザーデフォルトの日付が1日以内の場合のみ位置情報を送信
-        if shouldStartLocationUpdates() {
-            print("current 緯度: \(currentLocation!.latitude), 経度: \(currentLocation!.longitude)")
-            print("newLocation 送信する位置情報: 緯度 \(newLocation.coordinate.latitude), 経度 \(newLocation.coordinate.longitude)")
-            // backgroundUploader.sendLocation(newLocation) // TODO: ここで送信する処理を書く
-        } else {
-            // 位置情報の更新を停止
-            locationManager?.stopUpdatingLocation()
-            print("位置情報の更新を停止しました")
-        }
+    // 位置情報の取得に失敗した場合
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("位置情報の取得に失敗しました: \(error)")
     }
 }
-
 
 // MARK: - URLSessionDelegate
 
