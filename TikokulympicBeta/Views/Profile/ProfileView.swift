@@ -47,7 +47,7 @@ struct ProfileView: View {
                             VStack(alignment: .leading, spacing: 15) {
                                 HStack {
                                     AuthProfileImage()
-                                    NameEdit()
+//                                    NameEdit()
                                 }
 
                                 VStack(alignment: .leading, spacing: 15) {
