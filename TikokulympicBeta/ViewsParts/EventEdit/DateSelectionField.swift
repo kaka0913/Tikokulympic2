@@ -33,7 +33,7 @@ struct DateSelectionField: View {
             picker.datePickerMode = .dateAndTime
             picker.preferredDatePickerStyle = .compact
             picker.minuteInterval = 15
-            picker.locale = Locale(identifier: "ja_JP") // ここでロケールを日本語に設定
+            picker.locale = Locale(identifier: "ja_JP")
             picker.addTarget(context.coordinator, action: #selector(Coordinator.dateChanged(_:)), for: .valueChanged)
             return picker
         }
@@ -58,13 +58,11 @@ struct DateSelectionField: View {
             }
         }
     }
-
+    
     
     struct DateSelectionField_Previews: PreviewProvider {
         static var previews: some View {
-            // プレビュー用にStateで初期日付を作成
-            @State var previewDate = Date() // 現在の日付をデフォルトに設定
-            
+            @State var previewDate = Date()
             DateSelectionField(title: "タイトル", date: $previewDate)
         }
     }
