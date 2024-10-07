@@ -58,7 +58,11 @@ struct EventEditView: View {
                         
                         EditBottomBar(
                             cancelAction: { isShowingCancelAlert = true },
-                            completeAction: viewModel.completeEditing,
+                            completeAction: {
+                                Task {
+                                    viewModel.completeEditing
+                                }
+                            },
                             isFormValid: viewModel.isFormValid
                         )
                     
