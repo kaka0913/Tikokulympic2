@@ -8,15 +8,17 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var vm = ProfileViewModel()
+    @State private var userName: String = "ニックネーム"
+    @State private var isEditing: Bool = false
     
     // Mock data
     let lateCount = 2
     let onTimeCount = 0
     let totalLateTime = "1h20m"
     let title = "警察なのに遅刻"
-
+    
     var body: some View {
-            
+        
         VStack {
             VStack(spacing: 0) {
                 VStack(alignment: .leading) {
@@ -26,7 +28,7 @@ struct ProfileView: View {
                         Text("称号:")
                             .foregroundColor(.white)
                             .font(.system(size: 20))
-
+                        
                         Text(title)
                             .foregroundColor(.white)
                             .font(.system(size: 25))
@@ -35,53 +37,68 @@ struct ProfileView: View {
                         Spacer()
                     }
                     .padding(.bottom, 4)
-
+                    
                     Rectangle()
                         .frame(height: 2)
                         .padding(.horizontal, 40)
                         .foregroundColor(.white)
                     
                 }
-                    VStack(spacing: 15) {
-                        HStack(spacing: 16) {
+                VStack(spacing: 15) {
+                    HStack(spacing: 16) {
+                        VStack(alignment: .leading, spacing: 15) {
+                            HStack {
+                                AuthProfileImage()
+                                HStack {
+                                    if isEditing {
+                                        TextField("名前を入力", text: $userName)
+                                            .font(.title3)
+                                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    } else {
+                                        Text("名前: \(userName)")
+                                            .font(.title3)
+                                    }
+                                    Button(action: {
+                                        isEditing.toggle()
+                                    }) {
+                                        Image(systemName: "pencil")
+                                    }
+                                }
+                                .padding()
+                            }
+                            
                             VStack(alignment: .leading, spacing: 15) {
                                 HStack {
-                                    AuthProfileImage()
-                                    NameEdit()
+                                    Image(systemName: "clock.fill")
+                                    Text("遅刻回数: \(lateCount)")
+                                        .font(.title2)
                                 }
-
-                                VStack(alignment: .leading, spacing: 15) {
-                                    HStack {
-                                        Image(systemName: "clock.fill")
-                                        Text("遅刻回数: \(lateCount)")
-                                            .font(.title2)
-                                    }
-
-                                    HStack {
-                                        Image(systemName: "hand.raised.fill")
-                                        Text("間に合った回数: \(onTimeCount)")
-                                            .font(.title2)
-                                    }
-
-                                    HStack {
-                                        Image(systemName: "hourglass.bottomhalf.fill")
-                                        Text("総遅刻時間: \(totalLateTime)")
-                                            .font(.title2)
-                                    }
-                                    Spacer()
+                                
+                                HStack {
+                                    Image(systemName: "hand.raised.fill")
+                                    Text("間に合った回数: \(onTimeCount)")
+                                        .font(.title2)
                                 }
-                                .padding(.leading, 8)
+                                
+                                HStack {
+                                    Image(systemName: "hourglass.bottomhalf.fill")
+                                    Text("総遅刻時間: \(totalLateTime)")
+                                        .font(.title2)
+                                }
+                                Spacer()
                             }
-                            Spacer()
+                            .padding(.leading, 8)
                         }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(15)
-                        .padding(.horizontal)
                         Spacer()
                     }
-                    .padding(.top, 20)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .padding(.horizontal)
+                    Spacer()
                 }
+                .padding(.top, 20)
+            }
             .background(Color.green)
             
             Spacer()
