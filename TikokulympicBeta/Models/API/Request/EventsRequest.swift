@@ -16,7 +16,7 @@ struct EventsResponse: ResponseProtocol {
 struct EventsRequest: RequestProtocol {
     typealias Response = EventsResponse
     var method: HTTPMethod { .get }
-    var path: String { "/evnents/board" }
+    var path: String { "/events/board" }
 }
 
 
