@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct HeaderView: View {
-    @ObservedObject var viewModel: TikokuRankingViewModel
-    let date: Date = Date()
+    @AppStorage("title") var title: String = ""
     let arrivals: Int = 13 //TODO: 配列から実際の人数を取得する
     
     var body: some View {
         VStack(spacing: 10) {
-            EventDateLabel(title: date)
+            EventDateLabel()
             
             ZStack {
                 VStack(spacing: 0) {
@@ -29,13 +28,13 @@ struct HeaderView: View {
             .padding(.vertical, 15)
             .padding(.top, -10)
             
-            Text(viewModel.eventName)
+            Text(title)
                 .font(.system(size: 24, weight: .bold, design: .default))
                 .foregroundColor(.white)
                 .padding(.top, -10)
             
             CountdownView()
-            MeetingInfoView(meetingTime: viewModel.meetingTime, location: viewModel.meetingLocation)
+            MeetingInfoView()
         }
         .padding(.top, 44)
         .padding(.bottom, 5)
