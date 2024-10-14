@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MeetingInfoView: View {
-    let meetingTime: Date
-    let location: String
+    @AppStorage("start_time") var startTime: String = ""
+    @AppStorage("location") var location: String = ""
     
     var body: some View {
         VStack(spacing: 0) {
@@ -20,8 +20,14 @@ struct MeetingInfoView: View {
     
     private var formattedMeetingTime: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: meetingTime)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = formatter.date(from: startTime) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "HH:mm"
+            return outputFormatter.string(from: date)
+        } else {
+            return "Invalid Date"
+        }
     }
 }
 

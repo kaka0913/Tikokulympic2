@@ -14,15 +14,13 @@ class UserProfileService {
     static let shared = UserProfileService()
    
     func getProfile() async throws -> UserProfileResponse {
-        //let userId = UserDefaults.standard.integer(forKey: "userId")
-        let userId = 1 //TODO: 修正
-        print("UserDefaultsからuserIdを取得")
-        print("userId: \(userId)")
-        let request = UserProfileRequest(userId: userId)
+        let userid = UserDefaults.standard.integer(forKey: "userid")
+        let request = UserProfileRequest(userid: userid)
         do {
            return try await apiClient.call(request: request)
         } catch {
-            print("ユーザプロフィールの取得に失敗しました: \(error)")
+            //しょうまがAPI直すまでこのエラーを無視する
+            //print("ユーザプロフィールの取得に失敗しました: \(error)")
             throw error
         }
     }
