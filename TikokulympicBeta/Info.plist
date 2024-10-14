@@ -24,5 +24,10 @@
 	<false/>
 	<key>GIDClientID</key>
 	<string>979114525545-g95lagpg83b83bkv7rgel366nb588i92.apps.googleusercontent.com</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 </dict>
 </plist>
