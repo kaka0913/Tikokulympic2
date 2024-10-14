@@ -32,7 +32,7 @@ struct SignInView: View {
             Button(action: {
                 Task {
                     do {
-                        //TODO: サインアップの処理
+                        //TODO: サインインの処理が実装できれば、ここに実装する
                     } catch {
                         userProfileModel.errorMessage = error.localizedDescription
                     }

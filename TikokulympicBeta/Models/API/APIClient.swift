@@ -10,7 +10,6 @@ import Foundation
 
 class APIClient {
     static let shared = APIClient()
-    //TODO: バックグラウンドに移行
     let supabaseClientManager = SupabaseClientManager.shared
     private init() {}
 

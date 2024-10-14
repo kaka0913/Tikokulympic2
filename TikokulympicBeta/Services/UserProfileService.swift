@@ -14,12 +14,11 @@ class UserProfileService {
    
     func getProfile() async throws -> UserProfileResponse {
         let userid = UserDefaults.standard.integer(forKey: "userid")
-        let request = UserProfileRequest(userid: userid)
+        let request = UserProfileRequest(userid: 1) //TODO: useridを取得する処理に戻す
         do {
            return try await apiClient.call(request: request)
         } catch {
-            //しょうまがAPI直すまでこのエラーを無視する
-            //print("ユーザプロフィールの取得に失敗しました: \(error)")
+            print("ユーザプロフィールの取得に失敗しました: \(error)")
             throw error
         }
     }

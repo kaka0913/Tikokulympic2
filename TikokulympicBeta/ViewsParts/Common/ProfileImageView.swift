@@ -42,12 +42,6 @@ struct ProfileImageView: View {
                         }
                     }
             }
-
-            if !errorMessage.isEmpty {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .font(.caption)
-            }
         }
     }
 
