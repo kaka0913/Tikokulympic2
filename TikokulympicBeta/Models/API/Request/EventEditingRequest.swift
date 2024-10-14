@@ -11,6 +11,11 @@ import Alamofire
 struct EventEditingResponse: ResponseProtocol {
     let event_id: Int
     let message: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case event_id = "eventId"
+        case message
+    }
 }
 
 struct EventEditingRequest: RequestProtocol {

@@ -34,10 +34,10 @@ class EventEditViewModel: ObservableObject {
             return
         }
 
-        let managerId = 1
-        let latitude = "35.6895"
-        let longitude = "139.6917"
-
+        let userid = UserDefaults.standard.integer(forKey: "userid")
+        let latitude = "34.8108" //TODO: 位置検索から緯度経度を取得して渡す
+        let longitude = "135.5612"
+        
         let newEvent = Event(
             title: eventName,
             description: eventDescription,
@@ -48,7 +48,7 @@ class EventEditViewModel: ObservableObject {
             locationName: location,
             cost: cost,
             message: contactInfo,
-            managerId: managerId,
+            managerId: userid,
             latitude: latitude,
             longitude: longitude,
             options: options

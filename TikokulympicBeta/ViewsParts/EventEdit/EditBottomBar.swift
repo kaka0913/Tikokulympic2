@@ -28,7 +28,7 @@ struct EditBottomBar: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(20)
-                .disabled(isFormValid)
+                .disabled(!isFormValid)
             
         }
         .padding()
