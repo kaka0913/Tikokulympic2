@@ -132,8 +132,6 @@ extension AppDelegate: CLLocationManagerDelegate {
             longitude: newLocation.coordinate.longitude
         )
 
-        print("緯度: \(currentLocation!.latitude), 経度: \(currentLocation!.longitude)")
-
         // 位置情報の更新を通知
         NotificationCenter.default.post(
             name: Notification.Name("LocationDidUpdate"),
