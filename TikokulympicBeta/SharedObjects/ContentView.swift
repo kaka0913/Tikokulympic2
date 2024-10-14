@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var userProfileModel = UserProfileModel()
+    @State var userProfileModel = UserProfileModel.shared
 
     var body: some View {
         TabView {

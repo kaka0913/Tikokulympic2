@@ -7,12 +7,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.userProfileModel) var userProfileModel: UserProfileModel
-    
+    @Environment(\.userProfileModel) var userProfileModel
+
     var body: some View {
-        
         VStack {
-            if let profile = vm.profile {
+            if let profile = userProfileModel.profile {
                 VStack {
                     VStack(spacing: 0) {
                         VStack(alignment: .leading) {
@@ -93,10 +92,11 @@ struct ProfileView: View {
                     Spacer()
                 }
             }
-        }
-        .onAppear {
-            Task {
-                await vm.fetchProfile()
+
+            if let errorMessage = userProfileModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
             }
         }
     }
@@ -107,6 +107,7 @@ struct ProfileView: View {
         return "\(hours)h \(minutes)m"
     }
 }
+
 
 
 

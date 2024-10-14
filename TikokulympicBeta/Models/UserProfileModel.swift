@@ -11,7 +11,7 @@ import SwiftUI
 
 struct UserProfileModelKey: EnvironmentKey {
     // デフォルト値が指定できる
-    static let defaultValue: UserProfileModel = UserProfileModel()
+    static let defaultValue: UserProfileModel = UserProfileModel.shared
 }
 
 extension EnvironmentValues {
@@ -24,6 +24,8 @@ extension EnvironmentValues {
 
 @Observable
 class UserProfileModel {
+    static let shared = UserProfileModel()
+
     var userName: String?
     var realName: String?
     var fcmtoken: String?
@@ -32,13 +34,29 @@ class UserProfileModel {
     var isUploading: Bool = false
     var isDownloading: Bool = false
     var errorMessage: String? // エラーメッセージ表示用
+    var profile: UserProfileResponse?
 
     private let supabaseService = SupabaseService()
     let authService = AuthService.shared
+    let userProfileService = UserProfileService()
 
     init() {
         Task {
             await downloadProfileImage()
+            await fetchProfile()
+        }
+    }
+    
+    @MainActor
+    func fetchProfile() async {
+        do {
+            let profile = try await userProfileService.getProfile()
+            self.profile = profile
+            print("プロフィールの取得に成功しました")
+            print("profile: \(String(describing: self.profile))")
+        } catch {
+            self.errorMessage = "プロフィールの取得に失敗しました: \(error.localizedDescription)"
+            print("プロフィールの取得に失敗しました: \(error)")
         }
     }
  
