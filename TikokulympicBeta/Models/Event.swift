@@ -2,17 +2,17 @@ import Foundation
 
 struct Event: Decodable, Identifiable {
     var id = UUID()
-    let author: Author? // JSONのキー名に合わせる
+    let author: Author?
     let title: String
     let description: String
     let isAllDay: Bool
-    let startDateTime: Date  // JSONのキー名に合わせる
-    let endDateTime: Date // JSONのキー名に合わせる
-    let closingDateTime: Date// JSONのキー名に合わせる
+    let startDateTime: Date
+    let endDateTime: Date
+    let closingDateTime: Date
     let locationName: String
-    let latitude: Double // JSONに合わせて型を修正
-    let longitude: Double // JSONに合わせて型を修正
-    let cost: Double // JSONに合わせて型を修正
+    let latitude: Double
+    let longitude: Double
+    let cost: Double
     let message: String
     let options: [Option]?
     private enum CodingKeys: String, CodingKey {
@@ -47,8 +47,8 @@ struct Option: Decodable, Identifiable {
 
 struct Author: Decodable, Identifiable {
     var id = UUID()
-    let authorId: Int? // JSONのキー名に合わせる
-    let authorName: String? // JSONのキー名に合わせる
+    let authorId: Int?
+    let authorName: String?
     private enum CodingKeys: String, CodingKey {
         case authorId = "authorId"
         case authorName = "authorName"
@@ -58,7 +58,7 @@ struct Author: Decodable, Identifiable {
 struct Participants: Decodable, Identifiable {
     var id = UUID()
     let participants: [Participant]?
-    let status: ParticipationStatus? // `ParticipationStatus`の定義が必要
+    let status: ParticipationStatus?
     private enum CodingKeys: String, CodingKey {
         case participants
         case status

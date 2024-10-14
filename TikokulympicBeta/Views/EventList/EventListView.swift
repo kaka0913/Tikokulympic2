@@ -37,7 +37,6 @@ struct EventListView: View {
                     HStack {
 
                         Button(action: {
-                            //TODO: ここに前のイベントに遷移する処理を書く
                             withAnimation {
                                 currentIndex = (currentIndex - 1) % viewModel.events.count
                             }
@@ -60,7 +59,6 @@ struct EventListView: View {
                         .padding(.trailing, 30)
 
                         Button(action: {
-                            //TODO: ここに次のイベントに遷移する処理を書く
                             withAnimation {
                                 currentIndex = (currentIndex + 1) % viewModel.events.count
                             }
