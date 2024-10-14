@@ -27,8 +27,7 @@ class ProfileViewModel: ObservableObject {
             print("プロフィールの取得に成功しました")
             print("profile: \(String(describing: self.profile))")
         } catch {
-            //しょうまがAPI直すまでこのエラーを無視する
-            //print("プロフィールの取得に失敗しました: \(error)")
+            print("プロフィールの取得に失敗しました: \(error)")
         }
     }
 }
