@@ -11,10 +11,10 @@ import Alamofire
 struct UserProfileResponse: ResponseProtocol {
     let name: String
     let alias: String
-    let late_count: Int
-    let total_late_time: Int
-    let late_percentage: Float
-    let on_time_count: Int
+    let lateCount: Int
+    let totalLateTime: Int
+    let latePercentage: Float
+    let onTimeCount: Int
 }
 
 struct UserProfileRequest: RequestProtocol {
