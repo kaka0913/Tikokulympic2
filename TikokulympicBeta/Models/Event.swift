@@ -5,7 +5,7 @@ struct Event: Decodable, Identifiable {
     let author: Author?
     let title: String
     let description: String
-    let isAllDay: Bool
+    let isAllDay: Bool?
     let startDateTime: Date
     let endDateTime: Date
     let closingDateTime: Date

@@ -12,13 +12,13 @@ class EventListViewModel: ObservableObject {
     let service = EventService.shared
 
     @MainActor
-    func getEvents() async throws -> Void {
+    func getEvents() async {
         do {
             let response = try await service.fetchEvents()
             events = response.events
-            print("\(events)")
+            print("イベントの表示に成功しました：\(events)")
         } catch {
-            throw error
+            print("イベントの表示中にエラーが発生しました: \(error)")
         }
     }
 }

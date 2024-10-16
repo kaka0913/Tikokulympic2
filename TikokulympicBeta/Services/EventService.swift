@@ -23,12 +23,12 @@ class EventService {
         let request = EventEditingRequest(
             title: event.title,
             description: event.description,
-            is_all_day: event.isAllDay,
+            is_all_day: event.isAllDay ?? false,
             start_time: startTime,
             end_time: endTime,
             closing_time: closingTime,
             location_name: event.locationName,
-            cost: Int(event.cost) ?? 0,
+            cost: Int(event.cost),
             message: event.message,
             author_id: event.author?.authorId ?? 0,
             latitude: "\(event.latitude)",
@@ -48,8 +48,10 @@ class EventService {
 
         do {
             let response = try await apiClient.call(request: request)
+            print("イベント取得に成功しました: \(response)")
             return response
         } catch {
+            print("イベント取得に失敗しました: \(error)")
             throw error
         }
     }
