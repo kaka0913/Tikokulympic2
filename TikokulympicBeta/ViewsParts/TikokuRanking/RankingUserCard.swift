@@ -7,21 +7,21 @@ struct RankingUserCard: View {
     var body: some View {
         ZStack {
             HStack(spacing: 0) {
-                if ( user.rank == 1 ) {
+                if ( user.position == 1 ) {
                         ThemeColor.orange
                             .frame(width: 320, height: 80)
                         Color.lightgray
                             .frame(width: 70, height: 80)
                     
                 }
-                else if (user.rank == 2) {
+                else if (user.position == 2) {
                     ThemeColor.orange
                         .frame(width: 250, height: 80)
                     Color.lightgray
                         .frame(width: 140, height: 80)
                     
                 }
-                else if (user.rank == 3) {
+                else if (user.position == 3) {
                     ThemeColor.customYellow
                         .frame(width: 160, height: 80)
                     Color.lightgray
@@ -41,7 +41,7 @@ struct RankingUserCard: View {
             HStack(spacing: 10) {
                 
                 HStack(spacing: 15) {
-                    RankBadge(rank: user.rank)
+                    RankBadge(rank: user.position)
                         .frame(width: 80, height: 80)
                         .padding(.leading, -20)
                     
@@ -52,7 +52,7 @@ struct RankingUserCard: View {
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.black)
                             .padding(.leading, 20)
-                        Text("〜\(user.title)〜")
+                        Text("〜\(user.alias)〜")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.black)
                             .padding(.leading, 20)

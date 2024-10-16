@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		220384792CB3703600A460A2 /* EventEditingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220384782CB3703600A460A2 /* EventEditingRequest.swift */; };
 		2203847B2CB3758D00A460A2 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2203847A2CB3758D00A460A2 /* EventService.swift */; };
+		221EAD8E2CBD651400DBF31C /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */; };
+		221EAD912CBD7AF400DBF31C /* UserRankingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD902CBD7AF400DBF31C /* UserRankingData.swift */; };
+		221EAD932CBD7B2200DBF31C /* RankingUpdateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */; };
 		22220BD32C970C7600DDB003 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22220BD22C970C7600DDB003 /* APIError.swift */; };
 		22220BD52C97103300DDB003 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22220BD42C97103300DDB003 /* APIClient.swift */; };
 		22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22242E042C994AB1001BEB14 /* TikokuRankingService.swift */; };
 		22242E082C996F6A001BEB14 /* ArrivalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22242E072C996F6A001BEB14 /* ArrivalRequest.swift */; };
 		223484602C99ED62006BB113 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234845F2C99ED62006BB113 /* SupabaseService.swift */; };
-		223AF0E62CA3D7B60091A44F /* UserRankingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223AF0E52CA3D7B60091A44F /* UserRankingData.swift */; };
 		22872AFE2C9CAB810045B653 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 22872AFD2C9CAB810045B653 /* Alamofire */; };
 		22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */; };
 		22872B092C9CCFB20045B653 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22872B082C9CCFB20045B653 /* CoreLocation.framework */; };
@@ -118,13 +120,15 @@
 /* Begin PBXFileReference section */
 		220384782CB3703600A460A2 /* EventEditingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditingRequest.swift; sourceTree = "<group>"; };
 		2203847A2CB3758D00A460A2 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
+		221EAD902CBD7AF400DBF31C /* UserRankingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRankingData.swift; sourceTree = "<group>"; };
+		221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUpdateMessage.swift; sourceTree = "<group>"; };
 		22220BD22C970C7600DDB003 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		22220BD42C97103300DDB003 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		22220BD62C972A7D00DDB003 /* TikokulympicBeta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TikokulympicBeta.entitlements; sourceTree = "<group>"; };
 		22242E042C994AB1001BEB14 /* TikokuRankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingService.swift; sourceTree = "<group>"; };
 		22242E072C996F6A001BEB14 /* ArrivalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalRequest.swift; sourceTree = "<group>"; };
 		2234845F2C99ED62006BB113 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
-		223AF0E52CA3D7B60091A44F /* UserRankingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRankingData.swift; sourceTree = "<group>"; };
 		22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingViewModel.swift; sourceTree = "<group>"; };
 		22872B082C9CCFB20045B653 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22872B0A2C9CD20A0045B653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +243,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		221EAD8C2CBD64F400DBF31C /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				221EAD8F2CBD793E00DBF31C /* Messages */,
+				221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */,
+			);
+			path = WebSocket;
+			sourceTree = "<group>";
+		};
+		221EAD8F2CBD793E00DBF31C /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		22220BD12C970C4900DDB003 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,7 +279,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		228F57412C9EE5A900EEA6E1 /* Request */ = {
+		228F57412C9EE5A900EEA6E1 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
 				22872B102C9D356C0045B653 /* SignupRequest.swift */,
@@ -266,7 +287,7 @@
 				228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */,
 				220384782CB3703600A460A2 /* EventEditingRequest.swift */,
 			);
-			path = Request;
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		228F57452C9F4DCF00EEA6E1 /* Auth */ = {
@@ -342,12 +363,13 @@
 		22AABD542C8C31A60086644F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				221EAD8C2CBD64F400DBF31C /* WebSocket */,
 				22AABD572C8C328D0086644F /* API */,
 				228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */,
 				22AE4ED92C9C922300B0BF82 /* Location.swift */,
 				228F57672CA1A19600EEA6E1 /* Event.swift */,
 				22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */,
-				223AF0E52CA3D7B60091A44F /* UserRankingData.swift */,
+				221EAD902CBD7AF400DBF31C /* UserRankingData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,7 +387,7 @@
 		22AABD572C8C328D0086644F /* API */ = {
 			isa = PBXGroup;
 			children = (
-				228F57412C9EE5A900EEA6E1 /* Request */,
+				228F57412C9EE5A900EEA6E1 /* Requests */,
 				22220BD42C97103300DDB003 /* APIClient.swift */,
 				22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */,
 			);
@@ -634,12 +656,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221EAD8E2CBD651400DBF31C /* WebSocketClient.swift in Sources */,
 				22C4F9102CA54A5C00C636C9 /* ContactInfoSection.swift in Sources */,
 				22E3218D2CA3DC4000457237 /* MeetingInfoView.swift in Sources */,
 				22C4F9072CA5270C00C636C9 /* DateSelectionField.swift in Sources */,
 				228F57742CA1A55E00EEA6E1 /* EventInfoRow.swift in Sources */,
 				22E708E82C8D66EF0009FE19 /* APIKeyManager.swift in Sources */,
 				22872B112C9D356C0045B653 /* SignupRequest.swift in Sources */,
+				221EAD932CBD7B2200DBF31C /* RankingUpdateMessage.swift in Sources */,
 				22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */,
 				22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */,
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
@@ -652,6 +676,7 @@
 				228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */,
 				228F577E2CA1A66200EEA6E1 /* ParticipationStatusRow.swift in Sources */,
 				22E321872CA3DBE000457237 /* HeaderView.swift in Sources */,
+				221EAD912CBD7AF400DBF31C /* UserRankingData.swift in Sources */,
 				228F577C2CA1A62E00EEA6E1 /* BottomBar.swift in Sources */,
 				228F574D2C9FFB0800EEA6E1 /* UserProfileRequest.swift in Sources */,
 				22E321992CA5169A00457237 /* EventEditView.swift in Sources */,
@@ -664,7 +689,6 @@
 				228F57782CA1A5D800EEA6E1 /* ParticipationStatusSection.swift in Sources */,
 				2203847B2CB3758D00A460A2 /* EventService.swift in Sources */,
 				22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */,
-				223AF0E62CA3D7B60091A44F /* UserRankingData.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
 				A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */,
 				22242E082C996F6A001BEB14 /* ArrivalRequest.swift in Sources */,

@@ -8,11 +8,10 @@
 import Foundation
 import CoreLocation
 
-struct UserRankingData: Identifiable {
+struct UserRankingData: Identifiable, Decodable {
     let id: Int
+    let position: Int
     let name: String
-    let title: String
-    var distance: Double
-    let currentLocation: CLLocation
-    let rank: Int
+    let alias: String
+    let distance: Float
 }

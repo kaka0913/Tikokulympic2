@@ -30,18 +30,11 @@ class TikokuRankingViewModel: ObservableObject {
     
     private func setupMockData() {
         userRankings = [
-            UserRankingData(id:1,  name: "しゅうと", title: "遅刻王", distance: 0, currentLocation: CLLocation(latitude: 35.6895, longitude: 139.6917), rank: 1),
-            UserRankingData(id:51, name: "ゆうた", title: "ねぼう王", distance: 0, currentLocation: CLLocation(latitude: 35.0116, longitude: 135.7681), rank: 2),
-            UserRankingData(id:21, name: "しょうま", title: "ねぼう王", distance: 0, currentLocation: CLLocation(latitude: 34.6851, longitude: 135.8050), rank: 3),
-            UserRankingData(id: 31, name: "かぶたん", title: "遅刻王", distance: 0, currentLocation: CLLocation(latitude: 34.6937, longitude: 135.5023), rank: 4),
-            UserRankingData(id:61, name: "ゆいぴ", title: "しらふ酔王", distance: 0, currentLocation: CLLocation(latitude: 34.6937, longitude: 135.5023), rank: 5),
+            UserRankingData(id: 1,  position: 1, name: "しゅうと", alias: "遅刻王", distance: 0),
+            UserRankingData(id: 51, position: 2, name: "ゆうた", alias: "ねぼう王", distance: 0),
+            UserRankingData(id: 21, position: 3, name: "しょうま", alias: "ねぼう王", distance: 0),
+            UserRankingData(id: 31, position: 4, name: "かぶたん", alias: "遅刻王", distance: 0),
+            UserRankingData(id: 61, position: 5, name: "ゆいぴ", alias: "しらふ酔王", distance: 0)
         ]
-        updateDistances()
-    }
-    
-    func updateDistances() {
-        for i in 0..<userRankings.count {
-            userRankings[i].distance = userRankings[i].currentLocation.distance(from: destinationLocation!) / 1000
-        }
     }
 }
