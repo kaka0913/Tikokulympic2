@@ -55,6 +55,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             name: UIApplication.willEnterForegroundNotification,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
 
         // 起動時に12時間以内かどうかを確認し、必要なら通信を開始
         if shouldStartLocationUpdates() {
@@ -102,6 +108,20 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         if shouldStartLocationUpdates() && !WebSocketClient.shared.isConnected {
             WebSocketClient.shared.connect()
             startLocationTimer()
+        }
+    }
+    
+    @objc func appDidBecomeActive() {
+        // フォアグラウンドになったときの処理
+        if shouldStartLocationUpdates() {
+            // WebSocketが接続されていなければ接続
+            if !WebSocketClient.shared.isConnected {
+                WebSocketClient.shared.connect()
+            }
+            // 位置情報取得タイマーが動作していなければ開始
+            if locationTimer == nil {
+                startLocationTimer()
+            }
         }
     }
 
@@ -221,7 +241,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Failed to register for remote notifications with error \(error)")
     }
 
-    // MARK: - `ensureStartTimeIsSet` メソッドの追加
+    // MARK: - ensureStartTimeIsSet メソッドの追加
     private func ensureStartTimeIsSet() {
         if UserDefaults.standard.string(forKey: "start_time") == nil {
             print("start_timeは現在未設定です")
