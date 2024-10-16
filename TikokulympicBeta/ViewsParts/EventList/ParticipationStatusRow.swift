@@ -28,7 +28,7 @@ struct ParticipationStatusRow: View {
                     .foregroundColor(.blue)
             }
             
-            ForEach(option.participants?.participants ?? [Participant(userId: 1, name: "しゅうと")]) { participant in
+            ForEach(option.participants?.participants ?? [Participant(userId: 1, name: "ななし")]) { participant in
 
                 HStack {
                     

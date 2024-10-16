@@ -48,7 +48,7 @@ class EventService {
 
         do {
             let response = try await apiClient.call(request: request)
-            print("イベント取得に成功しました: \(response)")
+            print("イベント取得に成功しました")
             return response
         } catch {
             print("イベント取得に失敗しました: \(error)")

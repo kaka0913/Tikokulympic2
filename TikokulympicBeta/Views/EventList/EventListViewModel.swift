@@ -16,7 +16,7 @@ class EventListViewModel: ObservableObject {
         do {
             let response = try await service.fetchEvents()
             events = response.events
-            print("イベントの表示に成功しました：\(events)")
+            print("イベントの表示に成功しました")
         } catch {
             print("イベントの表示中にエラーが発生しました: \(error)")
         }
