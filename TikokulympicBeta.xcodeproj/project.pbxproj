@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084B6C512CA55A9E00D7FE9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */; };
+		084B6C532CA55ADF00D7FE9B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 084B6C522CA55ADF00D7FE9B /* Config.xcconfig */; };
+		084B6C552CA55E8800D7FE9B /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C542CA55E8800D7FE9B /* EventService.swift */; };
+		084B6C572CA55F4A00D7FE9B /* EventsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */; };
+		084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C582CA563FD00D7FE9B /* EventListCard.swift */; };
 		220384792CB3703600A460A2 /* EventEditingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220384782CB3703600A460A2 /* EventEditingRequest.swift */; };
-		2203847B2CB3758D00A460A2 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2203847A2CB3758D00A460A2 /* EventService.swift */; };
 		22220BD32C970C7600DDB003 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22220BD22C970C7600DDB003 /* APIError.swift */; };
 		22220BD52C97103300DDB003 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22220BD42C97103300DDB003 /* APIClient.swift */; };
 		22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22242E042C994AB1001BEB14 /* TikokuRankingService.swift */; };
@@ -78,7 +82,6 @@
 		22AE4E6A2C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E692C9BCD8E00B0BF82 /* FirebaseStorageCombine-Community */; };
 		22AE4E6C2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 22AE4E6B2C9BCD8E00B0BF82 /* FirebaseVertexAI-Preview */; };
 		22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE4ED92C9C922300B0BF82 /* Location.swift */; };
-		22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */; };
 		22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */; };
 		22C4F9072CA5270C00C636C9 /* DateSelectionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */; };
 		22C4F90C2CA5495000C636C9 /* EventEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */; };
@@ -116,8 +119,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
+		084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Preview Content/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		084B6C522CA55ADF00D7FE9B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		084B6C542CA55E8800D7FE9B /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRequest.swift; sourceTree = "<group>"; };
+		084B6C582CA563FD00D7FE9B /* EventListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCard.swift; sourceTree = "<group>"; };
 		220384782CB3703600A460A2 /* EventEditingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditingRequest.swift; sourceTree = "<group>"; };
-		2203847A2CB3758D00A460A2 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		22220BD22C970C7600DDB003 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		22220BD42C97103300DDB003 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		22220BD62C972A7D00DDB003 /* TikokulympicBeta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TikokulympicBeta.entitlements; sourceTree = "<group>"; };
@@ -157,7 +165,6 @@
 		22AABD6D2C8C42490086644F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22AABD712C8C42730086644F /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		22AE4ED92C9C922300B0BF82 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionField.swift; sourceTree = "<group>"; };
 		22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewModel.swift; sourceTree = "<group>"; };
@@ -264,6 +271,7 @@
 				22872B102C9D356C0045B653 /* SignupRequest.swift */,
 				22242E072C996F6A001BEB14 /* ArrivalRequest.swift */,
 				228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */,
+				084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */,
 				220384782CB3703600A460A2 /* EventEditingRequest.swift */,
 			);
 			path = Request;
@@ -313,6 +321,7 @@
 		22AABD442C875AE80086644F /* TikokulympicBeta */ = {
 			isa = PBXGroup;
 			children = (
+				084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */,
 				22220BD12C970C4900DDB003 /* Entities */,
 				22E708E62C8D66C10009FE19 /* Services */,
 				22AABD542C8C31A60086644F /* Models */,
@@ -325,7 +334,7 @@
 				22AABD642C8C38CA0086644F /* .swiftlint.yml */,
 				22E708EB2C8D6ABA0009FE19 /* Info.plist */,
 				22220BD62C972A7D00DDB003 /* TikokulympicBeta.entitlements */,
-				22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */,
+				084B6C522CA55ADF00D7FE9B /* Config.xcconfig */,
 			);
 			path = TikokulympicBeta;
 			sourceTree = "<group>";
@@ -407,6 +416,7 @@
 				22AABD712C8C42730086644F /* EventListView.swift */,
 				22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */,
 				22E321982CA5169A00457237 /* EventEditView.swift */,
+				084B6C582CA563FD00D7FE9B /* EventListCard.swift */,
 			);
 			path = EventList;
 			sourceTree = "<group>";
@@ -456,6 +466,7 @@
 				228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */,
 				2203847A2CB3758D00A460A2 /* EventService.swift */,
 				2234845F2C99ED62006BB113 /* SupabaseService.swift */,
+				084B6C542CA55E8800D7FE9B /* EventService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -658,6 +669,7 @@
 				22E321932CA3DC9700457237 /* TabSelectionView.swift in Sources */,
 				228F57822CA1DE0500EEA6E1 /* ThemeColor.swift in Sources */,
 				22C4F9162CA54A8B00C636C9 /* InputField.swift in Sources */,
+				084B6C552CA55E8800D7FE9B /* EventService.swift in Sources */,
 				228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */,
 				22CA07702CA7ABD600F0B60D /* ProfileImageView.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
@@ -673,6 +685,7 @@
 				22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */,
 				228F57652CA15D7600EEA6E1 /* AuthProfileImage.swift in Sources */,
 				228F57532C9FFD4C00EEA6E1 /* UserProfileService.swift in Sources */,
+				084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */,
 				22E3218B2CA3DC1400457237 /* EventDateLabel.swift in Sources */,
 				22E709432C904C220009FE19 /* AuthView.swift in Sources */,
 				22C4F9122CA54A6E00C636C9 /* LocationSearchSection.swift in Sources */,
@@ -686,6 +699,7 @@
 				22C4F9182CA54A9B00C636C9 /* EditBottomBar.swift in Sources */,
 				228F57802CA1C02B00EEA6E1 /* EventHeader.swift in Sources */,
 				22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */,
+				084B6C572CA55F4A00D7FE9B /* EventsRequest.swift in Sources */,
 				228F576E2CA1A48A00EEA6E1 /* EventListViewModel.swift in Sources */,
 				228F57722CA1A51500EEA6E1 /* EventDetailSection.swift in Sources */,
 			);
@@ -696,7 +710,6 @@
 /* Begin XCBuildConfiguration section */
 		22AABD4E2C875AE90086644F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -760,7 +773,6 @@
 		};
 		22AABD4F2C875AE90086644F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -817,7 +829,6 @@
 		};
 		22AABD512C875AE90086644F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -852,7 +863,6 @@
 		};
 		22AABD522C875AE90086644F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22AE4EDB2C9CA4F700B0BF82 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

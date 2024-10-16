@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct ParticipationStatusSection: View {
-    let participants: [Participant]
-    
+    let options: [Option]
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("参加状況")
                 .font(.system(size: 15))
                 .bold()
             
-            ForEach(ParticipationStatus.allCases, id: \.self) { status in
-                ParticipationStatusRow(status: status, participants: participants.filter { $0.status == status })
+            ForEach(options) { option in
+                ParticipationStatusRow(option: option)
             }
         }
-        .padding(.horizontal, 8)
     }
 }

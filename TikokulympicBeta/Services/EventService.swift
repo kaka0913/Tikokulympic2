@@ -2,10 +2,11 @@
 //  EventService.swift
 //  TikokulympicBeta
 //
-//  Created by 株丹優一郎 on 2024/10/07.
+//  Created by 澤木柊斗 on 2024/09/26.
 //
 
 import Foundation
+
 
 class EventService {
     private let apiClient = APIClient.shared
@@ -39,6 +40,16 @@ class EventService {
             print("イベント作成に成功しました: \(response)")
         } catch {
             print("イベント作成に失敗しました: \(error)")
+        }
+    }
+      func fetchEvents() async throws -> EventsResponse {
+        let request = EventsRequest()
+
+        do {
+            let response = try await apiClient.call(request: request)
+            return response
+        } catch {
+            throw error
         }
     }
 }
