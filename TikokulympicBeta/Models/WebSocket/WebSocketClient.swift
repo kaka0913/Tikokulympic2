@@ -10,7 +10,7 @@ import Foundation
 class WebSocketClient : NSObject {
     static let shared = WebSocketClient()
     private var webSocketTask: URLSessionWebSocketTask?
-    private var isConnected = false
+    var isConnected = false
     weak var delegate: WebSocketClientDelegate?
     
     private override init() {
@@ -19,7 +19,7 @@ class WebSocketClient : NSObject {
     
     func connect() {
         guard !isConnected else { return }
-        let url = URL(string: "wss://api.example.com/ws/ranking")! //TODO: 実際のURLに置き換える
+        let url = URL(string: "wss://watnow-hack2024.onrender.com/ws/ranking")!
         let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
         webSocketTask = urlSession.webSocketTask(with: url)
         webSocketTask?.resume()
@@ -35,17 +35,20 @@ class WebSocketClient : NSObject {
         print("WebSocket disconnected")
     }
     
-    func sendMessage(_ message: String) {
+    func sendMessage(_ message: String, completion: @escaping (Bool) -> Void) {
         guard isConnected else {
             print("WebSocket is not connected.")
+            completion(false)
             return
         }
         let message = URLSessionWebSocketTask.Message.string(message)
         webSocketTask?.send(message) { error in
             if let error = error {
                 print("WebSocket sending error: \(error)")
+                completion(false)
             } else {
                 print("Message sent: \(message)")
+                completion(true)
             }
         }
     }
