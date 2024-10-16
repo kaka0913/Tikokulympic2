@@ -305,7 +305,7 @@ extension AppDelegate: CLLocationManagerDelegate {
 
         let latitude = newLocation.coordinate.latitude
         let longitude = newLocation.coordinate.longitude
-        print("現在の位置情報: 緯度 \(latitude), 経度 \(longitude)")
+        //print("現在の位置情報: 緯度 \(latitude), 経度 \(longitude)")
 
         // バックグラウンドタスクを開始
         var taskID: UIBackgroundTaskIdentifier = .invalid
@@ -373,7 +373,7 @@ class BackgroundLocationUploader {
                 if success {
                     print("BackgroundLocationUploader: WebSocketで位置情報を送信しました")
                 } else {
-                    print("BackgroundLocationUploader: WebSocketでの位置情報送信に失敗しました")
+                    //print("BackgroundLocationUploader: WebSocketでの位置情報送信に失敗しました")
                 }
                 completion()
             }
