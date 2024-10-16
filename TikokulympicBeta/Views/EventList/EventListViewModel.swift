@@ -11,7 +11,6 @@ class EventListViewModel: ObservableObject {
     @Published var events: [Event] = []
     let service = EventService.shared
 
-
     @MainActor
     func getEvents() async throws -> Void {
         do {

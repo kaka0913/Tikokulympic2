@@ -42,7 +42,8 @@ class EventService {
             print("イベント作成に失敗しました: \(error)")
         }
     }
-      func fetchEvents() async throws -> EventsResponse {
+
+    func fetchEvents() async throws -> EventsResponse {
         let request = EventsRequest()
 
         do {

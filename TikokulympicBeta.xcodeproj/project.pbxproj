@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		084B6C512CA55A9E00D7FE9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */; };
-		084B6C532CA55ADF00D7FE9B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 084B6C522CA55ADF00D7FE9B /* Config.xcconfig */; };
 		084B6C552CA55E8800D7FE9B /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C542CA55E8800D7FE9B /* EventService.swift */; };
 		084B6C572CA55F4A00D7FE9B /* EventsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */; };
 		084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C582CA563FD00D7FE9B /* EventListCard.swift */; };
@@ -122,7 +120,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-
 		084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Preview Content/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		084B6C522CA55ADF00D7FE9B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		084B6C542CA55E8800D7FE9B /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
@@ -313,6 +310,7 @@
 		228F57662CA1A15400EEA6E1 /* EventList */ = {
 			isa = PBXGroup;
 			children = (
+				084B6C582CA563FD00D7FE9B /* EventListCard.swift */,
 				228F576F2CA1A4EC00EEA6E1 /* TopBar.swift */,
 				228F577F2CA1C02B00EEA6E1 /* EventHeader.swift */,
 				228F57712CA1A51500EEA6E1 /* EventDetailSection.swift */,
@@ -440,7 +438,6 @@
 				22AABD712C8C42730086644F /* EventListView.swift */,
 				22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */,
 				22E321982CA5169A00457237 /* EventEditView.swift */,
-				084B6C582CA563FD00D7FE9B /* EventListCard.swift */,
 			);
 			path = EventList;
 			sourceTree = "<group>";
@@ -636,7 +633,6 @@
 				22AABD4D2C875AE90086644F /* Preview Assets.xcassets in Resources */,
 				22AABD632C8C34DD0086644F /* .gitignore in Resources */,
 				22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */,
-				22AE4EDC2C9CA4F700B0BF82 /* Config.xcconfig in Resources */,
 				22CA076D2CA6DD2800F0B60D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
