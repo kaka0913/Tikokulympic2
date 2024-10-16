@@ -12,7 +12,7 @@ struct Event: Decodable, Identifiable {
     let locationName: String
     let latitude: Double
     let longitude: Double
-    let cost: Double
+    let cost: Int
     let message: String
     let options: [Option]?
     private enum CodingKeys: String, CodingKey {
