@@ -92,12 +92,6 @@ struct ProfileView: View {
                     Spacer()
                 }
             }
-
-            if let errorMessage = userProfileModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .padding()
-            }
         }
     }
     

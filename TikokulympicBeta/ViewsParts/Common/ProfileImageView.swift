@@ -60,7 +60,7 @@ struct ProfileImageView: View {
             }
         } catch {
             DispatchQueue.main.async {
-                self.errorMessage = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                self.errorMessage = "プロフィール画像のダウンロードに失敗しました: \(error.localizedDescription)"
             }
         }
         DispatchQueue.main.async {

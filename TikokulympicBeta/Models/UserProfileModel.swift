@@ -148,7 +148,7 @@ class UserProfileModel {
             }
         } catch {
             DispatchQueue.main.async {
-                self.errorMessage = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                self.errorMessage = "ユーザプロフィールのダウンロードに失敗しました: \(error.localizedDescription)"
             }
         }
         DispatchQueue.main.async {
