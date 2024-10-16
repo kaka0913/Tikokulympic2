@@ -69,6 +69,7 @@ struct EventListView: View {
                                 .foregroundColor(.white)
                         }
                     }
+                    .padding(.vertical, 10)
 
                     Spacer()
 
@@ -81,6 +82,8 @@ struct EventListView: View {
                 }
                 .background(ThemeColor.customBlue)
                 .frame(alignment: .center)
+
+                Spacer()
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .background(ThemeColor.customBlue)
