@@ -8,84 +8,87 @@
 import SwiftUI
 
 struct EventListView: View {
-    @StateObject var viewModel: EventListViewModel = mock
+    @StateObject var viewModel = EventListViewModel()
     @State private var showingVoteAlert = false
     @State private var selectedStatus: ParticipationStatus?
-    
+    @State private var currentIndex: Int = 0
+
     var body: some View {
-        NavigationStack{
-            VStack(spacing: 0) {
-                TopBar()
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        EventDetailsSection(event: viewModel.event)
-                        
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("連絡事項")
-                                .font(.system(size: 15))
-                                .bold()
-                            Text(viewModel.event.message)
-                                .font(.system(size: 15))
+        GeometryReader { proxy in
+            NavigationStack {
+                VStack(spacing: 0) {
+                    TopBar()
+                    TabView(selection: $currentIndex) {
+                        ForEach(viewModel.events.indices, id: \.self) { event in
+                            ScrollView {
+                                EventListCard(event: viewModel.events[event])
+                                    .frame(
+                                        width: proxy.size.width * 0.95,
+                                        height: proxy.size.height * 0.9
+                                    )
+                                    .padding(.bottom, 30)
+                                    .padding(.trailing, 30)
+                                    .tag(event)
+                            }
                         }
-                        .padding(.horizontal, 8)
-                        
-                        Rectangle()
-                            .fill(Color.blue)
-                            .frame(height: 1)
-                            .padding(.horizontal, 5)
-                        
-                        ParticipationStatusSection(participants: viewModel.participants)
                     }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(20)
-                    .padding()
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+
+                    HStack {
+
+                        Button(action: {
+                            withAnimation {
+                                currentIndex = (currentIndex - 1) % viewModel.events.count
+                            }
+                        }) {
+                            Image(systemName: "arrowtriangle.backward.fill")
+                                .resizable()
+                                .frame(width: 15, height: 30)
+                                .foregroundColor(.white)
+                        }
+
+                        Button("投票する") {
+                            showingVoteAlert = true
+                        }
+                        .padding(.horizontal, 50)
+                        .padding(.vertical, 12)
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                        .padding(.leading, 30)
+                        .padding(.trailing, 30)
+
+                        Button(action: {
+                            withAnimation {
+                                currentIndex = (currentIndex + 1) % viewModel.events.count
+                            }
+                        }) {
+                            Image(systemName: "arrowtriangle.right.fill")
+                                .resizable()
+                                .frame(width: 15, height: 30)
+                                .foregroundColor(.white)
+                        }
+                    }
+
+                    Spacer()
+
+                        .alert("参加状況を選択", isPresented: $showingVoteAlert) {
+                            Button("参加") {}
+                            Button("不参加") {}
+                            Button("途中参加") {}
+                            Button("キャンセル", role: .cancel) {}
+                        }
                 }
                 .background(ThemeColor.customBlue)
-                
-                BottomBar(onVote: {
-                    showingVoteAlert = true
-                })
-                
-                Spacer()
+                .frame(alignment: .center)
             }
-            .alert("参加状況を選択", isPresented: $showingVoteAlert) {
-                Button("参加") { selectedStatus = .participating }
-                Button("不参加") { selectedStatus = .notParticipating }
-                Button("途中参加") { selectedStatus = .partialParticipation }
-                Button("キャンセル", role: .cancel) { }
+            .frame(width: proxy.size.width, height: proxy.size.height)
+            .background(ThemeColor.customBlue)
+        }
+        .onAppear {
+            Task {
+                try await viewModel.getEvents()
             }
         }
     }
 }
-
-let mock = EventListViewModel(
-    event:
-    Event(
-    title: "秋プロFB",
-    description: "秋プロの成果を発表してもらいます！",
-    isAllDay: false,
-    startTime: Date(),
-    endTime: Date().addingTimeInterval(3600 * 3),
-    closingTime: Date().addingTimeInterval(3600 * 24 * 7),
-    locationName: "立命館大学OIC",
-    cost: 0,
-    message: "以下のリンクにアクセスして事前アンケートに回答してください。\nURL: http://...",
-    managerId: 1,
-    latitude: "34.8241",
-    longitude: "135.5174",
-    options: []
-),
-participants: [
-    Participant(name: "山田太郎", status: .participating),
-    Participant(name: "佐藤花子", status: .participating),
-    Participant(name: "鈴木一郎", status: .notParticipating),
-    Participant(name: "田中美咲", status: .partialParticipation)
-])
-
-struct EventListView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventListView(viewModel: mock)
-    }
-}
-

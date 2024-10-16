@@ -9,6 +9,7 @@ import Alamofire
 import Foundation
 
 class UserProfileService {
+    
     private let apiClient = APIClient.shared
     static let shared = UserProfileService()
    

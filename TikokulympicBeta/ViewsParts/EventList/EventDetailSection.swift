@@ -9,11 +9,11 @@ import SwiftUI
 
 struct EventDetailsSection: View {
     let event: Event
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             EventHeader(title: event.title)
-            
+
             HStack {
                 Spacer()
                 
@@ -30,7 +30,7 @@ struct EventDetailsSection: View {
                 
                 Text("参加投票締切: ")
                     .foregroundColor(.red) +
-                Text("\(formatDate(event.closingTime))")
+                Text("\(formatDate(event.endDateTime))")
                     .bold()
                     .foregroundColor(.red)
                 
@@ -40,11 +40,19 @@ struct EventDetailsSection: View {
             
             EventInfoRow(icon: "person.fill", text: "株丹優一郎")
             
-            EventInfoRow(icon: "calendar", text: formatDateRange(start: event.startTime, end: event.endTime))
-            
+            EventInfoRow(icon: "calendar", text: formatDateRange(start: event.startDateTime, end: event.endDateTime))
+
             EventInfoRow(icon: "mappin.and.ellipse", text: event.locationName)
             
             EventInfoRow(icon: "yensign.circle", text: "\(event.cost)円")
+            VStack(alignment: .leading) {
+                Text("連絡事項")
+                    .font(.system(size: 15))
+                    .bold()
+                Text(event.message)
+                    .font(.system(size: 15))
+            }
+            .padding(.leading, 20)
         }
     }
     

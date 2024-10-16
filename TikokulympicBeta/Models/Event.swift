@@ -1,36 +1,78 @@
-//
-//  Event.swift
-//  TikokulympicBeta
-//
-//  Created by 株丹優一郎 on 2024/09/23.
-//
-
 import Foundation
 
-struct Event: Identifiable {
-    let id = UUID()
+struct Event: Decodable, Identifiable {
+    var id = UUID()
+    let author: Author?
     let title: String
     let description: String
     let isAllDay: Bool
-    let startTime: Date
-    let endTime: Date
-    let closingTime: Date
+    let startDateTime: Date
+    let endDateTime: Date
+    let closingDateTime: Date
     let locationName: String
+    let latitude: Double
+    let longitude: Double
     let cost: Int
     let message: String
-    let managerId: Int
-    let latitude: String
-    let longitude: String
-    let options: [Option]
+    let options: [Option]?
+    private enum CodingKeys: String, CodingKey {
+        case author,
+             title,
+             description,
+             isAllDay = "isAllDay",
+             startDateTime = "startDateTime",
+             endDateTime = "endDateTime",
+             closingDateTime = "closingDateTime",
+             locationName = "locationName",
+             latitude,
+             longitude,
+             cost,
+             message,
+             options
+    }
 }
 
-struct Option: Identifiable {
-    let id = UUID()
+struct Option: Decodable, Identifiable {
+    var id = UUID()
     let title: String
+    let participantCount: Int
+    let participants: Participants?
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case participantCount = "participantCount"
+        case participants
+    }
+
 }
 
-struct Participant: Identifiable {
+struct Author: Decodable, Identifiable {
+    var id = UUID()
+    let authorId: Int?
+    let authorName: String?
+    private enum CodingKeys: String, CodingKey {
+        case authorId = "authorId"
+        case authorName = "authorName"
+    }
+}
+
+struct Participants: Decodable, Identifiable {
+    var id = UUID()
+    let participants: [Participant]?
+    let status: ParticipationStatus?
+    private enum CodingKeys: String, CodingKey {
+        case participants
+        case status
+    }
+
+}
+
+struct Participant: Decodable, Identifiable {
     let id = UUID()
-    let name: String
-    let status: ParticipationStatus
+    let userId: Int?
+    let name: String?
+    private enum CodingKeys: String, CodingKey {
+        case name = "userName"
+        case userId = "userId"
+    }
+
 }

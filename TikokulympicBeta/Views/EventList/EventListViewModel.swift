@@ -8,11 +8,18 @@
 import Foundation
 
 class EventListViewModel: ObservableObject {
-    @Published var event: Event
-    @Published var participants: [Participant]
-    
-    init(event: Event, participants: [Participant]) {
-        self.event = event
-        self.participants = participants
+    @Published var events: [Event] = []
+    let service = EventService.shared
+
+
+    @MainActor
+    func getEvents() async throws -> Void {
+        do {
+            let response = try await service.fetchEvents()
+            events = response.events
+            print("\(events)")
+        } catch {
+            throw error
+        }
     }
 }

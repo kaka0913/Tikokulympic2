@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ParticipationStatusRow: View {
-    let status: ParticipationStatus
-    let participants: [Participant]
+    let option: Option
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -20,20 +19,20 @@ struct ParticipationStatusRow: View {
                     .frame(width: 4)
                     .padding(.trailing, 4)
                 
-                Text("\(status.rawValue): ")
+                Text("\(option.title): ")
                     .foregroundColor(.black)
                     .font(.system(size: 15))
                 
-                Text("\(participants.filter { $0.status == status }.count)人")
+                Text("\(option.participantCount)人")
                     .font(.system(size: 15))
                     .foregroundColor(.blue)
             }
             
-            ForEach(participants) { participant in
-                
+            ForEach(option.participants?.participants ?? [Participant(userId: 1, name: "しゅうと")]) { participant in
+
                 HStack {
                     
-                    Text(String(participant.name.prefix(1)))
+                    Text(String(participant.name!.prefix(1)))
                         .font(.caption)
                         .foregroundColor(.white)
                         .frame(width: 20, height: 20)
@@ -41,7 +40,7 @@ struct ParticipationStatusRow: View {
                         .clipShape(Circle())
                         .padding(.trailing, 10)
                     
-                    Text(participant.name)
+                    Text(participant.name ?? "ななし")
                         .font(.caption)
                     
                 }
@@ -51,13 +50,3 @@ struct ParticipationStatusRow: View {
     }
 }
 
-#Preview {
-    ParticipationStatusRow(status: .notParticipating, participants: par)
-}
-
-let par = [
-    Participant(name: "山田太郎", status: .participating),
-    Participant(name: "佐藤花子", status: .participating),
-    Participant(name: "鈴木一郎", status: .participating),
-    Participant(name: "田中美咲", status: .partialParticipation)
-]
