@@ -56,6 +56,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             object: nil
         )
 
+        // 起動時に12時間以内かどうかを確認し、必要なら通信を開始
+        if shouldStartLocationUpdates() {
+            startLocationTimer()
+            WebSocketClient.shared.connect()
+        } else {
+            print("start_timeが12時間以内ではないため、WebSocket通信を開始しません。")
+        }
+
         return true
     }
 
@@ -212,6 +220,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) {
         print("Failed to register for remote notifications with error \(error)")
     }
+
+    // MARK: - `ensureStartTimeIsSet` メソッドの追加
+    private func ensureStartTimeIsSet() {
+        if UserDefaults.standard.string(forKey: "start_time") == nil {
+            print("start_timeは現在未設定です")
+
+        } else {
+            print("start_timeは既に設定されています。")
+            //TODO: 既にstart_timeが設定されている場合の処理を追加
+        }
+    }
 }
 
 
@@ -277,7 +296,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
 
         // 位置情報を送信
-        backgroundUploader.sendLocation(newLocation) {
+        BackgroundLocationUploader.shared.sendLocation(newLocation) {
             // バックグラウンドタスクを終了
             UIApplication.shared.endBackgroundTask(taskID)
             taskID = .invalid
@@ -295,6 +314,10 @@ extension AppDelegate: CLLocationManagerDelegate {
 
 extension AppDelegate: URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        // 複数イベントが同日にあることを想定して、start_timeの確認と設定を行う
+        ensureStartTimeIsSet()
+
+        // バックグラウンドタスクの完了ハンドラを呼び出す
         if let completionHandler = backgroundSessionCompletionHandler {
             backgroundSessionCompletionHandler = nil
             DispatchQueue.main.async {
