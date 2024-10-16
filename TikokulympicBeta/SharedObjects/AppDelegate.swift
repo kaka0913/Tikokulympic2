@@ -18,13 +18,14 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var locationManager: CLLocationManager?
-    var backgroundSessionCompletionHandler: (() -> Void)? // TODO: バックグラウンド処理が完了したら呼び出される処理
+    var backgroundSessionCompletionHandler: (() -> Void)?
     var backgroundUploader: BackgroundLocationUploader!
     var locationTimer: Timer?
+    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
@@ -39,18 +40,68 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         setupLocationManager()
 
         // バックグラウンドアップローダーの初期化
-        backgroundUploader = BackgroundLocationUploader(delegate: self)
+        backgroundUploader = BackgroundLocationUploader.shared
 
-        // 10秒ごとに位置情報を取得するタイマーを開始
-        startLocationTimer()
+        // アプリの状態変化を監視
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appDidEnterBackground),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appWillEnterForeground),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
 
         return true
     }
 
-    // MARK: - Setup Methods
+    // MARK: - アプリの状態ハンドラ
+
+    @objc func appDidEnterBackground() {
+        // start_timeが12時間以内かどうかを再確認
+        if shouldStartLocationUpdates() {
+            // バックグラウンドでアプリを実行するためのタスクを開始
+            backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "LocationUpdate") {
+                // タスクが終了しない場合に実行されるハンドラ
+                UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                self.backgroundTask = .invalid
+            }
+
+            // WebSocket通信を開始
+            if !WebSocketClient.shared.isConnected {
+                WebSocketClient.shared.connect()
+            }
+
+            // 位置情報取得タイマーを開始
+            if locationTimer == nil {
+                startLocationTimer()
+            }
+        }
+    }
+
+    @objc func appWillEnterForeground() {
+        // バックグラウンドタスクを終了
+        if backgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            backgroundTask = .invalid
+        }
+
+        // WebSocketが接続されていなければ再接続
+        if shouldStartLocationUpdates() && !WebSocketClient.shared.isConnected {
+            WebSocketClient.shared.connect()
+            startLocationTimer()
+        }
+    }
+
+    // MARK: - セットアップメソッド
+
     private func setupDefaultUserInfo() {
         UserDefaults.standard.set(51, forKey: "userid") // TODO: 開発中はデフォルトのuseridを入れておく
-        
+
         // TODO: 通知できるまではデフォルトの値を入れておく
         let title = "ハッカソン"
         let location = "立命館大学OIC"
@@ -120,17 +171,20 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             locationTimer?.invalidate()
             locationTimer = nil
             print("位置情報の取得を停止しました")
+            WebSocketClient.shared.disconnect()
         }
     }
 
-    // MARK: - Background URL Session Handling
+    // MARK: - バックグラウンドURLセッションのハンドリング
+
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         // バックグラウンドセッションの処理
         backgroundSessionCompletionHandler = completionHandler
-        backgroundUploader = BackgroundLocationUploader(delegate: self)
+        backgroundUploader = BackgroundLocationUploader.shared
     }
 
-    // MARK: - start_timeから1日以内かどうかを判定
+    // MARK: - start_timeから12時間以内かどうかを判定
+
     func shouldStartLocationUpdates() -> Bool {
         if let savedDateString = UserDefaults.standard.string(forKey: "start_time") {
             let dateFormatter = DateFormatter()
@@ -142,7 +196,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 let currentDate = Date()
                 let timeInterval = savedDate.timeIntervalSince(currentDate)
                 print("savedDate: \(savedDate), currentDate: \(currentDate), timeInterval: \(timeInterval)")
-                return timeInterval <= 86400 && timeInterval >= 0 // 1日以内
+                return timeInterval <= 43200 && timeInterval >= 0 // 12時間以内
             } else {
                 print("日付のパースに失敗しました")
             }
@@ -214,8 +268,20 @@ extension AppDelegate: CLLocationManagerDelegate {
         let longitude = newLocation.coordinate.longitude
         print("現在の位置情報: 緯度 \(latitude), 経度 \(longitude)")
 
-        // 必要であれば、ここで位置情報を送信する処理を追加
-        // backgroundUploader.sendLocation(newLocation)
+        // バックグラウンドタスクを開始
+        var taskID: UIBackgroundTaskIdentifier = .invalid
+        taskID = UIApplication.shared.beginBackgroundTask(withName: "SendLocation") {
+            // 時間切れの場合
+            UIApplication.shared.endBackgroundTask(taskID)
+            taskID = .invalid
+        }
+
+        // 位置情報を送信
+        backgroundUploader.sendLocation(newLocation) {
+            // バックグラウンドタスクを終了
+            UIApplication.shared.endBackgroundTask(taskID)
+            taskID = .invalid
+        }
     }
 
     // 位置情報の取得に失敗した場合
@@ -223,6 +289,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         print("位置情報の取得に失敗しました: \(error)")
     }
 }
+
 
 // MARK: - URLSessionDelegate
 
@@ -238,30 +305,38 @@ extension AppDelegate: URLSessionDelegate {
 }
 
 
-// MARK: - 実装は別の箇所で行なってかつ中身も変更する予定
-//TODO: websocketの実装が必要
+// MARK: - バックグラウンド通信
 
 class BackgroundLocationUploader {
-    private var session: URLSession!
+    // シングルトンインスタンス
+    static let shared = BackgroundLocationUploader()
 
-    init(delegate: URLSessionDelegate) {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "com.yourapp.background")
-        configuration.sessionSendsLaunchEvents = true
-        configuration.isDiscretionary = false
-        session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
-    }
+    // プライベートイニシャライザ
+    private init() { }
 
-    func sendLocation(_ location: CLLocation) {
-        var request = URLRequest(url: URL(string: "https://your-server.com/upload")!)
-        request.httpMethod = "POST"
-        let body: [String: Any] = [
+    func sendLocation(_ location: CLLocation, completion: @escaping () -> Void) {
+        let userid = UserDefaults.standard.string(forKey: "userid") ?? "unknown_user"
+
+        let messageDict: [String: Any] = [
+            "action": "update_location",
+            "user_id": userid,
             "latitude": location.coordinate.latitude,
-            "longitude": location.coordinate.longitude,
-            "timestamp": location.timestamp.timeIntervalSince1970
+            "longitude": location.coordinate.longitude
         ]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = session.uploadTask(with: request, from: request.httpBody!)
-        task.resume()
+
+        if let jsonData = try? JSONSerialization.data(withJSONObject: messageDict),
+           let jsonString = String(data: jsonData, encoding: .utf8) {
+            WebSocketClient.shared.sendMessage(jsonString) { success in
+                if success {
+                    print("BackgroundLocationUploader: WebSocketで位置情報を送信しました")
+                } else {
+                    print("BackgroundLocationUploader: WebSocketでの位置情報送信に失敗しました")
+                }
+                completion()
+            }
+        } else {
+            print("BackgroundLocationUploader: JSONシリアライズに失敗しました")
+            completion()
+        }
     }
 }
