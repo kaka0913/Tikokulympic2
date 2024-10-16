@@ -39,18 +39,18 @@ class EventEditViewModel: ObservableObject {
         let longitude = "135.5612"
         
         let newEvent = Event(
+            author: nil,
             title: eventName,
             description: eventDescription,
             isAllDay: false,
-            startTime: startDateTime,
-            endTime: endDateTime,
-            closingTime: applicationDeadline,
+            startDateTime: startDateTime,
+            endDateTime: endDateTime,
+            closingDateTime: applicationDeadline,
             locationName: location,
-            cost: cost,
+            latitude: 35.00,
+            longitude: 36.00,
+            cost: Int(fee) ?? 0,
             message: contactInfo,
-            managerId: userid,
-            latitude: latitude,
-            longitude: longitude,
             options: options
         )
 

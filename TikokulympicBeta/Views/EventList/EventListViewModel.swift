@@ -9,7 +9,7 @@ import Foundation
 
 class EventListViewModel: ObservableObject {
     @Published var events: [Event] = []
-    let service = EventService.shered
+    let service = EventService.shared
 
 
     @MainActor

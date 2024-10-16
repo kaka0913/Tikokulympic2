@@ -16,10 +16,10 @@ class EventService {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
-        let startTime = dateFormatter.string(from: event.startTime)
-        let endTime = dateFormatter.string(from: event.endTime)
-        let closingTime = dateFormatter.string(from: event.closingTime)
-        
+        let startTime = dateFormatter.string(from: event.startDateTime)
+        let endTime = dateFormatter.string(from: event.endDateTime)
+        let closingTime = dateFormatter.string(from: event.closingDateTime)
+
         let request = EventEditingRequest(
             title: event.title,
             description: event.description,
@@ -28,11 +28,11 @@ class EventService {
             end_time: endTime,
             closing_time: closingTime,
             location_name: event.locationName,
-            cost: event.cost,
+            cost: Int(event.cost) ?? 0,
             message: event.message,
-            author_id: event.managerId,
-            latitude: event.latitude,
-            longitude: event.longitude
+            author_id: event.author?.authorId ?? 0,
+            latitude: "\(event.latitude)",
+            longitude:"\(event.longitude)"
         )
         
         do {
