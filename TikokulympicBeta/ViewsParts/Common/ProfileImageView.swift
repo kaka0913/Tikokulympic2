@@ -14,7 +14,7 @@ struct ProfileImageView: View {
     @State private var errorMessage: String = ""
     
     private let supabaseService = SupabaseService()
-    let userid: Int
+    let userid: String
 
     var body: some View {
         VStack {
@@ -38,7 +38,7 @@ struct ProfileImageView: View {
                     .frame(width: 50, height: 50)
                     .onAppear {
                         Task {
-                            await downloadProfileImage(userid: 51)//TODO: ユーザイメージただしく表示するにはここを修正
+                            await downloadProfileImage(userid: userid)
                         }
                     }
             }
