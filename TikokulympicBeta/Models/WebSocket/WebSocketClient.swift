@@ -26,29 +26,29 @@ class WebSocketClient : NSObject {
         let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
         webSocketTask = urlSession.webSocketTask(with: url)
         webSocketTask?.resume()
-        print("WebSocket connecting...")
+        print("WebSocketに接続中...")
     }
     
     func disconnect() {
         isConnected = false
         webSocketTask?.cancel(with: .normalClosure, reason: nil)
         webSocketTask = nil
-        print("WebSocket disconnected")
+        print("WebSocket接続が切断されました")
     }
     
     func sendMessage(_ message: String, completion: @escaping (Bool) -> Void) {
         guard isConnected else {
-            print("WebSocket is not connected.")
+            print("WebSocketが接続されていません。")
             completion(false)
             return
         }
         let message = URLSessionWebSocketTask.Message.string(message)
         webSocketTask?.send(message) { error in
             if let error = error {
-                print("WebSocket sending error: \(error)")
+                print("WebSocketメッセージ送信エラー: \(error)")
                 completion(false)
             } else {
-                print("Message sent: \(message)")
+                print("メッセージ送信完了: \(message)")
                 completion(true)
             }
         }
@@ -60,7 +60,7 @@ class WebSocketClient : NSObject {
             switch result {
                 
             case .failure(let error):
-                print("WebSocket receiving error: \(error)")
+                print("WebSocketメッセージ受信エラー: \(error)")
                 self.isConnected = false
                 self.handleConnectionError()
                 
@@ -69,19 +69,19 @@ class WebSocketClient : NSObject {
                 switch message {
                     
                 case .string(let text):
-                    print("Received text: \(text)")
+                    print("受信したテキストメッセージ: \(text)")
                     self.delegate?.didReceiveMessage(text)
                     
                 case .data(let data):
                     if let text = String(data: data, encoding: .utf8) {
-                        print("Received data: \(text)")
+                        print("受信したデータメッセージ: \(text)")
                         self.delegate?.didReceiveMessage(text)
                     } else {
-                        print("Received binary data that couldn't be decoded.")
+                        print("受信したバイナリデータをデコードできませんでした。")
                     }
                     
                 @unknown default:
-                    print("Received unknown message format.")
+                    print("受信した不明なメッセージ形式。")
                 }
                 // 次のメッセージを受け取る
                 self.receiveMessage()
@@ -94,23 +94,19 @@ class WebSocketClient : NSObject {
         reconnectAttempts += 1
         if reconnectAttempts <= maxReconnectAttempts {
             let delay = reconnectDelay * Double(reconnectAttempts)
-            print("Retrying connection in \(delay) seconds...")
+            print("接続再試行中... \(delay) 秒後に再接続を試みます")
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
                 self?.connect()
             }
         } else {
-            print("Max reconnect attempts reached.")
+            print("再接続の最大試行回数に達しました。")
         }
     }
 }
 
-protocol WebSocketClientDelegate: AnyObject {
-    func didReceiveMessage(_ text: String)
-}
-
 extension WebSocketClient: URLSessionWebSocketDelegate {
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
-        print("WebSocket connected successfully")
+        print("WebSocket接続が正常に確立されました")
         isConnected = true
         reconnectAttempts = 0
         receiveMessage() // メッセージ受信を開始
@@ -118,12 +114,16 @@ extension WebSocketClient: URLSessionWebSocketDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
-            print("WebSocket error: \(error.localizedDescription)")
+            print("WebSocketエラー: \(error.localizedDescription)")
             isConnected = false
             handleConnectionError()
         } else {
-            print("WebSocket closed successfully")
+            print("WebSocket接続が正常に終了しました")
             isConnected = false
         }
     }
+}
+
+protocol WebSocketClientDelegate: AnyObject {
+    func didReceiveMessage(_ text: String)
 }
