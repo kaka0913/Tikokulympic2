@@ -24,10 +24,15 @@ struct TikokuRankingView: View {
                     Text("今回の遅刻リンピックは終了しました")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.white)
+                } else if viewModel.userRankings.isEmpty {
+                    Text("データがありません")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.white)
                 } else {
                     RankingListView(userRankings: viewModel.userRankings)
                         .padding(.top, -15)
                 }
+                
             } else {
                 Text("到着者リスト")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
