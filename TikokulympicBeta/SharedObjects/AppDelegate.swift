@@ -254,8 +254,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
             if let savedDate = dateFormatter.date(from: savedDateString) {
                 let currentDate = Date()
-                let timeInterval = savedDate.timeIntervalSince(currentDate)
-                return timeInterval <= 43200 && timeInterval >= 0 // 12時間以内
+
+                // 3時間 = 10800秒
+                let threeHoursInSeconds: TimeInterval = 10800
+
+                // 現在の時間がstart_timeの3時間前から3時間後までの範囲にあるかをチェック
+                let timeDifference = currentDate.timeIntervalSince(savedDate)
+
+                return timeDifference >= -threeHoursInSeconds && timeDifference <= threeHoursInSeconds
             } else {
                 print("日付のパースに失敗しました")
             }
@@ -264,6 +270,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
     }
+
 
     // MARK: - Remote Notification Failure Handling
     func application(
