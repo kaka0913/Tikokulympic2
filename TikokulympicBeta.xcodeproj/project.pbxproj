@@ -253,17 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */,
-				221EAD8F2CBD793E00DBF31C /* Messages */,
-			);
-			path = WebSocket;
-			sourceTree = "<group>";
-		};
-		221EAD8F2CBD793E00DBF31C /* Messages */ = {
-			isa = PBXGroup;
-			children = (
 				221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */,
 			);
-			path = Messages;
+			path = WebSocket;
 			sourceTree = "<group>";
 		};
 		22220BD12C970C4900DDB003 /* Entities */ = {

@@ -22,6 +22,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundUploader: BackgroundLocationUploader!
     var locationTimer: Timer?
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    
+    // 到着通知が送信されたかどうかを保持するプロパティ
+    var hasSentArrivalNotification: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "hasSentArrivalNotification")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "hasSentArrivalNotification")
+        }
+    }
 
     func application(
         _ application: UIApplication,
@@ -64,7 +74,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // 起動時に12時間以内かどうかを確認し、必要なら通信を開始
         if shouldStartLocationUpdates() {
-            startLocationTimer()
+            if !hasSentArrivalNotification {
+                startLocationTimer()
+            }
             WebSocketClient.shared.connect()
         } else {
             print("start_timeが12時間以内ではないため、WebSocket通信を開始しません。")
@@ -90,8 +102,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 WebSocketClient.shared.connect()
             }
 
-            // 位置情報取得タイマーを開始
-            if locationTimer == nil {
+            // 位置情報取得タイマーを開始（到着通知が未送信の場合）
+            if !hasSentArrivalNotification && locationTimer == nil {
                 startLocationTimer()
             }
         }
@@ -107,6 +119,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // WebSocketが接続されていなければ再接続
         if shouldStartLocationUpdates() && !WebSocketClient.shared.isConnected {
             WebSocketClient.shared.connect()
+        }
+
+        // 位置情報取得タイマーを開始（到着通知が未送信の場合）
+        if shouldStartLocationUpdates() && !hasSentArrivalNotification && locationTimer == nil {
             startLocationTimer()
         }
     }
@@ -118,8 +134,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             if !WebSocketClient.shared.isConnected {
                 WebSocketClient.shared.connect()
             }
-            // 位置情報取得タイマーが動作していなければ開始
-            if locationTimer == nil {
+            // 位置情報取得タイマーを開始（到着通知が未送信の場合）
+            if !hasSentArrivalNotification && locationTimer == nil {
                 startLocationTimer()
             }
         }
@@ -150,6 +166,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(startTime, forKey: "start_time")
         UserDefaults.standard.set(title, forKey: "title")
         UserDefaults.standard.set(location, forKey: "location")
+        UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")// ここをtrueにすれば位置情報送信はストップする
     }
 
     private func requestNotificationAuthorization() {
@@ -185,6 +202,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // 10秒ごとに位置情報を取得するタイマーを開始
     private func startLocationTimer() {
+        if hasSentArrivalNotification {
+            // 到着通知が既に送信されている場合はタイマーを開始しない
+            return
+        }
         locationTimer?.invalidate() // 既存のタイマーがあれば無効化
         locationTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(requestCurrentLocation), userInfo: nil, repeats: true)
         RunLoop.main.add(locationTimer!, forMode: .common)
@@ -192,15 +213,26 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // タイマーによって呼び出されるメソッド
     @objc private func requestCurrentLocation() {
-        if shouldStartLocationUpdates() {
+        if shouldStartLocationUpdates() && !hasSentArrivalNotification {
             locationManager?.requestLocation()
         } else {
             // 位置情報の取得を停止し、タイマーを無効化
             locationTimer?.invalidate()
             locationTimer = nil
             print("位置情報の取得を停止しました")
-            WebSocketClient.shared.disconnect()
         }
+    }
+
+    // 位置情報の取得を停止するメソッド
+    private func stopLocationUpdates() {
+        // タイマーを無効化
+        locationTimer?.invalidate()
+        locationTimer = nil
+
+        // 位置情報の更新を停止
+        locationManager?.stopUpdatingLocation()
+
+        print("位置情報の取得を停止しました")
     }
 
     // MARK: - バックグラウンドURLセッションのハンドリング
@@ -223,7 +255,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             if let savedDate = dateFormatter.date(from: savedDateString) {
                 let currentDate = Date()
                 let timeInterval = savedDate.timeIntervalSince(currentDate)
-                print("savedDate: \(savedDate), currentDate: \(currentDate), timeInterval: \(timeInterval)")
                 return timeInterval <= 43200 && timeInterval >= 0 // 12時間以内
             } else {
                 print("日付のパースに失敗しました")
@@ -303,23 +334,57 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else { return }
 
-        let latitude = newLocation.coordinate.latitude
-        let longitude = newLocation.coordinate.longitude
-        //print("現在の位置情報: 緯度 \(latitude), 経度 \(longitude)")
+        if !hasSentArrivalNotification {
+            // 目的地の緯度経度を取得
+            let destLatitude = UserDefaults.standard.double(forKey: "latitude")
+            let destLongitude = UserDefaults.standard.double(forKey: "longitude")
+            let destLocation = CLLocation(latitude: destLatitude, longitude: destLongitude)
 
-        // バックグラウンドタスクを開始
-        var taskID: UIBackgroundTaskIdentifier = .invalid
-        taskID = UIApplication.shared.beginBackgroundTask(withName: "SendLocation") {
-            // 時間切れの場合
-            UIApplication.shared.endBackgroundTask(taskID)
-            taskID = .invalid
-        }
+            // 距離を計算（メートル単位）
+            let distance = newLocation.distance(from: destLocation)
 
-        // 位置情報を送信
-        BackgroundLocationUploader.shared.sendLocation(newLocation) {
-            // バックグラウンドタスクを終了
-            UIApplication.shared.endBackgroundTask(taskID)
-            taskID = .invalid
+            if distance <= 500 {
+                // 到着通知を送信
+                hasSentArrivalNotification = true
+
+                let userid = UserDefaults.standard.string(forKey: "userid") ?? "unkown_user" //TODO: ここを変更
+
+                let messageDict: [String: Any] = [
+                    "action": "arrival_notification",
+                    "user_id": userid
+                ]
+
+                if let jsonData = try? JSONSerialization.data(withJSONObject: messageDict),
+                   let jsonString = String(data: jsonData, encoding: .utf8) {
+                    WebSocketClient.shared.sendMessage(jsonString) { success in
+                        if success {
+                            print("Arrival notification sent via WebSocket")
+                        } else {
+                            print("Failed to send arrival notification via WebSocket")
+                        }
+                    }
+                } else {
+                    print("Failed to serialize arrival notification message to JSON")
+                }
+
+                // 位置情報の取得と送信を停止
+                stopLocationUpdates()
+            } else {
+                // 通常の位置情報送信処理
+                var taskID: UIBackgroundTaskIdentifier = .invalid
+                taskID = UIApplication.shared.beginBackgroundTask(withName: "SendLocation") {
+                    // 時間切れの場合
+                    UIApplication.shared.endBackgroundTask(taskID)
+                    taskID = .invalid
+                }
+
+                // 位置情報を送信
+                BackgroundLocationUploader.shared.sendLocation(newLocation) {
+                    // バックグラウンドタスクを終了
+                    UIApplication.shared.endBackgroundTask(taskID)
+                    taskID = .invalid
+                }
+            }
         }
     }
 
@@ -371,7 +436,7 @@ class BackgroundLocationUploader {
            let jsonString = String(data: jsonData, encoding: .utf8) {
             WebSocketClient.shared.sendMessage(jsonString) { success in
                 if success {
-                    print("BackgroundLocationUploader: WebSocketで位置情報を送信しました")
+                    // print("BackgroundLocationUploader: WebSocketで位置情報を送信しました")
                 } else {
                     //print("BackgroundLocationUploader: WebSocketでの位置情報送信に失敗しました")
                 }
