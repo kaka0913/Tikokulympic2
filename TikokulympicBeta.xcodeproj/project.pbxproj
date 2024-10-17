@@ -252,8 +252,8 @@
 		221EAD8C2CBD64F400DBF31C /* WebSocket */ = {
 			isa = PBXGroup;
 			children = (
-				221EAD8F2CBD793E00DBF31C /* Messages */,
 				221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */,
+				221EAD8F2CBD793E00DBF31C /* Messages */,
 			);
 			path = WebSocket;
 			sourceTree = "<group>";
@@ -732,6 +732,7 @@
 /* Begin XCBuildConfiguration section */
 		22AABD4E2C875AE90086644F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 084B6C522CA55ADF00D7FE9B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -795,6 +796,7 @@
 		};
 		22AABD4F2C875AE90086644F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 084B6C522CA55ADF00D7FE9B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -851,6 +853,7 @@
 		};
 		22AABD512C875AE90086644F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 084B6C522CA55ADF00D7FE9B /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -885,6 +888,7 @@
 		};
 		22AABD522C875AE90086644F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 084B6C522CA55ADF00D7FE9B /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
