@@ -53,7 +53,6 @@ class UserProfileModel {
             let profile = try await userProfileService.getProfile()
             self.profile = profile
             print("プロフィールの取得に成功しました")
-            print("profile: \(String(describing: self.profile))")
         } catch {
             self.errorMessage = "プロフィールの取得に失敗しました: \(error.localizedDescription)"
             print("プロフィールの取得に失敗しました: \(error)")
