@@ -365,7 +365,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                    let jsonString = String(data: jsonData, encoding: .utf8) {
                     WebSocketClient.shared.sendMessage(jsonString) { success in
                         if success {
-                            print("Arrival notification sent via WebSocket")
+                            print("Arrival notification sent via WebSocket successfully")
                         } else {
                             print("Failed to send arrival notification via WebSocket")
                         }
@@ -443,9 +443,9 @@ class BackgroundLocationUploader {
            let jsonString = String(data: jsonData, encoding: .utf8) {
             WebSocketClient.shared.sendMessage(jsonString) { success in
                 if success {
-                    // print("BackgroundLocationUploader: WebSocketで位置情報を送信しました")
+                    print("BackgroundLocationUploader: WebSocketで位置情報を送信しました")
                 } else {
-                    //print("BackgroundLocationUploader: WebSocketでの位置情報送信に失敗しました")
+                    print("BackgroundLocationUploader: WebSocketでの位置情報送信に失敗しました")
                 }
                 completion()
             }
