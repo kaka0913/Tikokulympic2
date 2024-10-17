@@ -11,6 +11,9 @@ class WebSocketClient : NSObject {
     static let shared = WebSocketClient()
     private var webSocketTask: URLSessionWebSocketTask?
     var isConnected = false
+    private var reconnectAttempts = 0
+    private let maxReconnectAttempts = 5
+    private var reconnectDelay: TimeInterval = 2.0 // 再接続の遅延時間
     weak var delegate: WebSocketClientDelegate?
     
     private override init() {
@@ -23,9 +26,7 @@ class WebSocketClient : NSObject {
         let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
         webSocketTask = urlSession.webSocketTask(with: url)
         webSocketTask?.resume()
-        isConnected = true
-        print("WebSocket connected")
-        receiveMessage()
+        print("WebSocket connecting...")
     }
     
     func disconnect() {
@@ -57,28 +58,48 @@ class WebSocketClient : NSObject {
         webSocketTask?.receive { [weak self] result in
             guard let self = self else { return }
             switch result {
+                
             case .failure(let error):
                 print("WebSocket receiving error: \(error)")
                 self.isConnected = false
-                //TODO: WebSocket接続は一度切れると、手動で再接続を試みる必要があるため、エラーで切断された場合に再接続を試みるロジックをここに実装
+                self.handleConnectionError()
+                
             case .success(let message):
+                
                 switch message {
+                    
                 case .string(let text):
                     print("Received text: \(text)")
                     self.delegate?.didReceiveMessage(text)
-                case .data(let data): //警告がでるのでバイナリ型のデータの場合を実装しておく
+                    
+                case .data(let data):
                     if let text = String(data: data, encoding: .utf8) {
                         print("Received data: \(text)")
                         self.delegate?.didReceiveMessage(text)
                     } else {
                         print("Received binary data that couldn't be decoded.")
                     }
+                    
                 @unknown default:
                     print("Received unknown message format.")
                 }
-                // 次のメッセージを受け取り続けるために必要
+                // 次のメッセージを受け取る
                 self.receiveMessage()
             }
+        }
+    }
+    
+    private func handleConnectionError() {
+        isConnected = false
+        reconnectAttempts += 1
+        if reconnectAttempts <= maxReconnectAttempts {
+            let delay = reconnectDelay * Double(reconnectAttempts)
+            print("Retrying connection in \(delay) seconds...")
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+                self?.connect()
+            }
+        } else {
+            print("Max reconnect attempts reached.")
         }
     }
 }
@@ -90,13 +111,19 @@ protocol WebSocketClientDelegate: AnyObject {
 extension WebSocketClient: URLSessionWebSocketDelegate {
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         print("WebSocket connected successfully")
-        // 必要な初期処理を行う
+        isConnected = true
+        reconnectAttempts = 0
+        receiveMessage() // メッセージ受信を開始
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
-            print("WebSocket error: \(error)")
-            // エラーハンドリングや再接続のロジックを実装する
+            print("WebSocket error: \(error.localizedDescription)")
+            isConnected = false
+            handleConnectionError()
+        } else {
+            print("WebSocket closed successfully")
+            isConnected = false
         }
     }
 }
