@@ -7,9 +7,10 @@
 
 import Foundation
 import CoreLocation
+import Alamofire
 
 struct UserRankingData: Identifiable, Decodable {
-    let id: String
+    let id: Int
     let position: Int
     let name: String
     let alias: String?
@@ -22,4 +23,5 @@ struct UserRankingData: Identifiable, Decodable {
         case alias
         case distance
     }
+    
 }

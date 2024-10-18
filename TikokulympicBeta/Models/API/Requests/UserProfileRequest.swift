@@ -10,7 +10,7 @@ import Alamofire
 
 struct UserProfileResponse: ResponseProtocol {
     let name: String
-    let alias: String
+    let alias: String?
     let lateCount: Int
     let totalLateTime: Int
     let latePercentage: Float

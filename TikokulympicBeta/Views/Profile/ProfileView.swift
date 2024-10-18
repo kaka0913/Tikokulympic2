@@ -22,7 +22,7 @@ struct ProfileView: View {
                                     .foregroundColor(.white)
                                     .font(.system(size: 20))
                                 
-                                Text(profile.alias)
+                                Text(profile.alias ?? "さすらいの遅刻者")
                                     .foregroundColor(.white)
                                     .font(.system(size: 25))
                                     .bold()
