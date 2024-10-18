@@ -21,4 +21,8 @@ class EventListViewModel: ObservableObject {
             print("イベントの表示中にエラーが発生しました: \(error)")
         }
     }
+    
+    func putVote(eventid: Int, option: String) async {
+        await service.putVote(eventid: eventid, option: option)
+    }
 }
