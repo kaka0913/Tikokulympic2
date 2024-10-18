@@ -56,8 +56,7 @@ class EventService {
     }
     
     func putVote(eventid: Int, option: String) async {
-        let userid = UserDefaults.standard.integer(forKey: "userid")
-        let voteRequest = VoteRequest(eventid: eventid, userid: String(userid), option: option)
+        let voteRequest = VoteRequest(eventid: eventid, option: option)
         
         do {
             let response: VoteResponse = try await APIClient.shared.call(request: voteRequest)

@@ -19,26 +19,27 @@ struct EventListView: View {
                 VStack(spacing: 0) {
                     TopBar()
                     TabView(selection: $currentIndex) {
-                        ForEach(viewModel.events.indices, id: \.self) { event in
+                        ForEach(viewModel.events.indices, id: \.self) { index in
                             ScrollView {
-                                EventListCard(event: viewModel.events[event])
+                                EventListCard(event: viewModel.events[index])
                                     .frame(
                                         width: proxy.size.width * 0.95,
                                         height: proxy.size.height * 0.9
                                     )
                                     .padding(.bottom, 30)
                                     .padding(.trailing, 30)
-                                    .tag(event)
+                                    .tag(index) // タグをインデックスに設定
                             }
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
+                    .indexViewStyle(.page(backgroundDisplayMode: .always)) // ページインジケーターの表示
 
                     HStack {
 
                         Button(action: {
                             withAnimation {
-                                currentIndex = (currentIndex - 1) % viewModel.events.count
+                                currentIndex = (currentIndex - 1 + viewModel.events.count) % viewModel.events.count
                             }
                         }) {
                             Image(systemName: "arrowtriangle.backward.fill")
@@ -74,10 +75,24 @@ struct EventListView: View {
                     Spacer()
 
                         .alert("参加状況を選択", isPresented: $showingVoteAlert) {
-                            //TODO: eventidできたら投票の処理を記述
-                            Button("参加") {}
-                            Button("不参加") {}
-                            Button("途中参加") {}
+                            // 現在表示中のイベントのevent_idを取得
+                            let currentEventID = viewModel.events.indices.contains(currentIndex) ? viewModel.events[currentIndex].id : 0
+                            
+                            Button("参加") {
+                                Task {
+                                    await viewModel.putVote(eventid: currentEventID, option: "参加")
+                                }
+                            }
+                            Button("不参加") {
+                                Task {
+                                    await viewModel.putVote(eventid: currentEventID, option: "不参加")
+                                }
+                            }
+                            Button("途中参加") {
+                                Task {
+                                    await viewModel.putVote(eventid: currentEventID, option: "途中参加")
+                                }
+                            }
                             Button("キャンセル", role: .cancel) {}
                         }
                 }
@@ -96,3 +111,4 @@ struct EventListView: View {
         }
     }
 }
+

@@ -18,17 +18,15 @@ struct VoteResponse: ResponseProtocol {
 
 struct VoteRequest: RequestProtocol {
     typealias Response = VoteResponse
-    var method: HTTPMethod { .put }
+    var method: HTTPMethod { .post }
     var path: String { "/events/\(eventid)/votes" }
     let eventid: Int
-    let userid: String
     let option: String
     
     var parameters: Parameters? {
         return [
-            "userid": userid,
+            "user_id": UserDefaults.standard.integer(forKey: "userid"),
             "option": option
         ]
     }
 }
-
