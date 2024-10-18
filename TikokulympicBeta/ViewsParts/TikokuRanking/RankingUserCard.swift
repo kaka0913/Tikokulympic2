@@ -52,7 +52,7 @@ struct RankingUserCard: View {
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.black)
                             .padding(.leading, 20)
-                        Text("〜\(user.alias)〜")
+                        Text("〜\(user.alias ?? "さすらいの")〜")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.black)
                             .padding(.leading, 20)
@@ -63,7 +63,7 @@ struct RankingUserCard: View {
 
                 Spacer()
 
-                Text("\(Int(user.distance))km")
+                Text("\(String(format: "%.1f", user.distance))km")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.black)
                     .padding(.top, 30)

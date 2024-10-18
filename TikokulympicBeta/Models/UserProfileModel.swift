@@ -135,7 +135,7 @@ class UserProfileModel {
         isDownloading = true
         do {
             let userid = UserDefaults.standard.integer(forKey: "userid")
-            let data = try await supabaseService.downloadProfileImage(userid: userid)
+            let data = try await supabaseService.downloadProfileImage(userid: String(userid))
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     self.uploadedImage = image

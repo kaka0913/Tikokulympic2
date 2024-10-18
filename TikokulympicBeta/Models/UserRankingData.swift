@@ -9,9 +9,17 @@ import Foundation
 import CoreLocation
 
 struct UserRankingData: Identifiable, Decodable {
-    let id: Int
+    let id: String
     let position: Int
     let name: String
-    let alias: String
+    let alias: String?
     let distance: Float
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "user_id"
+        case position
+        case name
+        case alias
+        case distance
+    }
 }

@@ -45,7 +45,7 @@ struct ProfileImageView: View {
         }
     }
 
-    func downloadProfileImage(userid: Int) async {
+    func downloadProfileImage(userid: String) async {
         isDownloading = true
         do {
             let data = try await supabaseService.downloadProfileImage(userid: userid)
