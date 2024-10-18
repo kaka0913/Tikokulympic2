@@ -144,7 +144,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - セットアップメソッド
 
     private func setupDefaultUserInfo() {
-        UserDefaults.standard.set(51, forKey: "userid") // TODO: 開発中はデフォルトのuseridを入れておく
 
         // TODO: 通知できるまではデフォルトの値を入れておく
         let title = "ハッカソン"
@@ -354,7 +353,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 // 到着通知を送信
                 hasSentArrivalNotification = true
 
-                let userid = UserDefaults.standard.string(forKey: "userid") ?? "unkown_user" //TODO: ここを変更
+                let userid = UserDefaults.standard.integer(forKey: "userid")
 
                 let messageDict: [String: Any] = [
                     "action": "arrival_notification",
@@ -430,7 +429,7 @@ class BackgroundLocationUploader {
     private init() { }
 
     func sendLocation(_ location: CLLocation, completion: @escaping () -> Void) {
-        let userid = UserDefaults.standard.string(forKey: "userid") ?? "unknown_user"
+        let userid = UserDefaults.standard.integer(forKey: "userid")
 
         let messageDict: [String: Any] = [
             "action": "update_location",
