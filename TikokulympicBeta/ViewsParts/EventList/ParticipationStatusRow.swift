@@ -28,24 +28,34 @@ struct ParticipationStatusRow: View {
                     .foregroundColor(.blue)
             }
             
-            ForEach(option.participants?.participants ?? [Participant(userId: 1, name: "ななし")]) { participant in
-
+            if let participants = option.participants?.participants {
+                ForEach(participants) { participant in
+                    HStack {
+                        Text(String(participant.name!.prefix(1)))
+                            .font(.caption)
+                            .foregroundColor(.white)
+                            .frame(width: 20, height: 20)
+                            .background(Color.blue)
+                            .clipShape(Circle())
+                            .padding(.trailing, 10)
+                        
+                        Text(participant.name ?? "")
+                            .font(.caption)
+                    }
+                    .padding(.vertical, 5)
+                }
+            } else {
                 HStack {
-                    
-                    Text(String(participant.name!.prefix(1)))
-                        .font(.caption)
-                        .foregroundColor(.white)
-                        .frame(width: 20, height: 20)
-                        .background(Color.blue)
-                        .clipShape(Circle())
+                    Color.clear
+                        .frame(width: 30, height: 20)
                         .padding(.trailing, 10)
-                    
-                    Text(participant.name ?? "ななし")
-                        .font(.caption)
-                    
+
+                    Color.clear
+                        .frame(width: 50, height: 20)
                 }
                 .padding(.vertical, 5)
             }
+
         }
     }
 }
