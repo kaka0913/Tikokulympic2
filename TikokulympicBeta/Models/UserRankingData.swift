@@ -7,12 +7,21 @@
 
 import Foundation
 import CoreLocation
+import Alamofire
 
-struct UserRankingData: Identifiable {
+struct UserRankingData: Identifiable, Decodable {
     let id: Int
+    let position: Int
     let name: String
-    let title: String
-    var distance: Double
-    let currentLocation: CLLocation
-    let rank: Int
+    let alias: String?
+    let distance: Float
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "user_id"
+        case position
+        case name
+        case alias
+        case distance
+    }
+    
 }

@@ -48,11 +48,6 @@ struct AuthProfileImage: View {
         .sheet(isPresented: $isShowingImagePicker) {
             ImagePicker()
         }
-        .onAppear {
-            Task {
-                await userProfileModel.downloadProfileImage()
-            }
-        }
     }
 
 }

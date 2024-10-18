@@ -53,7 +53,6 @@ class UserProfileModel {
             let profile = try await userProfileService.getProfile()
             self.profile = profile
             print("プロフィールの取得に成功しました")
-            print("profile: \(String(describing: self.profile))")
         } catch {
             self.errorMessage = "プロフィールの取得に失敗しました: \(error.localizedDescription)"
             print("プロフィールの取得に失敗しました: \(error)")
@@ -136,7 +135,7 @@ class UserProfileModel {
         isDownloading = true
         do {
             let userid = UserDefaults.standard.integer(forKey: "userid")
-            let data = try await supabaseService.downloadProfileImage(userid: userid)
+            let data = try await supabaseService.downloadProfileImage(userid: String(userid))
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     self.uploadedImage = image
@@ -148,7 +147,7 @@ class UserProfileModel {
             }
         } catch {
             DispatchQueue.main.async {
-                self.errorMessage = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                self.errorMessage = "ユーザプロフィールのダウンロードに失敗しました: \(error.localizedDescription)"
             }
         }
         DispatchQueue.main.async {

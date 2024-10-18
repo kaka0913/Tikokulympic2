@@ -14,7 +14,7 @@ struct ProfileImageView: View {
     @State private var errorMessage: String = ""
     
     private let supabaseService = SupabaseService()
-    let userid: Int
+    let userid: String
 
     var body: some View {
         VStack {
@@ -38,14 +38,14 @@ struct ProfileImageView: View {
                     .frame(width: 50, height: 50)
                     .onAppear {
                         Task {
-                            await downloadProfileImage(userid: 51)//TODO: ユーザイメージただしく表示するにはここを修正
+                            await downloadProfileImage(userid: userid)
                         }
                     }
             }
         }
     }
 
-    func downloadProfileImage(userid: Int) async {
+    func downloadProfileImage(userid: String) async {
         isDownloading = true
         do {
             let data = try await supabaseService.downloadProfileImage(userid: userid)
@@ -60,7 +60,7 @@ struct ProfileImageView: View {
             }
         } catch {
             DispatchQueue.main.async {
-                self.errorMessage = "ダウンロードに失敗しました: \(error.localizedDescription)"
+                self.errorMessage = "プロフィール画像のダウンロードに失敗しました: \(error.localizedDescription)"
             }
         }
         DispatchQueue.main.async {

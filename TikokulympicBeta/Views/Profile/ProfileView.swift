@@ -22,7 +22,7 @@ struct ProfileView: View {
                                     .foregroundColor(.white)
                                     .font(.system(size: 20))
                                 
-                                Text(profile.alias)
+                                Text(profile.alias ?? "さすらいの遅刻者")
                                     .foregroundColor(.white)
                                     .font(.system(size: 25))
                                     .bold()
@@ -91,12 +91,6 @@ struct ProfileView: View {
                         .scaleEffect(1.5)
                     Spacer()
                 }
-            }
-
-            if let errorMessage = userProfileModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .padding()
             }
         }
     }

@@ -51,7 +51,7 @@ class SupabaseService {
         }
     }
     
-    func downloadProfileImage(userid: Int) async throws -> Data {
+    func downloadProfileImage(userid: String) async throws -> Data {
         guard let client = client else {
             throw NSError(
                 domain: "SupabaseClientManager",

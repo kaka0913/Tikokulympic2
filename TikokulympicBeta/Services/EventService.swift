@@ -2,11 +2,10 @@
 //  EventService.swift
 //  TikokulympicBeta
 //
-//  Created by 澤木柊斗 on 2024/09/26.
+//  Created by 株丹優一郎 on 2024/10/18.
 //
 
 import Foundation
-
 
 class EventService {
     private let apiClient = APIClient.shared
@@ -23,12 +22,12 @@ class EventService {
         let request = EventEditingRequest(
             title: event.title,
             description: event.description,
-            is_all_day: event.isAllDay,
+            is_all_day: event.isAllDay ?? false,
             start_time: startTime,
             end_time: endTime,
             closing_time: closingTime,
             location_name: event.locationName,
-            cost: Int(event.cost) ?? 0,
+            cost: Int(event.cost),
             message: event.message,
             author_id: event.author?.authorId ?? 0,
             latitude: "\(event.latitude)",
@@ -42,14 +41,33 @@ class EventService {
             print("イベント作成に失敗しました: \(error)")
         }
     }
-      func fetchEvents() async throws -> EventsResponse {
+
+    func fetchEvents() async throws -> EventsResponse {
         let request = EventsRequest()
 
         do {
             let response = try await apiClient.call(request: request)
+            print("イベント取得に成功しました")
             return response
         } catch {
+            print("イベント取得に失敗しました: \(error)")
             throw error
+        }
+    }
+    
+    func putVote(eventid: Int, option: String) async {
+        let userid = UserDefaults.standard.integer(forKey: "userid")
+        let voteRequest = VoteRequest(eventid: eventid, userid: String(userid), option: option)
+        
+        do {
+            let response: VoteResponse = try await APIClient.shared.call(request: voteRequest)
+            if response.isSuccess {
+                print("投票に成功しました")
+            } else {
+                print("投票に失敗しました")
+            }
+        } catch {
+            print("投票中にエラーが発生しました: \(error)")
         }
     }
 }

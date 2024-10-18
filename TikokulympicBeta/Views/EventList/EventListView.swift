@@ -69,10 +69,12 @@ struct EventListView: View {
                                 .foregroundColor(.white)
                         }
                     }
+                    .padding(.vertical, 10)
 
                     Spacer()
 
                         .alert("参加状況を選択", isPresented: $showingVoteAlert) {
+                            //TODO: eventidできたら投票の処理を記述
                             Button("参加") {}
                             Button("不参加") {}
                             Button("途中参加") {}
@@ -81,13 +83,15 @@ struct EventListView: View {
                 }
                 .background(ThemeColor.customBlue)
                 .frame(alignment: .center)
+
+                Spacer()
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .background(ThemeColor.customBlue)
         }
         .onAppear {
             Task {
-                try await viewModel.getEvents()
+                await viewModel.getEvents()
             }
         }
     }

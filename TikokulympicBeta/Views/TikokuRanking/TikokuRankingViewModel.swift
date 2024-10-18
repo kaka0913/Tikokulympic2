@@ -11,37 +11,50 @@ import SwiftUI
 
 class TikokuRankingViewModel: ObservableObject {
     @Published var userRankings: [UserRankingData] = []
-    @AppStorage("latitude") var latitude: Double = 0.0
-    @AppStorage("longitude") var longitude: Double = 0.0
-   
-    private let locationManager = CLLocationManager()
-    private var destinationLocation: CLLocation?
-    
+    @Published var isTikokulympicFinished: Bool = false
+    private var rankingService = TikokuRankingService.shared
+    private var messageTask: Task<Void, Never>?
+    private var rankingRequestTask: Task<Void, Never>?
+
     init() {
-        destinationLocation = CLLocation(latitude: latitude, longitude: longitude)
-        setupLocationManager()
-        setupMockData()
-    }
-    
-    private func setupLocationManager() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
-    private func setupMockData() {
-        userRankings = [
-            UserRankingData(id:1,  name: "しゅうと", title: "遅刻王", distance: 0, currentLocation: CLLocation(latitude: 35.6895, longitude: 139.6917), rank: 1),
-            UserRankingData(id:51, name: "ゆうた", title: "ねぼう王", distance: 0, currentLocation: CLLocation(latitude: 35.0116, longitude: 135.7681), rank: 2),
-            UserRankingData(id:21, name: "しょうま", title: "ねぼう王", distance: 0, currentLocation: CLLocation(latitude: 34.6851, longitude: 135.8050), rank: 3),
-            UserRankingData(id: 31, name: "かぶたん", title: "遅刻王", distance: 0, currentLocation: CLLocation(latitude: 34.6937, longitude: 135.5023), rank: 4),
-            UserRankingData(id:61, name: "ゆいぴ", title: "しらふ酔王", distance: 0, currentLocation: CLLocation(latitude: 34.6937, longitude: 135.5023), rank: 5),
-        ]
-        updateDistances()
-    }
-    
-    func updateDistances() {
-        for i in 0..<userRankings.count {
-            userRankings[i].distance = userRankings[i].currentLocation.distance(from: destinationLocation!) / 1000
+        messageTask = Task {
+            await listenForMessages()
         }
+    }
+    
+    deinit {
+        messageTask?.cancel()
+    }
+    
+    func requestLatestRanking() {
+        rankingRequestTask?.cancel() // 既存のタスクがあればキャンセル
+        rankingRequestTask = Task {
+            // WebSocketの接続が確立されるまで待機
+            while !WebSocketClient.shared.isConnected {
+                try? await Task.sleep(nanoseconds: 100_000_000) // 100ミリ秒待機
+            }
+            // 接続が確立されたら最新のランキングをリクエスト
+            rankingService.requestLatestRanking()
+        }
+    }
+
+    private func listenForMessages() async {
+        let messageStream = rankingService.messageStream()
+        for await message in messageStream {
+            switch message {
+            case .rankingUpdate(let rankings):
+                DispatchQueue.main.async {
+                    self.userRankings = rankings
+                }
+            case .tikokulympicFinished(let message):
+                DispatchQueue.main.async {
+                    self.isTikokulympicFinished = true
+                }
+                // ループを抜けてタスクを終了
+                break
+            }
+        }
+        // ストリームが終了したため WebSocket を切断
+        WebSocketClient.shared.disconnect()
     }
 }

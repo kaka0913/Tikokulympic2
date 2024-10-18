@@ -15,7 +15,7 @@ class UserProfileService {
    
     func getProfile() async throws -> UserProfileResponse {
         let userid = UserDefaults.standard.integer(forKey: "userid")
-        let request = UserProfileRequest(userid: 1) //TODO: useridを取得する処理に戻す
+        let request = UserProfileRequest(userid: userid)
         do {
            return try await apiClient.call(request: request)
         } catch {
