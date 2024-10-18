@@ -18,5 +18,3 @@ struct EventsRequest: RequestProtocol {
     var method: HTTPMethod { .get }
     var path: String { "/events/board" }
 }
-
-

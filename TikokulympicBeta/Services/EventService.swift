@@ -59,7 +59,7 @@ class EventService {
         let voteRequest = VoteRequest(eventid: eventid, option: option)
         
         do {
-            let response: VoteResponse = try await APIClient.shared.call(request: voteRequest)
+            let response = try await APIClient.shared.call(request: voteRequest)
             if response.isSuccess {
                 print("投票に成功しました")
             } else {

@@ -38,7 +38,7 @@ struct EventDetailsSection: View {
             }
             .font(.system(size: 15))
             
-            EventInfoRow(icon: "person.fill", text: event.author?.authorName ?? "ななし")
+            EventInfoRow(icon: "person.fill", text: event.author?.authorName ?? "")
             
             EventInfoRow(icon: "calendar", text: formatDateRange(start: event.startDateTime, end: event.endDateTime))
 

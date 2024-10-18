@@ -10,10 +10,6 @@ import Alamofire
 
 struct VoteResponse: ResponseProtocol {
     let isSuccess: Bool
-    
-    private enum CodingKeys: String, CodingKey {
-        case isSuccess = "is_success"
-    }
 }
 
 struct VoteRequest: RequestProtocol {
