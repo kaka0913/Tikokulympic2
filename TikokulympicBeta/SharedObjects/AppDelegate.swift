@@ -355,9 +355,15 @@ extension AppDelegate: CLLocationManagerDelegate {
 
                 let userid = UserDefaults.standard.integer(forKey: "userid")
 
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                let formattedArrivalTime = dateFormatter.string(from: Date())
+
                 let messageDict: [String: Any] = [
                     "action": "arrival_notification",
-                    "user_id": userid
+                    "user_id": userid,
+                    "arrival_time": formattedArrivalTime
                 ]
 
                 if let jsonData = try? JSONSerialization.data(withJSONObject: messageDict),
