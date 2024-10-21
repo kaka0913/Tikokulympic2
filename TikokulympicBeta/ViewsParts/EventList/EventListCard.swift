@@ -12,6 +12,7 @@ struct EventListCard: View {
     let event: Event
     let buttonAction: () async -> Void
     @State var shoingVoteAlert: Bool = false
+    @State private var showingDeleteAlert = false
 
     var body: some View {
         GeometryReader { proxy in
@@ -22,14 +23,28 @@ struct EventListCard: View {
                         ZStack(alignment: .trailing) {
 
                             Button(action: {
-                                Task {
-                                    await buttonAction()
-                                }
+                                showingDeleteAlert = true
                             }) {
                                 Image(systemName: "ellipsis")
                                     .foregroundColor(Color.blue)
                                     .padding(.trailing, 30)
                                     .padding(.leading, 70)
+                            }
+                            .alert(isPresented: $showingDeleteAlert) {
+                                Alert(
+                                    title: Text("確認"),
+                                    message: Text("このイベントを削除してもいいですか？"),
+                                    primaryButton: .destructive(Text("はい")) {
+                                        Task {
+                                            await buttonAction()
+                                        }
+                                        showingDeleteAlert = false
+                                    },
+                                    secondaryButton: .cancel(Text("キャンセル"))
+                                        {
+                                        showingDeleteAlert = false
+                                        }
+                                )
                             }
 
                             VStack(spacing: 0) {
