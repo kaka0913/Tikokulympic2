@@ -21,7 +21,9 @@ struct EventListView: View {
                     TabView(selection: $currentIndex) {
                         ForEach(viewModel.events.indices, id: \.self) { index in
                             ScrollView {
-                                EventListCard(event: viewModel.events[index])
+                                EventListCard(event: viewModel.events[index], buttonAction: {
+                                    await viewModel.deleteEvent(eventid: viewModel.events[index].id)
+                                })
                                     .frame(
                                         width: proxy.size.width * 0.95,
                                         height: proxy.size.height * 0.9

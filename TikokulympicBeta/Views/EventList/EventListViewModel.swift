@@ -25,4 +25,8 @@ class EventListViewModel: ObservableObject {
     func putVote(eventid: Int, option: String) async {
         await service.putVote(eventid: eventid, option: option)
     }
+    
+    func deleteEvent(eventid: Int) async {
+        await service.deleteEvent(eventid: eventid)
+    }
 }
