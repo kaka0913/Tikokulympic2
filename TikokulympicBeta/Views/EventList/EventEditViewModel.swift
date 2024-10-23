@@ -39,6 +39,7 @@ class EventEditViewModel: ObservableObject {
         let longitude = "135.5612"
         
         let newEvent = Event(
+            id: 1, //TODO: 修正
             author: nil,
             title: eventName,
             description: eventDescription,

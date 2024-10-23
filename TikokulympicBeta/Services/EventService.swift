@@ -56,11 +56,10 @@ class EventService {
     }
     
     func putVote(eventid: Int, option: String) async {
-        let userid = UserDefaults.standard.integer(forKey: "userid")
-        let voteRequest = VoteRequest(eventid: eventid, userid: String(userid), option: option)
+        let voteRequest = VoteRequest(eventid: eventid, option: option)
         
         do {
-            let response: VoteResponse = try await APIClient.shared.call(request: voteRequest)
+            let response = try await APIClient.shared.call(request: voteRequest)
             if response.isSuccess {
                 print("投票に成功しました")
             } else {
@@ -68,6 +67,23 @@ class EventService {
             }
         } catch {
             print("投票中にエラーが発生しました: \(error)")
+        }
+    }
+    
+    func deleteEvent(eventid: Int) async {
+        let deleteRequest = EventDeleteRequest(eventid: eventid)
+        print("イベント削除リクエスト: \(deleteRequest)")
+
+        do {
+            let response = try await APIClient.shared.call(request: deleteRequest)
+            print("イベント削除レスポンス: \(response)")
+            if response.isSuccess {
+                print("イベント削除に成功しました")
+            } else {
+                print("イベント削除に失敗しました")
+            }
+        } catch {
+            print("イベント削除中にエラーが発生しました: \(error)")
         }
     }
 }

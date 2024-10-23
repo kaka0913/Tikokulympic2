@@ -9,10 +9,13 @@ import Foundation
 
 class EventListViewModel: ObservableObject {
     @Published var events: [Event] = []
+    @Published var isLoading: Bool = false
     let service = EventService.shared
 
     @MainActor
     func getEvents() async {
+        isLoading = true
+        defer { isLoading = false }
         do {
             let response = try await service.fetchEvents()
             events = response.events
@@ -22,7 +25,16 @@ class EventListViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func putVote(eventid: Int, option: String) async {
         await service.putVote(eventid: eventid, option: option)
     }
+    
+    @MainActor
+    func deleteEvent(eventid: Int) async {
+        isLoading = true
+        defer { isLoading = false }
+        await service.deleteEvent(eventid: eventid)
+    }
 }
+

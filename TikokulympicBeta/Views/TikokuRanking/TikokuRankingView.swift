@@ -11,10 +11,11 @@ struct TikokuRankingView: View {
     @StateObject private var viewModel = TikokuRankingViewModel()
     @State private var selectedTab: Int = 1
     @State private var showAlert: Bool = false
+    @AppStorage("eventid") var eventid = 0
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView()
+            HeaderView(totalParticipants: viewModel.userRankings.count + viewModel.arrivalRankings.count, arrivals: viewModel.userRankings.count)
             
             TabSelectionView(selectedTab: $selectedTab)
                 .padding(.top, -5)
@@ -34,14 +35,33 @@ struct TikokuRankingView: View {
                 }
                 
             } else {
-                Text("到着者リスト")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
+                if viewModel.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.white)
+                } else if viewModel.arrivalRankings.isEmpty {
+                    Text("まだ到着者がいません")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.white)
+                } else {
+                    ArrivalRankingListView(arrivals: viewModel.arrivalRankings)
+                        .padding(.top, -15)
+                }
             }
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             viewModel.requestLatestRanking()
+            Task {
+                await viewModel.getArrivalRanking(eventid: eventid)
+            }
+        }
+        .onChange(of: selectedTab) { oldTab, newTab in
+            if newTab == 0 {
+                Task {
+                    await viewModel.getArrivalRanking(eventid: eventid)
+                }
+            }
         }
         .onReceive(viewModel.$isTikokulympicFinished) { isFinished in
             if isFinished {
@@ -69,3 +89,17 @@ struct RankingListView: View {
     }
 }
 
+struct ArrivalRankingListView: View {
+    let arrivals: [ArrivalUserData]
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 10) {
+                ForEach(arrivals) { user in
+                    ArrivalUserCard(user: user)
+                }
+            }
+            .padding()
+        }
+    }
+}

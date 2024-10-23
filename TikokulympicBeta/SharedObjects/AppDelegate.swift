@@ -150,6 +150,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let location = "立命館大学OIC"
         let latitude: Double = 34.8103
         let longitude: Double = 135.5610
+        let eventid = 37
 
         // TODO: 時間はいったん現在の1時間後に設定
         let dateFormatter = DateFormatter()
@@ -166,6 +167,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(title, forKey: "title")
         UserDefaults.standard.set(location, forKey: "location")
         UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")// ここをtrueにすれば位置情報送信はストップする
+        UserDefaults.standard.set(eventid, forKey: "eventid")
     }
 
     private func requestNotificationAuthorization() {
@@ -355,9 +357,15 @@ extension AppDelegate: CLLocationManagerDelegate {
 
                 let userid = UserDefaults.standard.integer(forKey: "userid")
 
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                let formattedArrivalTime = dateFormatter.string(from: Date())
+
                 let messageDict: [String: Any] = [
                     "action": "arrival_notification",
-                    "user_id": userid
+                    "user_id": userid,
+                    "arrival_time": formattedArrivalTime
                 ]
 
                 if let jsonData = try? JSONSerialization.data(withJSONObject: messageDict),

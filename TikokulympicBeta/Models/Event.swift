@@ -1,7 +1,7 @@
 import Foundation
 
 struct Event: Decodable, Identifiable {
-    var id = UUID()
+    let id: Int
     let author: Author?
     let title: String
     let description: String
@@ -16,7 +16,8 @@ struct Event: Decodable, Identifiable {
     let message: String
     let options: [Option]?
     private enum CodingKeys: String, CodingKey {
-        case author,
+        case id,
+             author,
              title,
              description,
              isAllDay = "isAllDay",

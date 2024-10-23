@@ -48,7 +48,6 @@ class WebSocketClient : NSObject {
                 print("WebSocketメッセージ送信エラー: \(error)")
                 completion(false)
             } else {
-                print("メッセージ送信完了: \(message)")
                 completion(true)
             }
         }
@@ -69,7 +68,6 @@ class WebSocketClient : NSObject {
                 switch message {
                     
                 case .string(let text):
-                    print("受信したテキストメッセージ: \(text)")
                     self.delegate?.didReceiveMessage(text)
                     
                 case .data(let data):
