@@ -17,7 +17,7 @@
 		221EAD992CC17F4B00DBF31C /* VoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD982CC17F4B00DBF31C /* VoteRequest.swift */; };
 		22220BD32C970C7600DDB003 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22220BD22C970C7600DDB003 /* APIError.swift */; };
 		22220BD52C97103300DDB003 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22220BD42C97103300DDB003 /* APIClient.swift */; };
-		22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22242E042C994AB1001BEB14 /* TikokuRankingService.swift */; };
+		22242E052C994AB1001BEB14 /* TikokuRankingWebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22242E042C994AB1001BEB14 /* TikokuRankingWebSocketService.swift */; };
 		223484602C99ED62006BB113 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234845F2C99ED62006BB113 /* SupabaseService.swift */; };
 		22872AFE2C9CAB810045B653 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 22872AFD2C9CAB810045B653 /* Alamofire */; };
 		22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */; };
@@ -41,6 +41,10 @@
 		228F577E2CA1A66200EEA6E1 /* ParticipationStatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F577D2CA1A66200EEA6E1 /* ParticipationStatusRow.swift */; };
 		228F57822CA1DE0500EEA6E1 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57812CA1DE0500EEA6E1 /* ThemeColor.swift */; };
 		22943BFD2CC4134C008078FB /* EventDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22943BFC2CC4134C008078FB /* EventDeleteRequest.swift */; };
+		22943BFF2CC808E5008078FB /* ArrivalUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22943BFE2CC808E5008078FB /* ArrivalUserData.swift */; };
+		22943C012CC80925008078FB /* ArrivalRankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22943C002CC80925008078FB /* ArrivalRankingRequest.swift */; };
+		22943C032CC80A97008078FB /* TikokuRankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22943C022CC80A97008078FB /* TikokuRankingService.swift */; };
+		22943C052CC91325008078FB /* ArrivalUserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22943C042CC91325008078FB /* ArrivalUserCard.swift */; };
 		22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */; };
 		22AABD482C875AE80086644F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AABD472C875AE80086644F /* ContentView.swift */; };
 		22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AABD492C875AE90086644F /* Assets.xcassets */; };
@@ -132,7 +136,7 @@
 		22220BD22C970C7600DDB003 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		22220BD42C97103300DDB003 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		22220BD62C972A7D00DDB003 /* TikokulympicBeta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TikokulympicBeta.entitlements; sourceTree = "<group>"; };
-		22242E042C994AB1001BEB14 /* TikokuRankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingService.swift; sourceTree = "<group>"; };
+		22242E042C994AB1001BEB14 /* TikokuRankingWebSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingWebSocketService.swift; sourceTree = "<group>"; };
 		2234845F2C99ED62006BB113 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		22872B052C9CCE8A0045B653 /* TikokuRankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingViewModel.swift; sourceTree = "<group>"; };
 		22872B082C9CCFB20045B653 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -155,6 +159,10 @@
 		228F577D2CA1A66200EEA6E1 /* ParticipationStatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationStatusRow.swift; sourceTree = "<group>"; };
 		228F57812CA1DE0500EEA6E1 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		22943BFC2CC4134C008078FB /* EventDeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDeleteRequest.swift; sourceTree = "<group>"; };
+		22943BFE2CC808E5008078FB /* ArrivalUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalUserData.swift; sourceTree = "<group>"; };
+		22943C002CC80925008078FB /* ArrivalRankingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalRankingRequest.swift; sourceTree = "<group>"; };
+		22943C022CC80A97008078FB /* TikokuRankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokuRankingService.swift; sourceTree = "<group>"; };
+		22943C042CC91325008078FB /* ArrivalUserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalUserCard.swift; sourceTree = "<group>"; };
 		22AABD422C875AE80086644F /* TikokulympicBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TikokulympicBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AABD452C875AE80086644F /* TikokulympicBetaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikokulympicBetaApp.swift; sourceTree = "<group>"; };
 		22AABD472C875AE80086644F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -285,6 +293,7 @@
 				084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */,
 				220384782CB3703600A460A2 /* EventEditingRequest.swift */,
 				221EAD982CC17F4B00DBF31C /* VoteRequest.swift */,
+				22943C002CC80925008078FB /* ArrivalRankingRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -369,6 +378,7 @@
 				228F57672CA1A19600EEA6E1 /* Event.swift */,
 				22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */,
 				221EAD902CBD7AF400DBF31C /* UserRankingData.swift */,
+				22943BFE2CC808E5008078FB /* ArrivalUserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -473,10 +483,11 @@
 			isa = PBXGroup;
 			children = (
 				228F57462C9F4EBE00EEA6E1 /* AuthService.swift */,
-				22242E042C994AB1001BEB14 /* TikokuRankingService.swift */,
 				228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */,
 				2234845F2C99ED62006BB113 /* SupabaseService.swift */,
 				22AC2A4D2CC2236700C6F3DE /* EventService.swift */,
+				22943C022CC80A97008078FB /* TikokuRankingService.swift */,
+				22242E042C994AB1001BEB14 /* TikokuRankingWebSocketService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -502,6 +513,7 @@
 				22E3218C2CA3DC4000457237 /* MeetingInfoView.swift */,
 				22E321922CA3DC9700457237 /* TabSelectionView.swift */,
 				22E321962CA3E49500457237 /* CountdownView.swift */,
+				22943C042CC91325008078FB /* ArrivalUserCard.swift */,
 			);
 			path = TikokuRanking;
 			sourceTree = "<group>";
@@ -664,6 +676,7 @@
 				22872B112C9D356C0045B653 /* SignupRequest.swift in Sources */,
 				221EAD932CBD7B2200DBF31C /* RankingUpdateMessage.swift in Sources */,
 				22872B0B2C9CD20A0045B653 /* AppDelegate.swift in Sources */,
+				22943C052CC91325008078FB /* ArrivalUserCard.swift in Sources */,
 				22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */,
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
 				223484602C99ED62006BB113 /* SupabaseService.swift in Sources */,
@@ -674,9 +687,11 @@
 				22943BFD2CC4134C008078FB /* EventDeleteRequest.swift in Sources */,
 				228F57702CA1A4EC00EEA6E1 /* TopBar.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
+				22943BFF2CC808E5008078FB /* ArrivalUserData.swift in Sources */,
 				228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */,
 				228F577E2CA1A66200EEA6E1 /* ParticipationStatusRow.swift in Sources */,
 				22E321872CA3DBE000457237 /* HeaderView.swift in Sources */,
+				22943C032CC80A97008078FB /* TikokuRankingService.swift in Sources */,
 				221EAD912CBD7AF400DBF31C /* UserRankingData.swift in Sources */,
 				228F577C2CA1A62E00EEA6E1 /* BottomBar.swift in Sources */,
 				228F574D2C9FFB0800EEA6E1 /* UserProfileRequest.swift in Sources */,
@@ -709,8 +724,9 @@
 				228F576C2CA1A20900EEA6E1 /* ParticipationStatus.swift in Sources */,
 				228F57432C9F484900EEA6E1 /* TikokuRankingView.swift in Sources */,
 				22C4F9182CA54A9B00C636C9 /* EditBottomBar.swift in Sources */,
-				22242E052C994AB1001BEB14 /* TikokuRankingService.swift in Sources */,
+				22242E052C994AB1001BEB14 /* TikokuRankingWebSocketService.swift in Sources */,
 				084B6C572CA55F4A00D7FE9B /* EventsRequest.swift in Sources */,
+				22943C012CC80925008078FB /* ArrivalRankingRequest.swift in Sources */,
 				228F576E2CA1A48A00EEA6E1 /* EventListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

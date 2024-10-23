@@ -34,14 +34,30 @@ struct TikokuRankingView: View {
                 }
                 
             } else {
-                Text("到着者リスト")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
+                if viewModel.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.white)
+                } else if viewModel.arrivalRankings.isEmpty {
+                    Text("まだ到着者がいません")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.white)
+                } else {
+                    RankingListView(userRankings: viewModel.userRankings)
+                        .padding(.top, -15)
+                }
             }
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             viewModel.requestLatestRanking()
+        }
+        .onChange(of: selectedTab) { oldTab, newTab in
+            if newTab == 2 {
+                Task {
+                    await viewModel.getArrivalRanking(eventid: 37) //TODO: 適切なeventidを使用
+                }
+            }
         }
         .onReceive(viewModel.$isTikokulympicFinished) { isFinished in
             if isFinished {
@@ -69,3 +85,17 @@ struct RankingListView: View {
     }
 }
 
+struct ArrivalRankingListView: View {
+    let arrivals: [ArrivalUserData]
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 10) {
+                ForEach(arrivals) { user in
+                    ArrivalUserCard(user: user)
+                }
+            }
+            .padding()
+        }
+    }
+}

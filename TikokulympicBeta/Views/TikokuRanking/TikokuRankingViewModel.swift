@@ -11,8 +11,11 @@ import SwiftUI
 
 class TikokuRankingViewModel: ObservableObject {
     @Published var userRankings: [UserRankingData] = []
+    @Published var arrivalRankings: [ArrivalUserData] = []
     @Published var isTikokulympicFinished: Bool = false
-    private var rankingService = TikokuRankingService.shared
+    @Published var isLoading: Bool = false
+    private var websocketService = TikokuRankingWebSocketService.shared
+    private var tikokurankingService = TikokuRankingService.shared
     private var messageTask: Task<Void, Never>?
     private var rankingRequestTask: Task<Void, Never>?
 
@@ -26,6 +29,19 @@ class TikokuRankingViewModel: ObservableObject {
         messageTask?.cancel()
     }
     
+    @MainActor
+    func getArrivalRanking(eventid: Int) async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            let response = try await tikokurankingService.getArrivaiRanking(eventid: eventid)
+            arrivalRankings = response.arrivalRankings
+            print("到着者ランキング画面の表示に成功しました")
+        } catch {
+            print("到着者ランキング画面の表示に失敗しました: \(error)")
+        }
+    }
+    
     func requestLatestRanking() {
         rankingRequestTask?.cancel() // 既存のタスクがあればキャンセル
         rankingRequestTask = Task {
@@ -34,12 +50,12 @@ class TikokuRankingViewModel: ObservableObject {
                 try? await Task.sleep(nanoseconds: 100_000_000) // 100ミリ秒待機
             }
             // 接続が確立されたら最新のランキングをリクエスト
-            rankingService.requestLatestRanking()
+            websocketService.requestLatestRanking()
         }
     }
 
     private func listenForMessages() async {
-        let messageStream = rankingService.messageStream()
+        let messageStream = websocketService.messageStream()
         for await message in messageStream {
             switch message {
             case .rankingUpdate(let rankings):
