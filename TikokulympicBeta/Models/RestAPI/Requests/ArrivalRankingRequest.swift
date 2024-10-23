@@ -8,8 +8,14 @@
 import Foundation
 import Alamofire
 
-struct ArrivalRankingResponse: ResponseProtocol {
+
+struct ArrivalRankingResponse: ResponseProtocol, Decodable {
     let arrivalRankings: [ArrivalUserData]
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        arrivalRankings = try container.decode([ArrivalUserData].self)
+    }
 }
 
 struct ArrivalRankingRequest: RequestProtocol {

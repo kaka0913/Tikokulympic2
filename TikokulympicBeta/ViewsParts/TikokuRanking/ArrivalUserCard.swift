@@ -31,7 +31,7 @@ struct ArrivalUserCard: View {
             
             HStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    Text("\(12)st")
+                    Text("\(user.position)st")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.black)
                         .padding(.top, 10)
@@ -60,7 +60,6 @@ struct ArrivalUserCard: View {
                     .foregroundColor(.black)
                     .padding(.top, 30)
                     .padding(.leading, 30)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
             }
             .cornerRadius(15)
         }
