@@ -12,56 +12,60 @@ struct ArrivalUserCard: View {
     
     var body: some View {
         ZStack {
-            HStack(spacing: 0) {
-                if ( user.arrivalTime <= 0) {
-                        ThemeColor.customGreen
-                            .frame(width: 390, height: 80)
-                }
-                else if (( user.arrivalTime >= 0 ) && (user.arrivalTime <= 10)) {
+            Group {
+                if user.arrivalTime <= 0 {
+                    ThemeColor.customGreen
+                } else if user.arrivalTime <= 10 {
                     ThemeColor.customYellow
-                        .frame(width: 390, height: 80)
-                }
-                else if (user.arrivalTime >= 10) {
+                } else {
                     ThemeColor.orange
-                        .frame(width: 390, height: 80)
                 }
             }
+            .frame(height: 80)
             .cornerRadius(15)
             .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 5)
-            
+
             HStack(spacing: 0) {
                 HStack(spacing: 0) {
                     Text("\(user.position)st")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.black)
-                        .padding(.top, 10)
-                        .frame(width: 80, height: 80)
-                    
+                        .frame(width: 35)
+                        .padding(.leading, -25)
+
                     ProfileImageView(userid: String(user.id))
-                    
+                        .frame(width: 50, height: 50)
+                        .padding(.horizontal, 10)
+
                     VStack(alignment: .leading, spacing: 10) {
                         Text(user.name)
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.black)
-                            .padding(.leading, 20)
-                        Text("〜\(user.alias ?? "さすらいの")〜")
-                            .font(.system(size: 12, weight: .bold))
+                            .lineLimit(1)
+
+                        Text("〜\(user.alias ?? "さすらい")〜")
+                            .font(.system(size: 12))
                             .foregroundColor(.black)
-                            .padding(.leading, 20)
+                            .lineLimit(1)
                     }
-                    .padding(.trailing, -30)
+                    Spacer()
                 }
-                .frame(width: 240, height: 80)
-                .padding(.leading, -30)
-                
-                
-                Text(user.arrivalTime > 0 ? "\(user.arrivalTime)分遅れ" : "\(-user.arrivalTime)分前行動")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.black)
-                    .padding(.top, 30)
-                    .padding(.leading, 30)
+                .padding(.horizontal)
+                Spacer()
+
+                HStack {
+                    Text(user.arrivalTime > 0 ? "\(user.arrivalTime)" : "\(-user.arrivalTime)")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.black)
+                    Text(user.arrivalTime > 0 ? "分遅れ" : "分前行動")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.black)
+                        .padding(.top, 8)
+                }
+                .padding(.trailing, -5)
             }
-            .cornerRadius(15)
+            .padding(.horizontal)
         }
+        .frame(height: 80)
     }
 }
