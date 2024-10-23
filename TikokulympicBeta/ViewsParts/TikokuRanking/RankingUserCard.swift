@@ -52,7 +52,7 @@ struct RankingUserCard: View {
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.black)
                             .padding(.leading, 20)
-                        Text("〜\(user.alias ?? "さすらいの")〜")
+                        Text("〜\(user.alias ?? "さすらい")〜")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.black)
                             .padding(.leading, 20)
