@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct BottomBar: View {
-    @State private var currentEventIndex: Int? = 0
+    @State private var currentEventIndex: Int = 0
     let onVote: () -> Void
+    let totalEvents: Int
     
     var body: some View {
         HStack {
             Spacer()
             
-            Button(action: {
-                //TODO: ここに前のイベントに遷移する処理を書く
-            }) {
-                Image(systemName: "arrowtriangle.backward.fill")
-                    .resizable()
-                    .frame(width: 15, height: 30)
-                    .foregroundColor(.white)
+            eventNavigationButton(direction: .backward, isDisabled: currentEventIndex <= 0) {
+                currentEventIndex = max(0, currentEventIndex - 1)
             }
             
             Spacer()
@@ -37,39 +33,28 @@ struct BottomBar: View {
             
             Spacer()
             
-            Button(action: {
-                //TODO: ここに次のイベントに遷移する処理を書く
-            }) {
-                Image(systemName: "arrowtriangle.right.fill")
-                    .resizable()
-                    .frame(width: 15, height: 30)
-                    .foregroundColor(.white)
+            eventNavigationButton(direction: .forward, isDisabled: currentEventIndex >= totalEvents - 1) {
+                currentEventIndex = min(totalEvents - 1, currentEventIndex + 1)
             }
             
             Spacer()
         }
         .padding()
         .background(ThemeColor.customBlue)
-        
-        .navigationDestination(isPresented: Binding(
-            get: { currentEventIndex == -1 },
-            set: { if !$0 { currentEventIndex = nil } }
-        )) {
-            Text("前のイベント")
+        .navigationTitle("イベント \(currentEventIndex + 1)")
+    }
+    
+    private func eventNavigationButton(direction: Direction, isDisabled: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: direction == .backward ? "arrowtriangle.backward.fill" : "arrowtriangle.right.fill")
+                .resizable()
+                .frame(width: 15, height: 30)
+                .foregroundColor(.white)
         }
-        
-        .navigationDestination(isPresented: Binding(
-            get: { currentEventIndex == 1 },
-            set: { if !$0 { currentEventIndex = nil } }
-        )) {
-            Text("次のイベント")
-        }
+        .disabled(isDisabled)
+    }
+    
+    enum Direction {
+        case backward, forward
     }
 }
-
-#Preview {
-    BottomBar(onVote: {
-        print("Vote button tapped")
-    })
-}
-
