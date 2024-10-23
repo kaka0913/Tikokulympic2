@@ -8,7 +8,7 @@ import CoreLocation
 import SwiftUI
 
 struct TikokuRankingView: View {
-    @StateObject private var viewModel = TikokuRankingViewModel()
+    @StateObject private var viewModel = TikokuRankingViewModel.shared
     @State private var selectedTab: Int = 1
     @State private var showAlert: Bool = false
 
@@ -43,7 +43,7 @@ struct TikokuRankingView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.white)
                 } else {
-                    RankingListView(userRankings: viewModel.userRankings)
+                    ArrivalRankingListView(arrivals: viewModel.arrivalRankings)
                         .padding(.top, -15)
                 }
             }
@@ -53,7 +53,7 @@ struct TikokuRankingView: View {
             viewModel.requestLatestRanking()
         }
         .onChange(of: selectedTab) { oldTab, newTab in
-            if newTab == 2 {
+            if newTab == 0 {
                 Task {
                     await viewModel.getArrivalRanking(eventid: 37) //TODO: 適切なeventidを使用
                 }

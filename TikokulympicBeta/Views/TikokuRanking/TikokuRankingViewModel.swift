@@ -18,6 +18,7 @@ class TikokuRankingViewModel: ObservableObject {
     private var tikokurankingService = TikokuRankingService.shared
     private var messageTask: Task<Void, Never>?
     private var rankingRequestTask: Task<Void, Never>?
+    static let shared = TikokuRankingViewModel()
 
     init() {
         messageTask = Task {
