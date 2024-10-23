@@ -150,6 +150,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let location = "立命館大学OIC"
         let latitude: Double = 34.8103
         let longitude: Double = 135.5610
+        let eventid = 37
 
         // TODO: 時間はいったん現在の1時間後に設定
         let dateFormatter = DateFormatter()
@@ -166,6 +167,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(title, forKey: "title")
         UserDefaults.standard.set(location, forKey: "location")
         UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")// ここをtrueにすれば位置情報送信はストップする
+        UserDefaults.standard.set(eventid, forKey: "eventid")
     }
 
     private func requestNotificationAuthorization() {

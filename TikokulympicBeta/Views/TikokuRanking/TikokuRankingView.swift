@@ -11,6 +11,7 @@ struct TikokuRankingView: View {
     @StateObject private var viewModel = TikokuRankingViewModel()
     @State private var selectedTab: Int = 1
     @State private var showAlert: Bool = false
+    @AppStorage("eventid") var eventid = 0
 
     var body: some View {
         VStack(spacing: 0) {
@@ -52,13 +53,13 @@ struct TikokuRankingView: View {
         .onAppear {
             viewModel.requestLatestRanking()
             Task {
-                await viewModel.getArrivalRanking(eventid: 37) //TODO: 適切なeventidを使用
+                await viewModel.getArrivalRanking(eventid: eventid)
             }
         }
         .onChange(of: selectedTab) { oldTab, newTab in
             if newTab == 0 {
                 Task {
-                    await viewModel.getArrivalRanking(eventid: 37) //TODO: 適切なeventidを使用
+                    await viewModel.getArrivalRanking(eventid: eventid)
                 }
             }
         }
