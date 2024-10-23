@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     @AppStorage("title") var title: String = ""
-    let arrivals: Int = 13 //TODO: 配列から実際の人数を取得する
+    let arrivals: Int?
     
     var body: some View {
         VStack(spacing: 10) {
@@ -19,7 +19,7 @@ struct HeaderView: View {
                 VStack(spacing: 0) {
                     Color.black
                 }
-                Text("～\(arrivals)人が到着完了！～")
+                Text("～\(arrivals ?? 0)人が到着完了！～")
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(.yellow)
                     .padding(.horizontal, 10)

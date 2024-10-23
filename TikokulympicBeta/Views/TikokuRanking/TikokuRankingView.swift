@@ -14,7 +14,7 @@ struct TikokuRankingView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView()
+            HeaderView(arrivals: viewModel.arrivalRankings.count)
             
             TabSelectionView(selectedTab: $selectedTab)
                 .padding(.top, -5)
@@ -51,6 +51,9 @@ struct TikokuRankingView: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear {
             viewModel.requestLatestRanking()
+            Task {
+                await viewModel.getArrivalRanking(eventid: 37) //TODO: 適切なeventidを使用
+            }
         }
         .onChange(of: selectedTab) { oldTab, newTab in
             if newTab == 0 {
