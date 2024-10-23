@@ -8,13 +8,13 @@ import CoreLocation
 import SwiftUI
 
 struct TikokuRankingView: View {
-    @StateObject private var viewModel = TikokuRankingViewModel.shared
+    @StateObject private var viewModel = TikokuRankingViewModel()
     @State private var selectedTab: Int = 1
     @State private var showAlert: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView(arrivals: viewModel.arrivalRankings.count)
+            HeaderView(totalParticipants: viewModel.userRankings.count + viewModel.arrivalRankings.count, arrivals: viewModel.userRankings.count)
             
             TabSelectionView(selectedTab: $selectedTab)
                 .padding(.top, -5)
