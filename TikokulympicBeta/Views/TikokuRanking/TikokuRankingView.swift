@@ -15,7 +15,7 @@ struct TikokuRankingView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView(totalParticipants: viewModel.userRankings.count + viewModel.arrivalRankings.count, arrivals: viewModel.userRankings.count)
+            HeaderView(totalParticipants: viewModel.userRankings.count + viewModel.arrivalRankings.count, arrivals: viewModel.arrivalRankings.count)
             
             TabSelectionView(selectedTab: $selectedTab)
                 .padding(.top, -5)
