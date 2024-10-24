@@ -73,7 +73,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             object: nil
         )
 
-        // 起動時に12時間以内かどうかを確認し、必要なら通信を開始
+        // 起動時に3時間以内かどうかを確認し、必要なら通信を開始
         if shouldStartLocationUpdates() {
             if !hasSentArrivalNotification {
                 startLocationTimer()
@@ -89,7 +89,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - アプリの状態ハンドラ
 
     @objc func appDidEnterBackground() {
-        // start_timeが12時間以内かどうかを再確認
+        // start_timeが3時間以内かどうかを再確認
         if shouldStartLocationUpdates() {
             // バックグラウンドでアプリを実行するためのタスクを開始
             backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "LocationUpdate") {
@@ -245,7 +245,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         backgroundUploader = BackgroundLocationUploader.shared
     }
 
-    // MARK: - start_timeから12時間以内かどうかを判定
+    // MARK: - start_timeから3時間以内かどうかを判定
 
     func shouldStartLocationUpdates() -> Bool {
         if let savedDateString = UserDefaults.standard.string(forKey: "start_time") {
