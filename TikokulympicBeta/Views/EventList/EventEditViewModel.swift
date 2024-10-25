@@ -34,27 +34,21 @@ class EventEditViewModel: ObservableObject {
             return
         }
 
-        let userid = UserDefaults.standard.integer(forKey: "userid")
-        let latitude = "34.8108" //TODO: 位置検索から緯度経度を取得して渡す
-        let longitude = "135.5612"
-        
-        let newEvent = Event(
-            id: 1, //TODO: 修正
-            author: nil,
+        let latitude = 34.8108 //TODO: 位置検索から緯度経度を取得して渡す
+        let longitude = 135.5612
+
+        await EventService.shared.postNewEvent(
             title: eventName,
             description: eventDescription,
             isAllDay: false,
             startDateTime: startDateTime,
             endDateTime: endDateTime,
             closingDateTime: applicationDeadline,
-            locationName: location,
-            latitude: 35.00,
-            longitude: 36.00,
+            locationName: locationSearchQuery,
             cost: Int(fee) ?? 0,
             message: contactInfo,
-            options: options
+            latitude: latitude,
+            longitude: longitude
         )
-
-        await EventService.shared.postNewEvent(event: newEvent)
     }
 }
