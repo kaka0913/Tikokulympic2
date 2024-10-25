@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GooglePlaces
 
 
 struct EventEditView: View {
@@ -13,6 +14,9 @@ struct EventEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingCancelAlert = false
     @State private var isShowingCreateAlert = false
+    @State var autocompleteResults: [GMSAutocompletePrediction]=[]
+    @State var searchtext: String = ""
+    
     
     var body: some View {
         NavigationView {
@@ -49,7 +53,15 @@ struct EventEditView: View {
                             }
                             
                             ContactInfoSection(message: $viewModel.contactInfo)
-                            LocationSearchSection(searchQuery: $viewModel.locationSearchQuery)
+                            LocationSearchSection(searchText: $searchtext, autocompleteResults: $autocompleteResults)
+                            ForEach(autocompleteResults, id: \.placeID) { result in
+                            Text(result.attributedPrimaryText.string)
+                                    .onTapGesture {
+                                        viewModel.fetchPlaceDetails(placeID: result.placeID)
+                                        searchtext=result.attributedPrimaryText.string
+                                        autocompleteResults.removeAll()
+                                    }
+                            }
                         }
                         .padding()
                         .background(Color.white)

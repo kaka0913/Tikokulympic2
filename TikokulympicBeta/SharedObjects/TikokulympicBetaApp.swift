@@ -4,6 +4,7 @@ import FirebaseMessaging
 import GoogleSignIn
 import SwiftUI
 import UserNotifications
+import GooglePlaces
 
 @main
 struct TikokulympicBetaApp: App {

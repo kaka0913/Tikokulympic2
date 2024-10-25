@@ -1,22 +1,51 @@
-//
-//  LocationSearchSection.swift
-//  TikokulympicBeta
-//
-//  Created by 株丹優一郎 on 2024/09/26.
-//
-
-import SwiftUI
+    import SwiftUI
+    import GooglePlaces
 
 struct LocationSearchSection: View {
-    @Binding var searchQuery: String
-    
+    @Binding  var searchText: String
+    @Binding var autocompleteResults: [GMSAutocompletePrediction]
+    var placesClient = GMSPlacesClient.shared()
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("地点登録")
-                .font(.system(size: 15))
-                .bold()
-            TextField("検索...", text: $searchQuery)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+        VStack {
+
+            TextField("場所を入力してください", text: $searchText, onEditingChanged: { isEditing in
+                if !isEditing {
+                    autocompleteResults.removeAll()
+                }
+            })
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
+            .onChange(of: searchText) { newValue in
+                fetchAutocompleteResults(input: newValue)
+            }
+
+
+            
+        }
+    }
+
+    // 自動補完候補を取得するメソッド
+    func fetchAutocompleteResults(input: String) {
+        guard !input.isEmpty else {
+            autocompleteResults.removeAll()
+            return
+        }
+
+        let filter = GMSAutocompleteFilter()
+        filter.type = .address
+        filter.country = "JP"
+
+        placesClient.findAutocompletePredictions(fromQuery: input, filter: filter, sessionToken: nil) { results, error in
+            if let error = error {
+                print("エラー: (error.localizedDescription)")
+                return
+            }
+
+            DispatchQueue.main.async {
+                print((results as! [GMSAutocompletePrediction]).map{$0.attributedPrimaryText.string} )
+                self.autocompleteResults = results ?? []
+            }
         }
     }
 }
