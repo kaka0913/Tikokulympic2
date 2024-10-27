@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GooglePlaces
 
 class EventEditViewModel: ObservableObject {
     @Published var eventName = ""
@@ -16,9 +17,14 @@ class EventEditViewModel: ObservableObject {
     @Published var location = ""
     @Published var fee = ""
     @Published var contactInfo = ""
-    @Published var locationSearchQuery = ""
+    @Published var latitude  = 0.0
+    @Published var longitude = 0.0
+    @Published var searchText = ""
+    @Published var autocompleteResults: [GMSAutocompletePrediction] = []
+    
     let options: [Option] = []
-
+    let placesClient = GMSPlacesClient.shared()
+ 
     var isFormValid: Bool {
         return !eventName.isEmpty &&
                !eventDescription.isEmpty &&
@@ -27,6 +33,45 @@ class EventEditViewModel: ObservableObject {
                !fee.isEmpty &&
                !contactInfo.isEmpty
     }
+    
+    func fetchPlaceDetails(placeID: String) {
+        placesClient.lookUpPlaceID(placeID) { (place, error) in
+            if let error = error {
+                print("エラー: \(error.localizedDescription)")
+                return
+            }
+
+            if let place = place {
+                self.latitude = place.coordinate.latitude
+                self.longitude = place.coordinate.longitude
+                
+                print("緯度: \(self.latitude), 経度: \(self.longitude)")
+            }
+        }
+    }
+
+    func fetchAutocompleteResults(input: String) {
+        guard !input.isEmpty else {
+            self.autocompleteResults.removeAll()
+            return
+        }
+
+        let filter = GMSAutocompleteFilter()
+        filter.type = .address
+        filter.country = "JP"
+
+        placesClient.findAutocompletePredictions(fromQuery: input, filter: filter, sessionToken: nil) { results, error in
+            if let error = error {
+                print("エラー: \(error.localizedDescription)")
+                return
+            }
+
+            DispatchQueue.main.async {
+                print((results as! [GMSAutocompletePrediction]).map{$0.attributedPrimaryText.string} )
+                self.autocompleteResults = results ?? []
+            }
+        }
+    }
 
     func completeEditing() async {
         guard let cost = Int(fee) else {
@@ -34,9 +79,8 @@ class EventEditViewModel: ObservableObject {
             return
         }
 
-        let latitude = 34.8108 //TODO: 位置検索から緯度経度を取得して渡す
-        let longitude = 135.5612
-
+        let userid = UserDefaults.standard.integer(forKey: "userid")
+        
         await EventService.shared.postNewEvent(
             title: eventName,
             description: eventDescription,
@@ -47,8 +91,8 @@ class EventEditViewModel: ObservableObject {
             locationName: locationSearchQuery,
             cost: Int(fee) ?? 0,
             message: contactInfo,
-            latitude: latitude,
-            longitude: longitude
+            latitude: self.latitude,
+            longitude: self.longitude
         )
     }
 }
