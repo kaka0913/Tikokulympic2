@@ -1,4 +1,5 @@
 {
+  "originHash" : "2a40905e27ebe4c1dbc7d27cd746893ec6d790d290df3df6723ac7992cbf4c0c",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -118,6 +119,15 @@
       }
     },
     {
+      "identity" : "ios-places-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googlemaps/ios-places-sdk",
+      "state" : {
+        "revision" : "7b3af6b3087b183444f6cb51dd80d416c98f9e53",
+        "version" : "9.1.0"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
@@ -190,5 +200,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

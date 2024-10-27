@@ -14,6 +14,7 @@ import GoogleSignIn
 import SwiftUI
 import UserNotifications
 import UIKit
+import GooglePlaces
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -39,7 +40,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-
+        
+        // インクリメンタルサーチのためのAPIキーの設定
+        if let  apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
+            GMSPlacesClient.provideAPIKey(APIKeyManager.shared.apiKey(for: apiKey) ?? "")
+        }
+        
         // デフォルトのユーザー情報を設定
         setupDefaultUserInfo()
 

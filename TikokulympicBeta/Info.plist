@@ -8,6 +8,8 @@
 	<string>このアプリはイベントの集合時間の前後3時間で位置情報を送信します</string>
 	<key>APIKeys</key>
 	<dict>
+		<key>GMSPlacesClient_API_Key</key>
+		<string>$(GMSPlacesClient_API_Key)</string>
 		<key>SUPABASE_API_KEY</key>
 		<string>$(SUPABASE_API_KEY)</string>
 		<key>SUPABASE_URL</key>

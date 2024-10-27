@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GooglePlaces
 
 
 struct EventEditView: View {
@@ -13,7 +14,7 @@ struct EventEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingCancelAlert = false
     @State private var isShowingCreateAlert = false
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -49,7 +50,30 @@ struct EventEditView: View {
                             }
                             
                             ContactInfoSection(message: $viewModel.contactInfo)
-                            LocationSearchSection(searchQuery: $viewModel.locationSearchQuery)
+                            
+                            VStack(alignment: .leading) {
+                                Text("場所名:")
+                                    .font(.headline)
+                                TextField("場所を入力してください", text: $viewModel.location, onEditingChanged: { isEditing in
+                                    if !isEditing {
+                                        viewModel.autocompleteResults.removeAll()
+                                    }
+                                })
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .onChange(of: viewModel.location) { newValue in
+                                    viewModel.fetchAutocompleteResults(input: newValue)
+                                }
+
+                                ForEach(viewModel.autocompleteResults, id: \.placeID) { result in
+                                    Text(result.attributedPrimaryText.string)
+                                        .onTapGesture {
+                                            viewModel.fetchPlaceDetails(placeID: result.placeID)
+                                            viewModel.location = result.attributedPrimaryText.string
+                                            viewModel.autocompleteResults.removeAll()
+                                        }
+                                }
+                            }
                         }
                         .padding()
                         .background(Color.white)

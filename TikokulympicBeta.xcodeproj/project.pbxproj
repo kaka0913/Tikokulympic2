@@ -90,14 +90,12 @@
 		22C4F9072CA5270C00C636C9 /* DateSelectionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */; };
 		22C4F90C2CA5495000C636C9 /* EventEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */; };
 		22C4F9102CA54A5C00C636C9 /* ContactInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */; };
-		22C4F9122CA54A6E00C636C9 /* LocationSearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9112CA54A6E00C636C9 /* LocationSearchSection.swift */; };
 		22C4F9162CA54A8B00C636C9 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9152CA54A8B00C636C9 /* InputField.swift */; };
 		22C4F9182CA54A9B00C636C9 /* EditBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */; };
 		22C4F91A2CA5854B00C636C9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 22C4F9192CA5854B00C636C9 /* GoogleSignIn */; };
 		22C4F91C2CA5854B00C636C9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22C4F91B2CA5854B00C636C9 /* GoogleSignInSwift */; };
 		22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F91F2CA5D53700C636C9 /* SignInView.swift */; };
 		22C4F9222CA5D54300C636C9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9212CA5D54300C636C9 /* SignUpView.swift */; };
-		22CA076D2CA6DD2800F0B60D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22CA076C2CA6DD2800F0B60D /* GoogleService-Info.plist */; };
 		22CA07702CA7ABD600F0B60D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA076F2CA7ABD600F0B60D /* ProfileImageView.swift */; };
 		22E321872CA3DBE000457237 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E321862CA3DBE000457237 /* HeaderView.swift */; };
 		22E3218B2CA3DC1400457237 /* EventDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3218A2CA3DC1400457237 /* EventDateLabel.swift */; };
@@ -118,8 +116,10 @@
 		22E7090C2C8D81310009FE19 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 22E7090B2C8D81310009FE19 /* Storage */; };
 		22E7090E2C8D81310009FE19 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 22E7090D2C8D81310009FE19 /* Supabase */; };
 		22E709432C904C220009FE19 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E709422C904C220009FE19 /* AuthView.swift */; };
+		A554F34C2CCBF18F00B905F6 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = A554F34B2CCBF18F00B905F6 /* GooglePlaces */; };
 		A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */; };
 		A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689992C9AC28100E60BC6 /* Rank.swift */; };
+		A5C0423F2CCBF34C00BF5173 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,7 +178,6 @@
 		22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionField.swift; sourceTree = "<group>"; };
 		22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewModel.swift; sourceTree = "<group>"; };
 		22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoSection.swift; sourceTree = "<group>"; };
-		22C4F9112CA54A6E00C636C9 /* LocationSearchSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchSection.swift; sourceTree = "<group>"; };
 		22C4F9152CA54A8B00C636C9 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomBar.swift; sourceTree = "<group>"; };
 		22C4F91F2CA5D53700C636C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -235,6 +234,7 @@
 				22E709062C8D81310009FE19 /* Functions in Frameworks */,
 				22AE4E402C9BCD1F00B0BF82 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				22E708FC2C8D80950009FE19 /* Functions in Frameworks */,
+				A554F34C2CCBF18F00B905F6 /* GooglePlaces in Frameworks */,
 				22AE4E3E2C9BCD1F00B0BF82 /* FirebaseAnalytics in Frameworks */,
 				22AE4E442C9BCD1F00B0BF82 /* FirebaseAppCheck in Frameworks */,
 				22AE4E582C9BCD8E00B0BF82 /* FirebaseDatabase in Frameworks */,
@@ -455,7 +455,6 @@
 			children = (
 				22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */,
 				22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */,
-				22C4F9112CA54A6E00C636C9 /* LocationSearchSection.swift */,
 				22C4F9152CA54A8B00C636C9 /* InputField.swift */,
 				22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */,
 			);
@@ -581,6 +580,7 @@
 				22872AFD2C9CAB810045B653 /* Alamofire */,
 				22C4F9192CA5854B00C636C9 /* GoogleSignIn */,
 				22C4F91B2CA5854B00C636C9 /* GoogleSignInSwift */,
+				A554F34B2CCBF18F00B905F6 /* GooglePlaces */,
 			);
 			productName = TikokulympicBeta;
 			productReference = 22AABD422C875AE80086644F /* TikokulympicBeta.app */;
@@ -615,6 +615,7 @@
 				22AE4E372C9BCCE200B0BF82 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				22AE4E3C2C9BCD1F00B0BF82 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				22872AFC2C9CAB810045B653 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A554F34A2CCBF18F00B905F6 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
 			);
 			productRefGroup = 22AABD432C875AE80086644F /* Products */;
 			projectDirPath = "";
@@ -630,11 +631,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C0423F2CCBF34C00BF5173 /* GoogleService-Info.plist in Resources */,
 				22AABD652C8C38CA0086644F /* .swiftlint.yml in Resources */,
 				22AABD4D2C875AE90086644F /* Preview Assets.xcassets in Resources */,
 				22AABD632C8C34DD0086644F /* .gitignore in Resources */,
 				22AABD4A2C875AE90086644F /* Assets.xcassets in Resources */,
-				22CA076D2CA6DD2800F0B60D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,7 +716,6 @@
 				084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */,
 				22E3218B2CA3DC1400457237 /* EventDateLabel.swift in Sources */,
 				22E709432C904C220009FE19 /* AuthView.swift in Sources */,
-				22C4F9122CA54A6E00C636C9 /* LocationSearchSection.swift in Sources */,
 				22AABD722C8C42730086644F /* EventListView.swift in Sources */,
 				228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */,
 				22220BD32C970C7600DDB003 /* APIError.swift in Sources */,
@@ -871,7 +871,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikokulympicBeta/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "遅刻リンピック";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリケーションは位置情報を利用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "このアプリは条件によっては位置情報の送信をバックグラウンドでも行います";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリはイベントの集合時間の前後3時間で位置情報を送信します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -907,7 +908,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikokulympicBeta/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "遅刻リンピック";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリケーションは位置情報を利用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "このアプリは条件によっては位置情報の送信をバックグラウンドでも行います";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリはイベントの集合時間の前後3時間で位置情報を送信します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -981,6 +983,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.2.0;
+			};
+		};
+		A554F34A2CCBF18F00B905F6 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1199,6 +1209,11 @@
 		22E7090D2C8D81310009FE19 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Supabase;
+		};
+		A554F34B2CCBF18F00B905F6 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A554F34A2CCBF18F00B905F6 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
