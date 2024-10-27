@@ -19,9 +19,6 @@ struct LocationSearchSection: View {
             .onChange(of: searchText) { newValue in
                 fetchAutocompleteResults(input: newValue)
             }
-
-
-            
         }
     }
 

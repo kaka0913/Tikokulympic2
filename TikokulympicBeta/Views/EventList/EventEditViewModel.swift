@@ -31,7 +31,8 @@ class EventEditViewModel: ObservableObject {
                !fee.isEmpty &&
                !contactInfo.isEmpty
     }
- func fetchPlaceDetails(placeID: String) {
+    
+    func fetchPlaceDetails(placeID: String) {
             placesClient.lookUpPlaceID(placeID) { (place, error) in
                 if let error = error {
                     print("エラー: (error.localizedDescription)")
@@ -45,7 +46,7 @@ class EventEditViewModel: ObservableObject {
                     print("緯度: \(self.latitude), 経度: \(self.longitude)")
                 }
             }
-        }
+    }
 
 
     func completeEditing() async {
