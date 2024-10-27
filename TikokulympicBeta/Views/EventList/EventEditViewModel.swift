@@ -88,7 +88,7 @@ class EventEditViewModel: ObservableObject {
             startDateTime: startDateTime,
             endDateTime: endDateTime,
             closingDateTime: applicationDeadline,
-            locationName: locationSearchQuery,
+            locationName: searchText,
             cost: Int(fee) ?? 0,
             message: contactInfo,
             latitude: self.latitude,
