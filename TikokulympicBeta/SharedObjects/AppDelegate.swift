@@ -297,7 +297,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - MessagingDelegate
 
 extension AppDelegate: MessagingDelegate {
-    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("didRegisterForRemoteNotificationsWithDeviceToken が呼び出されました")
+        Messaging.messaging().apnsToken = deviceToken
+    }
     
     @objc func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
