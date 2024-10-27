@@ -41,8 +41,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
-        
-            GMSPlacesClient.provideAPIKey("AIzaSyDI5-tKF0CXLwap_yYOuRh2kUr4Yby6Cvo")
+        // インクリメンタルサーチのためのAPIキーの設定
+        if let  apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
+            GMSPlacesClient.provideAPIKey(APIKeyManager.shared.apiKey(for: apiKey) ?? "")
+        }
         
         // デフォルトのユーザー情報を設定
         setupDefaultUserInfo()

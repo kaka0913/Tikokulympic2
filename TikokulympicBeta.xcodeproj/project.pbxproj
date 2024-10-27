@@ -90,7 +90,6 @@
 		22C4F9072CA5270C00C636C9 /* DateSelectionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */; };
 		22C4F90C2CA5495000C636C9 /* EventEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */; };
 		22C4F9102CA54A5C00C636C9 /* ContactInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */; };
-		22C4F9122CA54A6E00C636C9 /* LocationSearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9112CA54A6E00C636C9 /* LocationSearchSection.swift */; };
 		22C4F9162CA54A8B00C636C9 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9152CA54A8B00C636C9 /* InputField.swift */; };
 		22C4F9182CA54A9B00C636C9 /* EditBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */; };
 		22C4F91A2CA5854B00C636C9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 22C4F9192CA5854B00C636C9 /* GoogleSignIn */; };
@@ -179,7 +178,6 @@
 		22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionField.swift; sourceTree = "<group>"; };
 		22C4F90B2CA5495000C636C9 /* EventEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewModel.swift; sourceTree = "<group>"; };
 		22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoSection.swift; sourceTree = "<group>"; };
-		22C4F9112CA54A6E00C636C9 /* LocationSearchSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchSection.swift; sourceTree = "<group>"; };
 		22C4F9152CA54A8B00C636C9 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomBar.swift; sourceTree = "<group>"; };
 		22C4F91F2CA5D53700C636C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -457,7 +455,6 @@
 			children = (
 				22C4F9062CA5270C00C636C9 /* DateSelectionField.swift */,
 				22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */,
-				22C4F9112CA54A6E00C636C9 /* LocationSearchSection.swift */,
 				22C4F9152CA54A8B00C636C9 /* InputField.swift */,
 				22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */,
 			);
@@ -719,7 +716,6 @@
 				084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */,
 				22E3218B2CA3DC1400457237 /* EventDateLabel.swift in Sources */,
 				22E709432C904C220009FE19 /* AuthView.swift in Sources */,
-				22C4F9122CA54A6E00C636C9 /* LocationSearchSection.swift in Sources */,
 				22AABD722C8C42730086644F /* EventListView.swift in Sources */,
 				228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */,
 				22220BD32C970C7600DDB003 /* APIError.swift in Sources */,
@@ -875,7 +871,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikokulympicBeta/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "遅刻リンピック";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリケーションは位置情報を利用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "このアプリは条件によっては位置情報の送信をバックグラウンドでも行います";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリはイベントの集合時間の前後3時間で位置情報を送信します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -911,7 +908,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TikokulympicBeta/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "遅刻リンピック";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリケーションは位置情報を利用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "このアプリは条件によっては位置情報の送信をバックグラウンドでも行います";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリはイベントの集合時間の前後3時間で位置情報を送信します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
