@@ -38,6 +38,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
@@ -78,7 +79,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             object: nil
         )
 
-        // 起動時に12時間以内かどうかを確認し、必要なら通信を開始
+        // 起動時に3時間以内かどうかを確認し、必要なら通信を開始
         if shouldStartLocationUpdates() {
             if !hasSentArrivalNotification {
                 startLocationTimer()
@@ -94,7 +95,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - アプリの状態ハンドラ
 
     @objc func appDidEnterBackground() {
-        // start_timeが12時間以内かどうかを再確認
+        // start_timeが3時間以内かどうかを再確認
         if shouldStartLocationUpdates() {
             // バックグラウンドでアプリを実行するためのタスクを開始
             backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "LocationUpdate") {
@@ -250,7 +251,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         backgroundUploader = BackgroundLocationUploader.shared
     }
 
-    // MARK: - start_timeから12時間以内かどうかを判定
+    // MARK: - start_timeから3時間以内かどうかを判定
 
     func shouldStartLocationUpdates() -> Bool {
         if let savedDateString = UserDefaults.standard.string(forKey: "start_time") {
@@ -302,9 +303,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - MessagingDelegate
 
 extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("didRegisterForRemoteNotificationsWithDeviceToken が呼び出されました")
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    @objc func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
             UserDefaults.standard.set(token, forKey: "fcmToken")
+            print("Firebase token: \(String(describing: fcmToken))")
+            
         } else {
             print("FCM tokenの取得に失敗しました")
         }
@@ -315,29 +323,80 @@ extension AppDelegate: MessagingDelegate {
 // MARK: - UNUserNotificationCenterDelegate
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    // 通知がフォアグラウンドで表示される直前に呼ばれる
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
+        // 通知のデータを処理
+        let userInfo = notification.request.content.userInfo
+        processNotificationData(userInfo: userInfo)
         completionHandler([.banner, .list, .sound])
     }
 
-    // ユーザーが通知をタップしたとき、またはカスタムアクションを実行したときに呼び出される
-    // 通知に含まれる情報を取り出し、アプリ内で適切な処理を行うために他の部分に伝達する
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        // アプリ内の他の部分に対して、通知を受信したことを知らせる
-        let userInfo = response.notification.request.content.userInfo
-        NotificationCenter.default.post(
-            name: Notification.Name("didReceiveRemoteNotification"),
-            object: nil,
-            userInfo: userInfo
-        )
-        completionHandler()
+    // ユーザーが通知をタップしたとき、または通知に付随するカスタムアクションを実行したときに呼ばれる
+    // func userNotificationCenter(
+    //     _ center: UNUserNotificationCenter,
+    //     didReceive response: UNNotificationResponse,
+    //     withCompletionHandler completionHandler: @escaping () -> Void
+    // )
+
+    // 通知のデータを処理してUserDefaultsに保存するメソッド
+    private func processNotificationData(userInfo: [AnyHashable: Any]) {
+        if let data = userInfo["data"] as? [String: Any] {
+            if let eventIdString = data["event_id"] as? String,
+               let eventId = Int(eventIdString),
+               let title = data["title"] as? String,
+               let location = data["location"] as? String,
+               let latitudeString = data["latitude"] as? String,
+               let latitude = Double(latitudeString),
+               let longitudeString = data["longitude"] as? String,
+               let longitude = Double(longitudeString),
+               let startTime = data["start_time"] as? String {
+                
+                // UserDefaultsに保存
+                UserDefaults.standard.set(eventId, forKey: "eventid")
+                UserDefaults.standard.set(title, forKey: "title")
+                UserDefaults.standard.set(location, forKey: "location")
+                UserDefaults.standard.set(latitude, forKey: "latitude")
+                UserDefaults.standard.set(longitude, forKey: "longitude")
+                UserDefaults.standard.set(startTime, forKey: "start_time")
+                
+                // 到着通知フラグをリセット
+                UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")
+                
+                // 位置情報更新の再評価と開始
+                if shouldStartLocationUpdates() {
+                    if !hasSentArrivalNotification && locationTimer == nil {
+                        startLocationTimer()
+                    }
+                    // WebSocketの再接続
+                    if !WebSocketClient.shared.isConnected {
+                        WebSocketClient.shared.connect()
+                    }
+                } else {
+                    // 必要に応じて位置情報更新を停止
+                    stopLocationUpdates()
+                }
+            } else {
+                print("通知データの解析に失敗しました")
+            }
+        } else {
+            print("通知にデータが含まれていません")
+        }
+    }
+}
+
+
+// MARK: - バックグラウンドでの通知受信時の処理
+
+extension AppDelegate {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // 通知のデータを処理
+        processNotificationData(userInfo: userInfo)
+        completionHandler(.newData)
     }
 }
 

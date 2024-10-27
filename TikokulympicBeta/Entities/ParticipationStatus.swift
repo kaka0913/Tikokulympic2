@@ -8,5 +8,5 @@
 enum ParticipationStatus: String, Decodable, CaseIterable {
     case participating = "参加"
     case notParticipating = "不参加"
-    case partialParticipation = "途中参加"
+    case partialParticipation = "途中から参加"
 }

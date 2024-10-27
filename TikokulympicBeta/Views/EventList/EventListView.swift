@@ -102,9 +102,9 @@ struct EventListView: View {
                             await viewModel.putVote(eventid: currentEventID, option: "不参加")
                         }
                     }
-                    Button("途中参加") {
+                    Button("途中から参加") {
                         Task {
-                            await viewModel.putVote(eventid: currentEventID, option: "途中参加")
+                            await viewModel.putVote(eventid: currentEventID, option: "途中から参加")
                         }
                     }
                     Button("キャンセル", role: .cancel) {}

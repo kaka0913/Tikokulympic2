@@ -81,23 +81,18 @@ class EventEditViewModel: ObservableObject {
 
         let userid = UserDefaults.standard.integer(forKey: "userid")
         
-        let newEvent = Event(
-            id: 1, //TODO: 修正
-            author: nil,
+        await EventService.shared.postNewEvent(
             title: eventName,
             description: eventDescription,
             isAllDay: false,
             startDateTime: startDateTime,
             endDateTime: endDateTime,
             closingDateTime: applicationDeadline,
-            locationName: location,
-            latitude: self.latitude,
-            longitude: self.longitude,
+            locationName: searchText,
             cost: Int(fee) ?? 0,
             message: contactInfo,
-            options: options
+            latitude: self.latitude,
+            longitude: self.longitude
         )
-
-        await EventService.shared.postNewEvent(event: newEvent)
     }
 }
