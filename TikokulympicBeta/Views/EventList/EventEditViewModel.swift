@@ -67,32 +67,41 @@ class EventEditViewModel: ObservableObject {
             }
 
             DispatchQueue.main.async {
-                print((results as! [GMSAutocompletePrediction]).map{$0.attributedPrimaryText.string} )
                 self.autocompleteResults = results ?? []
             }
         }
     }
 
     func completeEditing() async {
-        guard let cost = Int(fee) else {
+        guard Int(fee) != nil else {
             print("数字のみを入力してください")
             return
         }
+        do {
+            let response = try await EventService.shared.postNewEvent(
+                title: eventName,
+                description: eventDescription,
+                isAllDay: false,
+                startDateTime: startDateTime,
+                endDateTime: endDateTime,
+                closingDateTime: applicationDeadline,
+                locationName: searchText,
+                cost: Int(fee) ?? 0,
+                message: contactInfo,
+                latitude: self.latitude,
+                longitude: self.longitude
+            )
+            self.addIdToUserDefaults(response.event_id)
+            
+        } catch {
+            print("イベントの更新に失敗しました: \(error)")
+        }
+    }
 
-        let userid = UserDefaults.standard.integer(forKey: "userid")
-        
-        await EventService.shared.postNewEvent(
-            title: eventName,
-            description: eventDescription,
-            isAllDay: false,
-            startDateTime: startDateTime,
-            endDateTime: endDateTime,
-            closingDateTime: applicationDeadline,
-            locationName: searchText,
-            cost: Int(fee) ?? 0,
-            message: contactInfo,
-            latitude: self.latitude,
-            longitude: self.longitude
-        )
+    func addIdToUserDefaults(_ newId: Int) {
+        let key = "createdEventIds"
+        var savedIds = UserDefaults.standard.array(forKey: key) as? [Int] ?? []
+        savedIds.append(newId)
+        UserDefaults.standard.set(savedIds, forKey: key)
     }
 }

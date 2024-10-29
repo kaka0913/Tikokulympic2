@@ -23,7 +23,7 @@ class EventService {
         message: String,
         latitude: Double,
         longitude: Double
-    ) async {
+    ) async throws -> EventEditingResponse {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
@@ -49,8 +49,10 @@ class EventService {
         do {
             let response = try await apiClient.call(request: request)
             print("イベント作成に成功しました: \(response)")
+            return response
         } catch {
             print("イベント作成に失敗しました: \(error)")
+            throw error
         }
     }
 
