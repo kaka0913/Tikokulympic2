@@ -43,10 +43,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         
         // インクリメンタルサーチのためのAPIキーの設定
-        if let  apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
-            GMSPlacesClient.provideAPIKey(APIKeyManager.shared.apiKey(for: apiKey) ?? "")
+        if let apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
+            GMSPlacesClient.provideAPIKey(apiKey)
+        } else {
+            print("API key not found.")
         }
-        
         // デフォルトのユーザー情報を設定
         setupDefaultUserInfo()
 
@@ -311,7 +312,7 @@ extension AppDelegate: MessagingDelegate {
     @objc func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
             UserDefaults.standard.set(token, forKey: "fcmToken")
-            print("Firebase token: \(String(describing: fcmToken))")
+            print("Firebase tokenの保存が完了しました")
             
         } else {
             print("FCM tokenの取得に失敗しました")
@@ -344,6 +345,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     // 通知のデータを処理してUserDefaultsに保存するメソッド
     private func processNotificationData(userInfo: [AnyHashable: Any]) {
+        print("userInfo[data]:")
+        print(userInfo["data"])
         if let data = userInfo["data"] as? [String: Any] {
             if let eventIdString = data["event_id"] as? String,
                let eventId = Int(eventIdString),
@@ -354,6 +357,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                let longitudeString = data["longitude"] as? String,
                let longitude = Double(longitudeString),
                let startTime = data["start_time"] as? String {
+                
+                print("eventIdString")
+                print(eventIdString)
                 
                 // UserDefaultsに保存
                 UserDefaults.standard.set(eventId, forKey: "eventid")
