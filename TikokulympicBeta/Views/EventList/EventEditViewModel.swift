@@ -14,22 +14,21 @@ class EventEditViewModel: ObservableObject {
     @Published var startDateTime = Date()
     @Published var endDateTime = Date()
     @Published var applicationDeadline = Date()
-    @Published var location = ""
+    @Published var locationName = ""
+    @Published var pointName = ""
     @Published var fee = ""
     @Published var contactInfo = ""
     @Published var latitude  = 0.0
     @Published var longitude = 0.0
-    @Published var searchText = ""
     @Published var autocompleteResults: [GMSAutocompletePrediction] = []
-    
-    let options: [Option] = []
+
     let placesClient = GMSPlacesClient.shared()
  
     var isFormValid: Bool {
         return !eventName.isEmpty &&
                !eventDescription.isEmpty &&
                startDateTime < endDateTime &&
-               !location.isEmpty &&
+               !locationName.isEmpty &&
                !fee.isEmpty &&
                !contactInfo.isEmpty
     }
@@ -85,7 +84,7 @@ class EventEditViewModel: ObservableObject {
                 startDateTime: startDateTime,
                 endDateTime: endDateTime,
                 closingDateTime: applicationDeadline,
-                locationName: searchText,
+                locationName: locationName,
                 cost: Int(fee) ?? 0,
                 message: contactInfo,
                 latitude: self.latitude,

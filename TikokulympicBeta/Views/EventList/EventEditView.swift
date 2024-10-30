@@ -45,23 +45,23 @@ struct EventEditView: View {
                                 DateSelectionField(title: "参加応募締切:", date: $viewModel.applicationDeadline)
                                 DateSelectionField(title: "開始:", date: $viewModel.startDateTime)
                                 DateSelectionField(title: "終了:", date: $viewModel.endDateTime)
-                                InputField(title: "場所名:", placeholder: "", text: $viewModel.location)
+                                InputField(title: "場所名:", placeholder: "", text: $viewModel.locationName)
                                 InputField(title: "参加費:", placeholder: "数字のみを入力", text: $viewModel.fee, keyboardType: .numberPad)
                             }
                             
                             ContactInfoSection(message: $viewModel.contactInfo)
                             
                             VStack(alignment: .leading) {
-                                Text("場所名:")
+                                Text("地点名（検索）:")
                                     .font(.headline)
-                                TextField("場所を入力してください", text: $viewModel.location, onEditingChanged: { isEditing in
+                                TextField("地点を入力してください", text: $viewModel.pointName, onEditingChanged: { isEditing in
                                     if !isEditing {
                                         viewModel.autocompleteResults.removeAll()
                                     }
                                 })
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
-                                .onChange(of: viewModel.location) { newValue in
+                                .onChange(of: viewModel.pointName) { newValue in
                                     viewModel.fetchAutocompleteResults(input: newValue)
                                 }
 
@@ -69,7 +69,7 @@ struct EventEditView: View {
                                     Text(result.attributedPrimaryText.string)
                                         .onTapGesture {
                                             viewModel.fetchPlaceDetails(placeID: result.placeID)
-                                            viewModel.location = result.attributedPrimaryText.string
+                                            viewModel.pointName = result.attributedPrimaryText.string
                                             viewModel.autocompleteResults.removeAll()
                                         }
                                 }
@@ -119,4 +119,3 @@ struct EventEditView: View {
         }
     }
 }
-
