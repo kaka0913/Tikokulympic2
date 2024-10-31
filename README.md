@@ -26,8 +26,8 @@ ViewModelでは、画面に表示するのに必要なデータをサービス�
 <img alt="使用技術" src="https://skillicons.dev/icons?theme=light&perline=8&i=swift,python,supabase,firebase" />
 
 
-- モバイル -> **Swift SwiftUI UIKit Combine Alamofire**
-- バックエンド -> **Python FastAPI WebSocket(導入中)**
+- モバイル -> **Swift SwiftUI Alamofire**
+- バックエンド -> **Python FastAPI WebSocket**
 - DB -> **Supabase**
 - デプロイ -> **Render**
 - 認証 -> **SupabaseAuth**

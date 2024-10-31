@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct ProfileImageView: View {
     @State private var uploadedImage: UIImage? = nil

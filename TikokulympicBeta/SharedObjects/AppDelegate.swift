@@ -13,7 +13,6 @@ import Foundation
 import GoogleSignIn
 import SwiftUI
 import UserNotifications
-import UIKit
 import GooglePlaces
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
