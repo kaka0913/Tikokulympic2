@@ -31,20 +31,29 @@ struct EventListCard: View {
                                     .padding(.leading, 70)
                             }
                             .alert(isPresented: $showingDeleteAlert) {
-                                Alert(
-                                    title: Text("確認"),
-                                    message: Text("このイベントを削除してもいいですか？"),
-                                    primaryButton: .destructive(Text("はい")) {
-                                        Task {
-                                            await buttonAction()
+                                if savedIds.contains(event.id) {
+                                    return Alert(
+                                        title: Text("確認"),
+                                        message: Text("このイベントを削除してもいいですか？"),
+                                        primaryButton: .destructive(Text("はい")) {
+                                            Task {
+                                                await buttonAction()
+                                            }
+                                            showingDeleteAlert = false
+                                        },
+                                        secondaryButton: .cancel(Text("キャンセル")) {
+                                            showingDeleteAlert = false
                                         }
-                                        showingDeleteAlert = false
-                                    },
-                                    secondaryButton: .cancel(Text("キャンセル"))
-                                        {
-                                        showingDeleteAlert = false
+                                    )
+                                } else {
+                                    return Alert(
+                                        title: Text("削除不可"),
+                                        message: Text("このイベントの作成者ではないので削除できません"),
+                                        dismissButton: .default(Text("閉じる")) {
+                                            showingDeleteAlert = false
                                         }
-                                )
+                                    )
+                                }
                             }
 
                             VStack(spacing: 0) {

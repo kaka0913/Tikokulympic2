@@ -8,6 +8,9 @@
 import SwiftUI
 import GooglePlaces
 
+let key = "createdEventIds"
+var savedIds = UserDefaults.standard.array(forKey: key) as? [Int] ?? []
+
 class EventEditViewModel: ObservableObject {
     @Published var eventName = ""
     @Published var eventDescription = ""
@@ -98,8 +101,6 @@ class EventEditViewModel: ObservableObject {
     }
 
     func addIdToUserDefaults(_ newId: Int) {
-        let key = "createdEventIds"
-        var savedIds = UserDefaults.standard.array(forKey: key) as? [Int] ?? []
         savedIds.append(newId)
         UserDefaults.standard.set(savedIds, forKey: key)
     }
