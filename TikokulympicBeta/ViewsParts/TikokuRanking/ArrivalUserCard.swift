@@ -14,11 +14,11 @@ struct ArrivalUserCard: View {
         ZStack {
             Group {
                 if user.arrivalTime <= 0 {
-                    ThemeColor.customGreen
+                    ThemeColor.customGreen.opacity(0.7)
                 } else if user.arrivalTime <= 10 {
-                    ThemeColor.customYellow
+                    ThemeColor.customYellow.opacity(0.7)
                 } else {
-                    ThemeColor.orange
+                    ThemeColor.orange.opacity(0.7)
                 }
             }
             .frame(height: 80)

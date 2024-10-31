@@ -8,28 +8,30 @@
 import SwiftUI
 import GooglePlaces
 
+let key = "createdEventIds"
+var savedIds = UserDefaults.standard.array(forKey: key) as? [Int] ?? []
+
 class EventEditViewModel: ObservableObject {
     @Published var eventName = ""
     @Published var eventDescription = ""
     @Published var startDateTime = Date()
     @Published var endDateTime = Date()
     @Published var applicationDeadline = Date()
-    @Published var location = ""
+    @Published var locationName = ""
+    @Published var pointName = ""
     @Published var fee = ""
     @Published var contactInfo = ""
     @Published var latitude  = 0.0
     @Published var longitude = 0.0
-    @Published var searchText = ""
     @Published var autocompleteResults: [GMSAutocompletePrediction] = []
-    
-    let options: [Option] = []
+
     let placesClient = GMSPlacesClient.shared()
  
     var isFormValid: Bool {
         return !eventName.isEmpty &&
                !eventDescription.isEmpty &&
                startDateTime < endDateTime &&
-               !location.isEmpty &&
+               !locationName.isEmpty &&
                !fee.isEmpty &&
                !contactInfo.isEmpty
     }
@@ -67,32 +69,39 @@ class EventEditViewModel: ObservableObject {
             }
 
             DispatchQueue.main.async {
-                print((results as! [GMSAutocompletePrediction]).map{$0.attributedPrimaryText.string} )
                 self.autocompleteResults = results ?? []
             }
         }
     }
 
     func completeEditing() async {
-        guard let cost = Int(fee) else {
+        guard Int(fee) != nil else {
             print("数字のみを入力してください")
             return
         }
+        do {
+            let response = try await EventService.shared.postNewEvent(
+                title: eventName,
+                description: eventDescription,
+                isAllDay: false,
+                startDateTime: startDateTime,
+                endDateTime: endDateTime,
+                closingDateTime: applicationDeadline,
+                locationName: locationName,
+                cost: Int(fee) ?? 0,
+                message: contactInfo,
+                latitude: self.latitude,
+                longitude: self.longitude
+            )
+            self.addIdToUserDefaults(response.event_id)
+            
+        } catch {
+            print("イベントの更新に失敗しました: \(error)")
+        }
+    }
 
-        let userid = UserDefaults.standard.integer(forKey: "userid")
-        
-        await EventService.shared.postNewEvent(
-            title: eventName,
-            description: eventDescription,
-            isAllDay: false,
-            startDateTime: startDateTime,
-            endDateTime: endDateTime,
-            closingDateTime: applicationDeadline,
-            locationName: searchText,
-            cost: Int(fee) ?? 0,
-            message: contactInfo,
-            latitude: self.latitude,
-            longitude: self.longitude
-        )
+    func addIdToUserDefaults(_ newId: Int) {
+        savedIds.append(newId)
+        UserDefaults.standard.set(savedIds, forKey: key)
     }
 }

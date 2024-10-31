@@ -6,7 +6,6 @@
 //
 
 import CoreLocation
-import UIKit
 import SwiftUI
 
 class TikokuRankingViewModel: ObservableObject {

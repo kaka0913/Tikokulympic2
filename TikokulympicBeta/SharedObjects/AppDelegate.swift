@@ -13,7 +13,6 @@ import Foundation
 import GoogleSignIn
 import SwiftUI
 import UserNotifications
-import UIKit
 import GooglePlaces
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,10 +42,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         
         // インクリメンタルサーチのためのAPIキーの設定
-        if let  apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
-            GMSPlacesClient.provideAPIKey(APIKeyManager.shared.apiKey(for: apiKey) ?? "")
+        if let apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
+            GMSPlacesClient.provideAPIKey(apiKey)
+        } else {
+            print("API key not found.")
         }
-        
         // デフォルトのユーザー情報を設定
         setupDefaultUserInfo()
 
@@ -152,29 +152,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setupDefaultUserInfo() {
 
-        // TODO: 通知できるまではデフォルトの値を入れておく
-        let title = "ハッカソン"
-        let location = "立命館大学OIC"
-        let latitude: Double = 34.8103
-        let longitude: Double = 135.5610
-        let eventid = 37
-
-        // TODO: 時間はいったん現在の1時間後に設定
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone.current // 必要に応じて設定
-
-        let startTimeDate = Date().addingTimeInterval(3600) // 1時間後
-        let startTime = dateFormatter.string(from: startTimeDate)
-
-        UserDefaults.standard.set(latitude, forKey: "latitude")
-        UserDefaults.standard.set(longitude, forKey: "longitude")
-        UserDefaults.standard.set(startTime, forKey: "start_time")
-        UserDefaults.standard.set(title, forKey: "title")
-        UserDefaults.standard.set(location, forKey: "location")
-        UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")// ここをtrueにすれば位置情報送信はストップする
-        UserDefaults.standard.set(eventid, forKey: "eventid")
     }
 
     private func requestNotificationAuthorization() {
@@ -311,7 +288,7 @@ extension AppDelegate: MessagingDelegate {
     @objc func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
             UserDefaults.standard.set(token, forKey: "fcmToken")
-            print("Firebase token: \(String(describing: fcmToken))")
+            print("Firebase tokenの保存が完了しました")
             
         } else {
             print("FCM tokenの取得に失敗しました")
@@ -344,46 +321,61 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     // 通知のデータを処理してUserDefaultsに保存するメソッド
     private func processNotificationData(userInfo: [AnyHashable: Any]) {
-        if let data = userInfo["data"] as? [String: Any] {
-            if let eventIdString = data["event_id"] as? String,
-               let eventId = Int(eventIdString),
-               let title = data["title"] as? String,
-               let location = data["location"] as? String,
-               let latitudeString = data["latitude"] as? String,
-               let latitude = Double(latitudeString),
-               let longitudeString = data["longitude"] as? String,
-               let longitude = Double(longitudeString),
-               let startTime = data["start_time"] as? String {
-                
-                // UserDefaultsに保存
-                UserDefaults.standard.set(eventId, forKey: "eventid")
-                UserDefaults.standard.set(title, forKey: "title")
-                UserDefaults.standard.set(location, forKey: "location")
-                UserDefaults.standard.set(latitude, forKey: "latitude")
-                UserDefaults.standard.set(longitude, forKey: "longitude")
-                UserDefaults.standard.set(startTime, forKey: "start_time")
-                
-                // 到着通知フラグをリセット
-                UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")
-                
-                // 位置情報更新の再評価と開始
-                if shouldStartLocationUpdates() {
-                    if !hasSentArrivalNotification && locationTimer == nil {
-                        startLocationTimer()
-                    }
-                    // WebSocketの再接続
-                    if !WebSocketClient.shared.isConnected {
-                        WebSocketClient.shared.connect()
-                    }
-                } else {
-                    // 必要に応じて位置情報更新を停止
-                    stopLocationUpdates()
-                }
-            } else {
-                print("通知データの解析に失敗しました")
+
+        guard let title = userInfo["title"] as? String,
+              let location = userInfo["location"] as? String,
+              let latitudeValue = userInfo["latitude"],
+              let longitudeValue = userInfo["longitude"],
+              let eventid = userInfo["event_id"],
+              let startTime = userInfo["start_time"] else {
+            print("👩‍🚀 通知データの解析に失敗しました。必要なキーが不足している可能性があります")
+            return
+        }
+        
+        let latitude: Double
+        let longitude: Double
+        
+        if let lat = latitudeValue as? Double {
+            latitude = lat
+        } else if let latString = latitudeValue as? String, let lat = Double(latString) {
+            latitude = lat
+        } else {
+            print("👩‍🚀 緯度の値が無効です:", latitudeValue)
+            return
+        }
+        
+        if let lon = longitudeValue as? Double {
+            longitude = lon
+        } else if let lonString = longitudeValue as? String, let lon = Double(lonString) {
+            longitude = lon
+        } else {
+            print("👩‍🚀 経度の値が無効です:", longitudeValue)
+            return
+        }
+        
+        // UserDefaultsに保存
+        UserDefaults.standard.set(eventid, forKey: "eventid")
+        UserDefaults.standard.set(title, forKey: "title")
+        UserDefaults.standard.set(location, forKey: "location")
+        UserDefaults.standard.set(latitude, forKey: "latitude")
+        UserDefaults.standard.set(longitude, forKey: "longitude")
+        UserDefaults.standard.set(startTime, forKey: "start_time")
+        
+        // 到着通知フラグをリセット
+        UserDefaults.standard.set(false, forKey: "hasSentArrivalNotification")
+        
+        // 位置情報更新の再評価と開始
+        if shouldStartLocationUpdates() {
+            if !hasSentArrivalNotification && locationTimer == nil {
+                startLocationTimer()
+            }
+            // WebSocketの再接続
+            if !WebSocketClient.shared.isConnected {
+                WebSocketClient.shared.connect()
             }
         } else {
-            print("通知にデータが含まれていません")
+            // 必要に応じて位置情報更新を停止
+            stopLocationUpdates()
         }
     }
 }

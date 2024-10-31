@@ -8,7 +8,7 @@ struct SignupResponse: ResponseProtocol {
 struct SignupRequest: RequestProtocol {
     typealias Response = SignupResponse
     var method: HTTPMethod { .post }
-    var path: String { "/signup" }
+    var path: String { "/auth/signup" }
     let token: String
     let user_name: String
     let auth_id: Int
