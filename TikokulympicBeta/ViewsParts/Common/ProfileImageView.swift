@@ -12,7 +12,7 @@ struct ProfileImageView: View {
     @State private var isDownloading: Bool = false
     @State private var errorMessage: String = ""
     
-    private let supabaseService = SupabaseService()
+    private let supabaseService = SupabaseService.shared
     let userid: String
 
     var body: some View {

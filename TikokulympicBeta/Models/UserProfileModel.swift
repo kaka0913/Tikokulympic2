@@ -35,7 +35,7 @@ class UserProfileModel {
     var errorMessage: String? // エラーメッセージ表示用
     var profile: UserProfileResponse?
 
-    private let supabaseService = SupabaseService()
+    private let supabaseService = SupabaseService.shared
     let authService = AuthService.shared
     let userProfileService = UserProfileService()
 
