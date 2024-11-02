@@ -83,7 +83,7 @@ class AuthViewModel: ObservableObject {
             } else if let uid = authResult?.user.uid {
                 print("Firebaseのサインアップに成功しました")
                 
-                UserProfileModel.shared.authid = uid
+                SignupUserProfileModel.shared.authid = uid
                 
                 DispatchQueue.main.async {
                     self.isSignUpSuccess = true

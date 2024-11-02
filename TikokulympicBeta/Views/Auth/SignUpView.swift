@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @Environment(\.userProfileModel) private var userProfileModel: UserProfileModel
+    @Environment(\.signupUserProfileModel) private var signupUserProfileModel: SignupUserProfileModel
     @State private var isShowingImagePicker = false
     @State private var userName: String = ""
     @State private var realName: String = ""
@@ -34,7 +34,7 @@ struct SignUpView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
-            if let selectedImage = userProfileModel.selectedImage {
+            if let selectedImage = signupUserProfileModel.selectedImage {
                 Image(uiImage: selectedImage)
                     .resizable()
                     .scaledToFit()
@@ -65,12 +65,12 @@ struct SignUpView: View {
             Button(action: {
                 Task {
                     do {
-                        try await userProfileModel.registerNewUser(userName: userName, realName: realName)
+                        try await signupUserProfileModel.registerNewUser(userName: userName, realName: realName)
                     } catch {
-                        userProfileModel.errorMessage = error.localizedDescription
+                        signupUserProfileModel.errorMessage = error.localizedDescription
                     }
                     
-                    if userProfileModel.errorMessage != nil {
+                    if signupUserProfileModel.errorMessage != nil {
                         withAnimation {
                             showToast = true
                         }
@@ -93,7 +93,7 @@ struct SignUpView: View {
         }
         .padding()
 
-        if showToast, let errorMessage = userProfileModel.errorMessage {
+        if showToast, let errorMessage = signupUserProfileModel.errorMessage {
             Text(errorMessage)
             .foregroundColor(.white)
             .padding()

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct AuthProfileImage: View {
-    @Environment(\.userProfileModel) var userProfileModel: UserProfileModel
+    @Environment(\.signupUserProfileModel) var signupUserProfileModel: SignupUserProfileModel
     @State private var isShowingImagePicker = false
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            if let image = userProfileModel.uploadedImage {
+            if let image = signupUserProfileModel.uploadedImage {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
@@ -42,8 +42,8 @@ struct AuthProfileImage: View {
                     isShowingImagePicker = true
                 }
         }
-        .onChange(of: userProfileModel.selectedImage) {
-            userProfileModel.uploadImage()
+        .onChange(of: signupUserProfileModel.selectedImage) {
+            signupUserProfileModel.uploadImage()
         }
         .sheet(isPresented: $isShowingImagePicker) {
             ImagePicker()

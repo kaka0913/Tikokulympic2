@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
-    @Environment(\.userProfileModel) var userProfileModel: UserProfileModel
+    @Environment(\.signupUserProfileModel) var signupUserProfileModel: SignupUserProfileModel
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
@@ -23,7 +23,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
         ) {
             if let image = info[.originalImage] as? UIImage {
-                parent.userProfileModel.selectedImage = image
+                parent.signupUserProfileModel.selectedImage = image
             }
 
             parent.presentationMode.wrappedValue.dismiss()

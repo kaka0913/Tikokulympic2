@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var userProfileModel = UserProfileModel.shared
+    @State var signupUserProfileModel = SignupUserProfileModel.shared
 
     var body: some View {
         TabView {
@@ -32,7 +32,7 @@ struct ContentView: View {
                         .background(ThemeColor.customGreen)
                     Text("プロフィール")
                 }
-                .environment(userProfileModel)
+                .environment(signupUserProfileModel)
             
         }
     }

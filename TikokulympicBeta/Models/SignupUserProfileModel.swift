@@ -1,29 +1,22 @@
-//
-//  UserProfileModel.swift
-//  TikokulympicBeta
-//
-//  Created by 株丹優一郎 on 2024/09/23.
-//
-
 import Foundation
 import SwiftUI
 
-struct UserProfileModelKey: EnvironmentKey {
+struct SignupUserProfileModelKey: EnvironmentKey {
     // デフォルト値が指定できる
-    static let defaultValue: UserProfileModel = UserProfileModel.shared
+    static let defaultValue: SignupUserProfileModel = SignupUserProfileModel.shared
 }
 
 extension EnvironmentValues {
-    var userProfileModel: UserProfileModel {
-        get { self[UserProfileModelKey.self] }
-        set { self[UserProfileModelKey.self] = newValue }
+    var signupUserProfileModel: SignupUserProfileModel {
+        get { self[SignupUserProfileModelKey.self] }
+        set { self[SignupUserProfileModelKey.self] = newValue }
     }
 }
 
 
 @Observable
-class UserProfileModel {
-    static let shared = UserProfileModel()
+class SignupUserProfileModel {
+    static let shared = SignupUserProfileModel()
 
     var userName: String?
     var realName: String?
