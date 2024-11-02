@@ -11,16 +11,27 @@ class AuthService {
     private let apiClient = APIClient.shared
     static let shared = AuthService()
     
-    func postSignup(token: String, userName: String, authId: Int) async throws -> SignupResponse {
+    func postSignup(token: String, userName: String, authId: String) async throws -> SignupResponse {
         let request = SignupRequest(
-            token: token,
             user_name: userName,
-            auth_id: authId
+            auth_id: authId,
+            token: token
         )
+        print("request: \(request)")
         do {
             return try await apiClient.call(request: request)
         } catch {
             print("サインアップに失敗しました: \(error)")
+            throw error
+        }
+    }
+    
+    func postSignin(id: String) async throws -> SigninResponse {
+        let request = SigninRequest(id: id)
+        do {
+            return try await apiClient.call(request: request)
+        } catch {
+            print("サインインに失敗しました: \(error)")
             throw error
         }
     }

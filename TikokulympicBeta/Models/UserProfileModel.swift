@@ -34,6 +34,7 @@ class UserProfileModel {
     var isDownloading: Bool = false
     var errorMessage: String? // エラーメッセージ表示用
     var profile: UserProfileResponse?
+    var authid: String = ""
 
     private let supabaseService = SupabaseService.shared
     let authService = AuthService.shared
@@ -79,22 +80,20 @@ class UserProfileModel {
         Task {
             do {
                 let fcmToken = UserDefaults.standard.string(forKey: "fcmToken")
-
-                let authId = 123 //TODO: authIDを取得する必要あり
-                
                 let response = try await authService.postSignup(
-                    token: fcmToken ?? "getfcmtokenFailure ",
+                    token: fcmToken ?? "getfcmtokenFailure",
                     userName: userName,
-                    authId: authId
+                    authId: authid
                 )
-                
+                print("ユーザー登録に成功しました: \(response.id)")
                 
                 UserDefaults.standard.set(response.id, forKey: "userid")
                 
                 self.uploadImage()
                 
             } catch {
-                self.errorMessage = "登録に失敗しました: \(error.localizedDescription)"
+                print("ユーザ登録に失敗しました: \(error.localizedDescription)")
+                self.errorMessage = "ユーザ登録に失敗しました: \(error.localizedDescription)"
             }
         }
     }
