@@ -8,10 +8,13 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(\.userProfileModel) var userProfileModel
+    @State private var isDrawerOpen = false
+    @State private var isNotificationsEnabled = false
+    @State private var isLocationEnabled = false
 
     var body: some View {
-        VStack {
-            if let profile = userProfileModel.profile {
+        if let profile = userProfileModel.profile {
+            ZStack {
                 VStack {
                     VStack(spacing: 0) {
                         VStack(alignment: .leading) {
@@ -28,6 +31,18 @@ struct ProfileView: View {
                                     .bold()
                                 
                                 Spacer()
+                                
+                                Button(action: {
+                                    withAnimation {
+                                        isDrawerOpen.toggle()
+                                    }
+                                }) {
+                                    Image(systemName: "gear")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 25))
+                                }
+                                
+                                Spacer()
                             }
                             .padding(.bottom, 4)
                             
@@ -35,7 +50,6 @@ struct ProfileView: View {
                                 .frame(height: 2)
                                 .padding(.horizontal, 40)
                                 .foregroundColor(.white)
-                            
                         }
                         VStack(spacing: 15) {
                             HStack(spacing: 16) {
@@ -83,14 +97,67 @@ struct ProfileView: View {
                     
                     Spacer()
                 }
-            } else {
-                VStack {
-                    Spacer()
-                    ProgressView("プロフィールを読み込み中...")
-                        .progressViewStyle(CircularProgressViewStyle(tint: .green))
-                        .scaleEffect(1.5)
-                    Spacer()
+                
+                if isDrawerOpen {
+                    VStack {
+                        GeometryReader { geometry in
+                            ZStack(alignment: .trailing) {
+                                Color.black.opacity(isDrawerOpen ? 0.4 : 0)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            isDrawerOpen.toggle()
+                                        }
+                                    }
+                                
+                                VStack(alignment: .leading, spacing: 30) {
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        print("ログアウトボタンが押されました")
+                                    }) {
+                                        Text("ログアウト")
+                                            .foregroundColor(.red)
+                                            .font(.title3)
+                                    }
+                                    
+                                    Button(action: {
+                                        print("ユーザ名変更ボタンが押されました")
+                                    }) {
+                                        Text("ユーザ名変更")
+                                            .foregroundColor(.black)
+                                            .font(.title3)
+                                    }
+                                    
+                                    Toggle(isOn: $isNotificationsEnabled) {
+                                        Text("通知")
+                                            .font(.title3)
+                                    }
+                                    
+                                    Toggle(isOn: $isLocationEnabled) {
+                                        Text("位置情報")
+                                            .font(.title3)
+                                    }
+                                    
+                                    Spacer()
+                                }
+                                .frame(width: geometry.size.width * 0.6)
+                                .padding()
+                                .background(Color.white)
+                            }
+                            .edgesIgnoringSafeArea(.top)
+                        }
+                        Spacer()
+                    }
+                    .transition(.move(edge: .trailing))
                 }
+            }
+        } else {
+            VStack {
+                Spacer()
+                ProgressView("プロフィールを読み込み中...")
+                    .progressViewStyle(CircularProgressViewStyle(tint: .green))
+                    .scaleEffect(1.5)
+                Spacer()
             }
         }
     }
@@ -99,14 +166,5 @@ struct ProfileView: View {
         let hours = totalLateTime / 60
         let minutes = totalLateTime % 60
         return "\(hours)h \(minutes)m"
-    }
-}
-
-
-
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }
