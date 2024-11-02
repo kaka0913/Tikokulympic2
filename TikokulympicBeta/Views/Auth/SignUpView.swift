@@ -79,7 +79,7 @@ struct SignUpView: View {
                     }
                 }
             }) {
-                Text("新規登録")
+                Text("アプリを開始")
                     .padding(.vertical, 12)
                     .padding(.horizontal, 50)
                     .background(Color.green)
@@ -106,14 +106,5 @@ struct SignUpView: View {
             .animation(.easeInOut, value: showToast)
         }
         
-    }
-}
-
-
-
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
-            .environment(\.userProfileModel, UserProfileModel())
     }
 }
