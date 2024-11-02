@@ -7,13 +7,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.userProfileModel) var userProfileModel
+    @StateObject private var viewModel = ProfileViewModel()
     @State private var isDrawerOpen = false
     @State private var isNotificationsEnabled = false
     @State private var isLocationEnabled = false
 
     var body: some View {
-        if let profile = userProfileModel.profile {
+        if let profile = viewModel.profile {
             ZStack {
                 VStack {
                     VStack(spacing: 0) {
