@@ -11,7 +11,8 @@ struct ProfileView: View {
     @State private var isDrawerOpen = false
     @State private var isNotificationsEnabled = false
     @State private var isLocationEnabled = false
-
+    @State private var showSignOutConfirmation = false
+    
     var body: some View {
         if let profile = viewModel.profile {
             ZStack {
@@ -113,13 +114,12 @@ struct ProfileView: View {
                                     Spacer()
                                     
                                     Button(action: {
-                                        print("ログアウトボタンが押されました")
+                                        showSignOutConfirmation = true
                                     }) {
-                                        Text("ログアウト")
+                                        Text("サインアウト")
                                             .foregroundColor(.red)
                                             .font(.title3)
                                     }
-                                    
                                     Button(action: {
                                         print("ユーザ名変更ボタンが押されました")
                                     }) {
@@ -150,6 +150,16 @@ struct ProfileView: View {
                     }
                     .transition(.move(edge: .trailing))
                 }
+            }
+            .alert(isPresented: $showSignOutConfirmation) {
+                Alert(
+                    title: Text("サインアウト"),
+                    message: Text("本当にサインアウトしますか？"),
+                    primaryButton: .destructive(Text("サインアウト")) {
+                        //viewModel.signOut() //TODO: 実験してみる
+                    },
+                    secondaryButton: .cancel(Text("キャンセル"))
+                )
             }
         } else {
             VStack {
