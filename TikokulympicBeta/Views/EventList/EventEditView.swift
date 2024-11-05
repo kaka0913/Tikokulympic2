@@ -55,30 +55,36 @@ struct EventEditView: View {
                                 
                                 VStack(alignment: .leading) {
                                     Text("地点名（検索）:")
-                                        .font(.headline)
+                                        .font(.system(size: 15))
+                                        .bold()
                                     TextField("地点を入力してください", text: $viewModel.pointName, onEditingChanged: { isEditing in
                                         if !isEditing {
                                             viewModel.autocompleteResults.removeAll()
                                         }
                                     })
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .padding()
                                     .onChange(of: viewModel.pointName) { newValue in
                                         viewModel.fetchAutocompleteResults(input: newValue)
                                     }
                                     
-                                    ForEach(viewModel.autocompleteResults, id: \.placeID) { result in
-                                        Text(result.attributedPrimaryText.string)
+                                        ForEach(viewModel.autocompleteResults, id: \.placeID) { result in
+                                            HStack{
+                                                Image(systemName: "figure.walk.diamond")
+                                                Text(result.attributedPrimaryText.string)
+                                                    .font(.system(size: 15))
+                                                    .bold()
+                                            }
                                             .onTapGesture {
                                                 viewModel.fetchPlaceDetails(placeID: result.placeID)
                                                 viewModel.pointName = result.attributedPrimaryText.string
                                                 viewModel.autocompleteResults.removeAll()
                                             }
-                                    }
+                                        }
+                                    
+                                    
                                 }
                                 .onChange(of: viewModel.autocompleteResults) { results in
                                                 if let lastResult = results.last {
-                                                    // Scroll to the last item
                                                     ScrollProxy.scrollTo(lastResult.placeID, anchor: .bottom)
                                                 }
                                             }

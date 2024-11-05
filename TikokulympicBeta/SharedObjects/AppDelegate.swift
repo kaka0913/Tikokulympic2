@@ -42,11 +42,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         
         // インクリメンタルサーチのためのAPIキーの設定
-                if let apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
-                    GMSPlacesClient.provideAPIKey(apiKey)
-                } else {
-                    print("API key not found.")
-                }
+        if let apiKey = APIKeyManager.shared.apiKey(for: "GMSPlacesClient_API_Key") {
+            GMSPlacesClient.provideAPIKey(apiKey)
+        } else {
+            print("API key not found.")
+        }
         // デフォルトのユーザー情報を設定
         setupDefaultUserInfo()
 
