@@ -31,13 +31,18 @@ struct ParticipationStatusRow: View {
             if let participants = option.participants?.participants {
                 ForEach(participants) { participant in
                     HStack {
-                        Text(String(participant.name!.prefix(1)))
-                            .font(.caption)
-                            .foregroundColor(.white)
-                            .frame(width: 20, height: 20)
-                            .background(Color.blue)
-                            .clipShape(Circle())
-                            .padding(.trailing, 10)
+                        if let userId = participant.userId {
+                            ProfileImageView( userid: String(userId), FrameSize: 20)
+                                .frame(width: 20, height: 20)
+                        } else {
+                            Text(String(participant.name?.prefix(1) ?? ""))
+                                .font(.caption)
+                                .foregroundColor(.white)
+                                .frame(width: 20, height: 20)
+                                .background(Color.blue)
+                                .clipShape(Circle())
+                                .padding(.trailing, 10)
+                        }
                         
                         Text(participant.name ?? "")
                             .font(.caption)
