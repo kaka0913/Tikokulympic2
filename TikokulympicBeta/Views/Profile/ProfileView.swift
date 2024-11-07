@@ -111,7 +111,7 @@ struct ProfileView: View {
                     VStack {
                         GeometryReader { geometry in
                             ZStack(alignment: .trailing) {
-                                Color.black.opacity(isDrawerOpen ? 0.4 : 0)
+                                Color.black.opacity(isDrawerOpen ? 0.2 : 0)
                                     .onTapGesture {
                                         withAnimation {
                                             isDrawerOpen.toggle()
@@ -164,7 +164,7 @@ struct ProfileView: View {
                     title: Text("サインアウト"),
                     message: Text("本当にサインアウトしますか？"),
                     primaryButton: .destructive(Text("サインアウト")) {
-                        //viewModel.signOut() //TODO: 実験してみる
+                        viewModel.signOut()
                     },
                     secondaryButton: .cancel(Text("キャンセル"))
                 )
