@@ -15,7 +15,7 @@ class ProfileViewModel: ObservableObject {
     var uploadedImage: UIImage? // Supabaseからダウンロードした画像
     var isUploading: Bool = false
     var isDownloading: Bool = false
-    var profile: UserProfileResponse?
+    @Published var profile: UserProfileResponse?
 
     private let supabaseService = SupabaseService.shared
     let userProfileService = UserProfileService()
@@ -43,6 +43,7 @@ class ProfileViewModel: ObservableObject {
             let profile = try await userProfileService.getProfile()
             self.profile = profile
             print("プロフィールの取得に成功しました")
+            print(profile)
         } catch {
             print("プロフィールの取得に失敗しました: \(error)")
         }

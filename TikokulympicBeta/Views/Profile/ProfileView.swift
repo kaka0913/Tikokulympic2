@@ -63,6 +63,13 @@ struct ProfileView: View {
                                     }
                                     
                                     VStack(alignment: .leading, spacing: 15) {
+                                        
+                                        HStack {
+                                            Image(systemName: "exclamationmark.triangle.fill")
+                                            Text("遅刻ポイント: \(profile.tikokuPoint)")
+                                                .font(.title2)
+                                        }
+                                        
                                         HStack {
                                             Image(systemName: "clock.fill")
                                             Text("遅刻回数: \(profile.lateCount)")
@@ -80,6 +87,7 @@ struct ProfileView: View {
                                             Text("総遅刻時間: \(formatLateTime(totalLateTime: profile.totalLateTime))")
                                                 .font(.title2)
                                         }
+                                        
                                         Spacer()
                                     }
                                     .padding(.leading, 8)

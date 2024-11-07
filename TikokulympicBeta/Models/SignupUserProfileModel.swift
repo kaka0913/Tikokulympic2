@@ -45,10 +45,10 @@ class SignupUserProfileModel {
         do {
             let profile = try await userProfileService.getProfile()
             self.profile = profile
-            print("プロフィールの取得に成功しました")
+            print("サインアップ時のプロフィールの取得に成功しました")
         } catch {
-            self.errorMessage = "プロフィールの取得に失敗しました: \(error.localizedDescription)"
-            print("プロフィールの取得に失敗しました: \(error)")
+            self.errorMessage = "サインアップ時のプロフィールの取得に失敗しました: \(error.localizedDescription)"
+            print("サインアップ時のプロフィールの取得に失敗しました: \(error)")
         }
     }
  
