@@ -9,11 +9,19 @@ import Foundation
 import Alamofire
 
 struct LateCountRankingResponse: ResponseProtocol, Decodable {
-    let ranking: [TotalUserRanking]
+    let ranking: [LateCountRankingData]
 }
 
 struct LateCountRankingRequest: RequestProtocol {
     typealias Response = LateCountRankingResponse
     var method: HTTPMethod { .get }
     var path: String { "/rankings/count"}
+}
+
+struct LateCountRankingData: Decodable, Identifiable, RankingParticipant {
+    let id: Int
+    let position: Int
+    let name: String
+    let alias: String
+    let count: Int
 }

@@ -16,13 +16,18 @@ class ProfileViewModel: ObservableObject {
     var isUploading: Bool = false
     var isDownloading: Bool = false
     @Published var profile: UserProfileResponse?
+    @Published var lateTimeRanking: [LateTimeRankingData]?
+    @Published var lateCountRanking: [LateCountRankingData]?
+    @Published var latePointRanking: [LatePointRankingData]?
 
     private let supabaseService = SupabaseService.shared
     let userProfileService = UserProfileService()
+    let totalUserRankingService = TotalUserRankingService()
 
     init() {
         Task {
             await fetchProfile()
+            await getRankings()
         }
     }
     
@@ -45,6 +50,25 @@ class ProfileViewModel: ObservableObject {
             print(profile)
         } catch {
             print("プロフィールの取得に失敗しました: \(error)")
+        }
+    }
+    
+    @MainActor
+    func getRankings() async {
+        do {
+            let lateTimeRanking = try await totalUserRankingService.getTotalTimeRanking()
+            self.lateTimeRanking = lateTimeRanking
+            print("遅刻時間ランキングの取得に成功しました")
+            
+            let lateCountRanking = try await totalUserRankingService.getLateCountRanking()
+            self.lateCountRanking = lateCountRanking
+            print("遅刻回数ランキングの取得に成功しました")
+            
+            let latePointRanking = try await totalUserRankingService.getLatePointRanking()
+            self.latePointRanking = latePointRanking
+            print("遅刻ポイントランキングの取得に成功しました")
+        } catch {
+            print("ランキングの取得に失敗しました: \(error)")
         }
     }
 }
