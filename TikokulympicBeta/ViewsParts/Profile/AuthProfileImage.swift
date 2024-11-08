@@ -10,6 +10,7 @@ import SwiftUI
 struct AuthProfileImage: View {
     @Environment(\.signupUserProfileModel) var signupUserProfileModel: SignupUserProfileModel
     @State private var isShowingImagePicker = false
+    let userid = UserDefaults.standard.integer(forKey: "userid")
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -43,15 +44,13 @@ struct AuthProfileImage: View {
                 }
         }
         .onChange(of: signupUserProfileModel.selectedImage) {
-            signupUserProfileModel.uploadImage()
+            Task {
+                try await signupUserProfileModel.uploadImage(userid: userid)
+            }
         }
         .sheet(isPresented: $isShowingImagePicker) {
             ImagePicker()
         }
     }
 
-}
-
-#Preview {
-    AuthProfileImage()
 }

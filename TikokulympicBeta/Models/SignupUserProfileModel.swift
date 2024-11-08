@@ -34,24 +34,13 @@ class SignupUserProfileModel {
     let userProfileService = UserProfileService()
 
     init() {
-        Task {
-            await downloadProfileImage()
-            await fetchProfile()
+        let userid = UserDefaults.standard.integer(forKey: "userid")
+        if userid != 0 {
+            Task {
+                await downloadProfileImage()
+            }
         }
     }
-    
-    @MainActor
-    func fetchProfile() async {
-        do {
-            let profile = try await userProfileService.getProfile()
-            self.profile = profile
-            print("サインアップ時のプロフィールの取得に成功しました")
-        } catch {
-            self.errorMessage = "サインアップ時のプロフィールの取得に失敗しました: \(error.localizedDescription)"
-            print("サインアップ時のプロフィールの取得に失敗しました: \(error)")
-        }
-    }
- 
     //TODO: realNameをまだ登録できない
     func registerNewUser(userName: String, realName: String) async throws {
         //文字のバリデーション
@@ -70,54 +59,44 @@ class SignupUserProfileModel {
             return
         }
             
-        Task {
-            do {
-                let fcmToken = UserDefaults.standard.string(forKey: "fcmToken")
-                let response = try await authService.postSignup(
-                    token: fcmToken ?? "getfcmtokenFailure",
-                    userName: userName,
-                    authId: authid
-                )
-                print("ユーザー登録に成功しました: \(response.id)")
-                
-                UserDefaults.standard.set(response.id, forKey: "userid")
-                
-                self.uploadImage()
-                
-            } catch {
-                print("ユーザ登録に失敗しました: \(error.localizedDescription)")
-                self.errorMessage = "ユーザ登録に失敗しました: \(error.localizedDescription)"
-            }
+        do {
+
+            let fcmToken = UserDefaults.standard.string(forKey: "fcmToken")
+            let response = try await authService.postSignup(
+                token: fcmToken ?? "getfcmtokenFailure",
+                userName: userName,
+                authId: authid
+            )
+            try await uploadImage(userid: response.id)
+            UserDefaults.standard.set(response.id, forKey: "userid")
+            
+        } catch {
+            print("ユーザ登録に失敗しました: \(error.localizedDescription)")
+            self.errorMessage = "ユーザ登録に失敗しました: \(error.localizedDescription)"
         }
     }
     
     // 選択した画像をアップロードする関数
-    func uploadImage() {
+    func uploadImage(userid: Int) async throws {
         guard let image = selectedImage,
               let imageData = image.jpegData(compressionQuality: 0.8) else {
-            self.errorMessage = "アップロードする画像を選択してください。"
-            return
+            throw NSError(domain: "ImageError", code: -1, userInfo: [NSLocalizedDescriptionKey: "アップロードする画像を選択してください。"])
         }
-        
-        let userid = UserDefaults.standard.integer(forKey: "userid")
 
         isUploading = true
-        Task {
-            do {
-                try await supabaseService.uploadImage(
-                    imageData: imageData,
-                    userid: userid
-                )
-                // アップロード成功後、画像をダウンロードして表示
-                await downloadProfileImage()
-            } catch {
-                DispatchQueue.main.async {
-                    self.errorMessage = "アップロードに失敗しました: \(error.localizedDescription)"
-                }
-            }
-            DispatchQueue.main.async {
-                self.isUploading = false
-            }
+        defer { isUploading = false }
+        
+        do {
+            try await supabaseService.uploadImage(
+                imageData: imageData,
+                userid: userid
+            )
+            print("画像のアップロードに成功しました")
+            // アップロード成功後、画像をダウンロードして表示
+            await downloadProfileImage()
+        } catch {
+            self.errorMessage = "アップロードに失敗しました: \(error.localizedDescription)"
+            print("アップロードエラーの詳細: \(error)")
         }
     }
 
