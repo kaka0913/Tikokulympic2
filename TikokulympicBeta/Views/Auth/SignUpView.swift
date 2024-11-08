@@ -92,6 +92,7 @@ struct SignUpView: View {
             }
         }
         .padding()
+        .navigationBarHidden(true)
 
         if showToast, let errorMessage = signupUserProfileModel.errorMessage {
             Text(errorMessage)

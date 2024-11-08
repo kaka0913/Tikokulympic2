@@ -17,7 +17,6 @@ class AuthService {
             auth_id: authId,
             token: token
         )
-        print("request: \(request)")
         do {
             return try await apiClient.call(request: request)
         } catch {
