@@ -22,7 +22,7 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text("称号:")
+                                Text("称号:       ")
                                     .foregroundColor(.white)
                                     .font(.system(size: 20))
                                 
