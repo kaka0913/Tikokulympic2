@@ -11,25 +11,13 @@ import SwiftUI
 import FirebaseAuth
 
 class ProfileViewModel: ObservableObject {
-    var selectedImage: UIImage? // ユーザーが選択した画像
-    var uploadedImage: UIImage? // Supabaseからダウンロードした画像
-    var isUploading: Bool = false
-    var isDownloading: Bool = false
     @Published var profile: UserProfileResponse?
     @Published var lateTimeRanking: [LateTimeRankingData]?
     @Published var lateCountRanking: [LateCountRankingData]?
     @Published var latePointRanking: [LatePointRankingData]?
 
-    private let supabaseService = SupabaseService.shared
     let userProfileService = UserProfileService()
     let totalUserRankingService = TotalUserRankingService()
-
-    init() {
-        Task {
-            await fetchProfile()
-            await getRankings()
-        }
-    }
     
     func signOut() {
         do {
@@ -47,7 +35,6 @@ class ProfileViewModel: ObservableObject {
             let profile = try await userProfileService.getProfile()
             self.profile = profile
             print("プロフィールの取得に成功しました")
-            print(profile)
         } catch {
             print("プロフィールの取得に失敗しました: \(error)")
         }
