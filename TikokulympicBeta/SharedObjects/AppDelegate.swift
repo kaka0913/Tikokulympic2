@@ -146,7 +146,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 startLocationTimer()
             }
         }
-        // ダイアログの表示が必要かチェック
+        
+        if hasSentArrivalNotification {
+            showArrivalDialog()
+        }
+        
         if UserDefaults.standard.bool(forKey: "shouldShowAliaseDialog") {
             if let aliase = UserDefaults.standard.string(forKey: "lastAliase"), !hasShownAliaseDialog(for: aliase) {
                 showAliaseDialog(aliase: aliase)
@@ -224,6 +228,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager?.stopUpdatingLocation()
 
         print("位置情報の取得を停止しました")
+    }
+    
+    private func showArrivalDialog() {
+        if let topViewController = UIApplication.topViewController() {
+            let alertController = UIAlertController(
+                title: "集合場所への到着",
+                message: "到着しました！お疲れ様でした！",
+                preferredStyle: .alert
+            )
+            let closeAction = UIAlertAction(title: "閉じる", style: .default, handler: nil)
+            alertController.addAction(closeAction)
+            topViewController.present(alertController, animated: true, completion: nil)
+        }
     }
 
     // MARK: - バックグラウンドURLセッションのハンドリング
@@ -490,6 +507,10 @@ extension AppDelegate: CLLocationManagerDelegate {
             if distance <= 500 {
                 // 到着通知を送信
                 hasSentArrivalNotification = true
+
+                DispatchQueue.main.async {
+                    self.showArrivalDialog()
+                }
 
                 let userid = UserDefaults.standard.integer(forKey: "userid")
                 let isoFormatter = ISO8601DateFormatter()
