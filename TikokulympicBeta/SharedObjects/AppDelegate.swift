@@ -146,6 +146,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 startLocationTimer()
             }
         }
+        // ダイアログの表示が必要かチェック
+        if UserDefaults.standard.bool(forKey: "shouldShowAliaseDialog") {
+            if let aliase = UserDefaults.standard.string(forKey: "lastAliase"), !hasShownAliaseDialog(for: aliase) {
+                showAliaseDialog(aliase: aliase)
+            }
+        }
     }
 
     // MARK: - セットアップメソッド
@@ -307,17 +313,58 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         processNotificationData(userInfo: userInfo)
         completionHandler([.banner, .list, .sound])
     }
-
-    // ユーザーが通知をタップしたとき、または通知に付随するカスタムアクションを実行したときに呼ばれる
-    // func userNotificationCenter(
-    //     _ center: UNUserNotificationCenter,
-    //     didReceive response: UNNotificationResponse,
-    //     withCompletionHandler completionHandler: @escaping () -> Void
-    // )
+    
+    private func hasShownAliaseDialog(for aliase: String) -> Bool {
+        if let lastDisplayedAliase = UserDefaults.standard.string(forKey: "lastDisplayedAliase") {
+            return lastDisplayedAliase == aliase
+        }
+        return false
+    }
 
     // 通知のデータを処理してUserDefaultsに保存するメソッド
     private func processNotificationData(userInfo: [AnyHashable: Any]) {
+        guard let content = userInfo["content"] as? String else {
+            print("👩‍🚀 'content' キーが通知データに含まれていません")
+            return
+        }
+        
+        switch content {
+        case "remind":
+            handleRemindNotification(userInfo: userInfo)
+        case "aliase":
+            handleAliaseNotification(userInfo: userInfo)
+        case "caution":
+            print("cautionの通知を受信しました")
+        default:
+            print("未知のcontentパターンです: \(content)")
+        }
+    }
 
+    private func showAliaseDialog(aliase: String) {
+        // 最前面のビューコントローラを取得
+        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
+            let alertController = UIAlertController(
+                title: "遅刻のペナルティ",
+                message: "「\(aliase)」の称号が付与されてしまいました。次は気をつけてください！",
+                preferredStyle: .alert
+            )
+            
+            // 閉じるボタンを追加
+            let closeAction = UIAlertAction(title: "閉じる", style: .default) { _ in
+                // ダイアログが表示されたことを記録
+                UserDefaults.standard.set(aliase, forKey: "lastDisplayedAliase")
+                UserDefaults.standard.set(false, forKey: "shouldShowAliaseDialog")
+            }
+            alertController.addAction(closeAction)
+            
+            // ダイアログを表示
+            topViewController.present(alertController, animated: true, completion: nil)
+        } else {
+            print("トップのビューコントローラを取得できませんでした")
+        }
+    }
+    
+    private func handleRemindNotification(userInfo: [AnyHashable: Any]) {
         guard let title = userInfo["title"] as? String,
               let location = userInfo["location"] as? String,
               let latitudeValue = userInfo["latitude"],
@@ -373,6 +420,42 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             // 必要に応じて位置情報更新を停止
             stopLocationUpdates()
         }
+    }
+    
+    private func handleAliaseNotification(userInfo: [AnyHashable: Any]) {
+        guard let aliase = userInfo["aliase"] as? String else {
+            print("👩‍🚀 'aliase' キーが通知データに含まれていません")
+            return
+        }
+        
+        let lastAliase = UserDefaults.standard.string(forKey: "lastAliaseNotification")
+        
+        if lastAliase != aliase {
+            showAliaseDialog(aliase: aliase)
+            UserDefaults.standard.set(aliase, forKey: "lastAliaseNotification")
+        } else {
+            print("👩‍🚀 この 'aliase' のダイアログは既に表示されています")
+        }
+    }
+}
+
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.shared.connectedScenes
+        .filter { $0.activationState == .foregroundActive }
+        .compactMap { $0 as? UIWindowScene }
+        .first?.windows
+        .filter { $0.isKeyWindow }.first?.rootViewController) -> UIViewController? {
+        
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return topViewController(base: selected)
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
     }
 }
 
