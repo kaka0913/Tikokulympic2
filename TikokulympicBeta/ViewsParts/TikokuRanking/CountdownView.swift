@@ -32,11 +32,11 @@ struct CountdownView: View {
     }
     
     private func startCountdown() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime]
         
         // startTimeが有効な日時かチェック
-        guard let startDate = formatter.date(from: startTime), startDate > Date() else {
+        guard let startDate = isoFormatter.date(from: startTime), startDate > Date() else {
             remainingTime = 0
             return
         }

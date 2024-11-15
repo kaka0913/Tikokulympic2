@@ -86,7 +86,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             WebSocketClient.shared.connect()
         } else {
-            print("start_timeが12時間以内ではないため、WebSocket通信を開始しません。")
+            print("start_timeが3時間以内ではないため、WebSocket通信を開始しません。")
         }
 
         return true
@@ -232,12 +232,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func shouldStartLocationUpdates() -> Bool {
         if let savedDateString = UserDefaults.standard.string(forKey: "start_time") {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.timeZone = TimeZone.current // 必要に応じて設定
-
-            if let savedDate = dateFormatter.date(from: savedDateString) {
+            let isoFormatter = ISO8601DateFormatter()
+            if let savedDate = isoFormatter.date(from: savedDateString) {
                 let currentDate = Date()
 
                 // 3時間 = 10800秒
@@ -413,11 +409,8 @@ extension AppDelegate: CLLocationManagerDelegate {
                 hasSentArrivalNotification = true
 
                 let userid = UserDefaults.standard.integer(forKey: "userid")
-
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                let formattedArrivalTime = dateFormatter.string(from: Date())
+                let isoFormatter = ISO8601DateFormatter()
+                let formattedArrivalTime = isoFormatter.string(from: Date())
 
                 let messageDict: [String: Any] = [
                     "action": "arrival_notification",

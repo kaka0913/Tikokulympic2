@@ -20,6 +20,7 @@
 		2217BC422CDE712A00B880EC /* RankingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC412CDE712A00B880EC /* RankingSectionView.swift */; };
 		2217BC442CDE77CB00B880EC /* RankingParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC432CDE77CB00B880EC /* RankingParticipant.swift */; };
 		2217BC462CDF407700B880EC /* LoadingRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC452CDF407700B880EC /* LoadingRankingView.swift */; };
+		2217BC342CDE371200B880EC /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC332CDE371200B880EC /* Notification.swift */; };
 		221EAD8E2CBD651400DBF31C /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */; };
 		221EAD912CBD7AF400DBF31C /* UserRankingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD902CBD7AF400DBF31C /* UserRankingData.swift */; };
 		221EAD932CBD7B2200DBF31C /* RankingUpdateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */; };
@@ -147,6 +148,7 @@
 		2217BC412CDE712A00B880EC /* RankingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingSectionView.swift; sourceTree = "<group>"; };
 		2217BC432CDE77CB00B880EC /* RankingParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingParticipant.swift; sourceTree = "<group>"; };
 		2217BC452CDF407700B880EC /* LoadingRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingRankingView.swift; sourceTree = "<group>"; };
+		2217BC332CDE371200B880EC /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
 		221EAD902CBD7AF400DBF31C /* UserRankingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRankingData.swift; sourceTree = "<group>"; };
 		221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUpdateMessage.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				2217BC3B2CDE60AC00B880EC /* LateTimeRankingRequest.swift */,
 				2217BC3D2CDE624700B880EC /* LateCountRankingRequest.swift */,
 				2217BC3F2CDE641800B880EC /* LatePointRankingRequest.swift */,
+				2217BC332CDE371200B880EC /* Notification.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22943BFD2CC4134C008078FB /* EventDeleteRequest.swift in Sources */,
 				228F57702CA1A4EC00EEA6E1 /* TopBar.swift in Sources */,
+				2217BC342CDE371200B880EC /* Notification.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22943BFF2CC808E5008078FB /* ArrivalUserData.swift in Sources */,
 				228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */,
