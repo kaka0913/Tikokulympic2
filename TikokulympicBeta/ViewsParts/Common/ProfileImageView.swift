@@ -14,6 +14,7 @@ struct ProfileImageView: View {
     
     private let supabaseService = SupabaseService()
     let userid: String
+    var FrameSize: CGFloat = 50
 
     var body: some View {
         VStack {
@@ -22,19 +23,19 @@ struct ProfileImageView: View {
                 Image(uiImage: image)
                     .resizable()
                     .clipShape(Circle())
-                    .frame(width: 50, height: 50)
+                    .frame(width: FrameSize, height: FrameSize)
                 
             } else if isDownloading {
                 // 画像のダウンロード中にインジケータを表示
                 ProgressView()
-                    .frame(width: 50, height: 50)
+                    .frame(width: FrameSize, height: FrameSize)
                 
             } else {
                 //プレースホルダー
                 Image(systemName: "person.crop.circle.fill")
                     .resizable()
                     .clipShape(Circle())
-                    .frame(width: 50, height: 50)
+                    .frame(width: FrameSize, height: FrameSize)
                     .onAppear {
                         Task {
                             await downloadProfileImage(userid: userid)
