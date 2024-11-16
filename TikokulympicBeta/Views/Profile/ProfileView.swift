@@ -62,7 +62,7 @@ struct ProfileView: View {
                                             AuthProfileImage()
                                             Text("名前: \(profile.name)")
                                                 .font(.title3)
-                                            Image(systemName: "pencil")
+                                            NameEditView()
                                         }
                                         .foregroundColor(ThemeColor.customGray)
                                         
