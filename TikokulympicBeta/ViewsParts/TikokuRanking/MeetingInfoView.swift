@@ -19,11 +19,14 @@ struct MeetingInfoView: View {
     }
     
     private var formattedMeetingTime: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        if let date = formatter.date(from: startTime) {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        
+        if let date = isoFormatter.date(from: startTime) {
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = "HH:mm"
+            outputFormatter.locale = Locale.current
+            outputFormatter.timeZone = TimeZone.current
             return outputFormatter.string(from: date)
         } else {
             return "Invalid Date"
@@ -43,10 +46,11 @@ struct EventTimeRow: View {
                 .cornerRadius(15)
                 .padding(.bottom)
             HStack {
-                Text("集合時間         ")
+                Text("集合時間")
                     .font(.title2)
                     .bold()
                     .padding(.bottom)
+                    .padding(.leading)
 
                 Text(value)
                     .font(.title2)

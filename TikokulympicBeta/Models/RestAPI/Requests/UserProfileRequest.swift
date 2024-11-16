@@ -15,6 +15,7 @@ struct UserProfileResponse: ResponseProtocol {
     let totalLateTime: Int
     let latePercentage: Float
     let onTimeCount: Int
+    let tikokuPoint: Int
 }
 
 struct UserProfileRequest: RequestProtocol {

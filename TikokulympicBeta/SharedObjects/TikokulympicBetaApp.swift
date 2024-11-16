@@ -10,6 +10,7 @@ import GooglePlaces
 struct TikokulympicBetaApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("userid") var userid: Int?
+    let auth = SupabaseService.shared.auth
 
     var body: some Scene {
         WindowGroup {
@@ -17,6 +18,7 @@ struct TikokulympicBetaApp: App {
                 ContentView()
                     .onOpenURL { url in
                         GIDSignIn.sharedInstance.handle(url)
+                        auth.handle(url)
                     }
             } else {
                 AuthView()

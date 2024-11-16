@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @Environment(\.userProfileModel) private var userProfileModel: UserProfileModel
+    @Environment(\.signupUserProfileModel) private var signupUserProfileModel: SignupUserProfileModel
     @State private var isShowingImagePicker = false
     @State private var userName: String = ""
     @State private var realName: String = ""
@@ -22,6 +22,10 @@ struct SignUpView: View {
                 .frame(width: 350, height: 80)
                 .padding(.top, -40)
 
+            Text("プロフィールを登録しましょう")
+                .padding()
+                .font(.title2)
+            
             TextField("ユーザーネームを入力", text: $userName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -30,7 +34,7 @@ struct SignUpView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
-            if let selectedImage = userProfileModel.selectedImage {
+            if let selectedImage = signupUserProfileModel.selectedImage {
                 Image(uiImage: selectedImage)
                     .resizable()
                     .scaledToFit()
@@ -45,7 +49,7 @@ struct SignUpView: View {
             Button(action: {
                 isShowingImagePicker = true
             }) {
-                Text("画像を選択")
+                Text("アイコンをえらぶ")
                     .padding(.vertical, 12)
                     .padding(.horizontal, 45)
                     .background(Color.blue)
@@ -61,12 +65,12 @@ struct SignUpView: View {
             Button(action: {
                 Task {
                     do {
-                        try await userProfileModel.registerNewUser(userName: userName, realName: realName)
+                        try await signupUserProfileModel.registerNewUser(userName: userName, realName: realName)
                     } catch {
-                        userProfileModel.errorMessage = error.localizedDescription
+                        signupUserProfileModel.errorMessage = error.localizedDescription
                     }
                     
-                    if userProfileModel.errorMessage != nil {
+                    if signupUserProfileModel.errorMessage != nil {
                         withAnimation {
                             showToast = true
                         }
@@ -79,7 +83,7 @@ struct SignUpView: View {
                     }
                 }
             }) {
-                Text("新規登録")
+                Text("アプリを開始する")
                     .padding(.vertical, 12)
                     .padding(.horizontal, 50)
                     .background(Color.green)
@@ -88,32 +92,20 @@ struct SignUpView: View {
             }
         }
         .padding()
+        .navigationBarHidden(true)
 
-        if showToast, let errorMessage = userProfileModel.errorMessage {
-            VStack {
-                Spacer()
-
-                Text(errorMessage)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.red.opacity(0.8))
-                    .cornerRadius(10)
-                    .shadow(radius: 5)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
-            }
+        if showToast, let errorMessage = signupUserProfileModel.errorMessage {
+            Text(errorMessage)
+            .foregroundColor(.white)
+            .padding()
+            .background(Color.red.opacity(0.8))
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
             .transition(.slide)
             .animation(.easeInOut, value: showToast)
         }
         
-    }
-}
-
-
-
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
-            .environment(\.userProfileModel, UserProfileModel())
     }
 }

@@ -8,32 +8,22 @@
 import Foundation
 import Supabase
 
-class SupabaseClientManager {
-    static let shared = SupabaseClientManager()
-    var client: SupabaseClient?
+class SupabaseService {
+    static let shared = SupabaseService()
+    let client: SupabaseClient
+    let auth: AuthClient
 
     private init() {
-        guard let supabaseURL = APIKeyManager.shared.apiKey(for: "SUPABASE_URL"),
-            let supabaseApiKey = APIKeyManager.shared.apiKey(for: "SUPABASE_API_KEY")
-        else {
-            debugPrint("Supabase URL or API Key not found")
-            return
+        guard let supabaseURLString = APIKeyManager.shared.apiKey(for: "SUPABASE_URL"),
+              let supabaseApiKey = APIKeyManager.shared.apiKey(for: "SUPABASE_API_KEY"),
+              let supabaseURL = URL(string: supabaseURLString) else {
+            fatalError("Supabase URL or API Key not found")
         }
-
-        client = SupabaseClient(supabaseURL: URL(string: supabaseURL)!, supabaseKey: supabaseApiKey)
-        debugPrint("SupabaseClient initialized")
+        self.client = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseApiKey)
+        self.auth = client.auth
     }
-}
-
-class SupabaseService {
-    let client = SupabaseClientManager.shared.client
     
     func uploadImage(imageData: Data, userid: Int) async throws {
-        guard let client = client else {
-            throw NSError(
-                domain: "SupabaseClientManager", code: 0,
-                userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
-        }
         let storage = client.storage.from("profileImages")
         let filePath = "images/\(userid)"
         let options = FileOptions(cacheControl: "3600", upsert: true)//同じパスであれば画像の上書きを実行する
@@ -52,12 +42,6 @@ class SupabaseService {
     }
     
     func downloadProfileImage(userid: String) async throws -> Data {
-        guard let client = client else {
-            throw NSError(
-                domain: "SupabaseClientManager",
-                code: 0,
-                userInfo: [NSLocalizedDescriptionKey: "SupabaseClientが初期化されていません"])
-        }
         let storage = client.storage.from("profileImages")
         let filePath = "images/\(userid)"
         let url = try await storage.createSignedURL(path: filePath, expiresIn: 60 * 60) // 1時間有効なURLを取得

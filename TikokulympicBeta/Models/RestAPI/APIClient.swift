@@ -10,7 +10,6 @@ import Foundation
 
 class APIClient {
     static let shared = APIClient()
-    let supabaseClientManager = SupabaseClientManager.shared
     private init() {}
 
     func call<T: RequestProtocol>(request: T) async throws -> T.Response {

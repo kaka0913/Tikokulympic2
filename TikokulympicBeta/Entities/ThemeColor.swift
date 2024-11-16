@@ -14,4 +14,5 @@ enum ThemeColor {
     static let orange = Color(red: 255/255, green: 108/255, blue: 108/255)
     static let customYellow = Color(red: 254 / 255, green: 206 / 255, blue: 0 / 255)
     static let customGreen = Color(red: 66 / 255, green: 168 / 255, blue: 64 / 255)
+    static let customGray = Color(red: 81 / 255, green: 81 / 255, blue: 84 / 255)
 }

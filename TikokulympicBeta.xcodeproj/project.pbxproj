@@ -10,6 +10,17 @@
 		084B6C572CA55F4A00D7FE9B /* EventsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */; };
 		084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084B6C582CA563FD00D7FE9B /* EventListCard.swift */; };
 		220384792CB3703600A460A2 /* EventEditingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220384782CB3703600A460A2 /* EventEditingRequest.swift */; };
+		2217BC2E2CD3F62300B880EC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC2D2CD3F62300B880EC /* AuthViewModel.swift */; };
+		2217BC302CD53B3500B880EC /* SigninRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC2F2CD53B3500B880EC /* SigninRequest.swift */; };
+		2217BC322CD66A6600B880EC /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC312CD66A6600B880EC /* ProfileViewModel.swift */; };
+		2217BC362CDE5F0900B880EC /* TotalUserRankingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC352CDE5F0900B880EC /* TotalUserRankingService.swift */; };
+		2217BC3C2CDE60AC00B880EC /* LateTimeRankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC3B2CDE60AC00B880EC /* LateTimeRankingRequest.swift */; };
+		2217BC3E2CDE624700B880EC /* LateCountRankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC3D2CDE624700B880EC /* LateCountRankingRequest.swift */; };
+		2217BC402CDE641800B880EC /* LatePointRankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC3F2CDE641800B880EC /* LatePointRankingRequest.swift */; };
+		2217BC422CDE712A00B880EC /* RankingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC412CDE712A00B880EC /* RankingSectionView.swift */; };
+		2217BC442CDE77CB00B880EC /* RankingParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC432CDE77CB00B880EC /* RankingParticipant.swift */; };
+		2217BC462CDF407700B880EC /* LoadingRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC452CDF407700B880EC /* LoadingRankingView.swift */; };
+		2217BC342CDE371200B880EC /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217BC332CDE371200B880EC /* Notification.swift */; };
 		221EAD8E2CBD651400DBF31C /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */; };
 		221EAD912CBD7AF400DBF31C /* UserRankingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD902CBD7AF400DBF31C /* UserRankingData.swift */; };
 		221EAD932CBD7B2200DBF31C /* RankingUpdateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */; };
@@ -29,7 +40,7 @@
 		228F574D2C9FFB0800EEA6E1 /* UserProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */; };
 		228F57532C9FFD4C00EEA6E1 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */; };
 		228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */; };
-		228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */; };
+		228F57632CA0742F00EEA6E1 /* SignupUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57622CA0742F00EEA6E1 /* SignupUserProfileModel.swift */; };
 		228F57652CA15D7600EEA6E1 /* AuthProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57642CA15D7600EEA6E1 /* AuthProfileImage.swift */; };
 		228F57682CA1A19600EEA6E1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F57672CA1A19600EEA6E1 /* Event.swift */; };
 		228F576C2CA1A20900EEA6E1 /* ParticipationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F576B2CA1A20900EEA6E1 /* ParticipationStatus.swift */; };
@@ -94,7 +105,6 @@
 		22C4F9182CA54A9B00C636C9 /* EditBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */; };
 		22C4F91A2CA5854B00C636C9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 22C4F9192CA5854B00C636C9 /* GoogleSignIn */; };
 		22C4F91C2CA5854B00C636C9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22C4F91B2CA5854B00C636C9 /* GoogleSignInSwift */; };
-		22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F91F2CA5D53700C636C9 /* SignInView.swift */; };
 		22C4F9222CA5D54300C636C9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4F9212CA5D54300C636C9 /* SignUpView.swift */; };
 		22CA07702CA7ABD600F0B60D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA076F2CA7ABD600F0B60D /* ProfileImageView.swift */; };
 		22E321872CA3DBE000457237 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E321862CA3DBE000457237 /* HeaderView.swift */; };
@@ -128,6 +138,17 @@
 		084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRequest.swift; sourceTree = "<group>"; };
 		084B6C582CA563FD00D7FE9B /* EventListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCard.swift; sourceTree = "<group>"; };
 		220384782CB3703600A460A2 /* EventEditingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditingRequest.swift; sourceTree = "<group>"; };
+		2217BC2D2CD3F62300B880EC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		2217BC2F2CD53B3500B880EC /* SigninRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninRequest.swift; sourceTree = "<group>"; };
+		2217BC312CD66A6600B880EC /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		2217BC352CDE5F0900B880EC /* TotalUserRankingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalUserRankingService.swift; sourceTree = "<group>"; };
+		2217BC3B2CDE60AC00B880EC /* LateTimeRankingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LateTimeRankingRequest.swift; sourceTree = "<group>"; };
+		2217BC3D2CDE624700B880EC /* LateCountRankingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LateCountRankingRequest.swift; sourceTree = "<group>"; };
+		2217BC3F2CDE641800B880EC /* LatePointRankingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatePointRankingRequest.swift; sourceTree = "<group>"; };
+		2217BC412CDE712A00B880EC /* RankingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingSectionView.swift; sourceTree = "<group>"; };
+		2217BC432CDE77CB00B880EC /* RankingParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingParticipant.swift; sourceTree = "<group>"; };
+		2217BC452CDF407700B880EC /* LoadingRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingRankingView.swift; sourceTree = "<group>"; };
+		2217BC332CDE371200B880EC /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		221EAD8D2CBD651400DBF31C /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
 		221EAD902CBD7AF400DBF31C /* UserRankingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRankingData.swift; sourceTree = "<group>"; };
 		221EAD922CBD7B2200DBF31C /* RankingUpdateMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUpdateMessage.swift; sourceTree = "<group>"; };
@@ -147,7 +168,7 @@
 		228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRequest.swift; sourceTree = "<group>"; };
 		228F57522C9FFD4C00EEA6E1 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		228F57622CA0742F00EEA6E1 /* SignupUserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUserProfileModel.swift; sourceTree = "<group>"; };
 		228F57642CA15D7600EEA6E1 /* AuthProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImage.swift; sourceTree = "<group>"; };
 		228F57672CA1A19600EEA6E1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		228F576B2CA1A20900EEA6E1 /* ParticipationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationStatus.swift; sourceTree = "<group>"; };
@@ -180,7 +201,6 @@
 		22C4F90F2CA54A5C00C636C9 /* ContactInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoSection.swift; sourceTree = "<group>"; };
 		22C4F9152CA54A8B00C636C9 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		22C4F9172CA54A9B00C636C9 /* EditBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomBar.swift; sourceTree = "<group>"; };
-		22C4F91F2CA5D53700C636C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		22C4F9212CA5D54300C636C9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		22CA076F2CA7ABD600F0B60D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		22E321862CA3DBE000457237 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -287,12 +307,17 @@
 			isa = PBXGroup;
 			children = (
 				22872B102C9D356C0045B653 /* SignupRequest.swift */,
+				2217BC2F2CD53B3500B880EC /* SigninRequest.swift */,
 				22943BFC2CC4134C008078FB /* EventDeleteRequest.swift */,
 				228F574C2C9FFB0800EEA6E1 /* UserProfileRequest.swift */,
 				084B6C562CA55F4A00D7FE9B /* EventsRequest.swift */,
 				220384782CB3703600A460A2 /* EventEditingRequest.swift */,
 				221EAD982CC17F4B00DBF31C /* VoteRequest.swift */,
 				22943C002CC80925008078FB /* ArrivalRankingRequest.swift */,
+				2217BC3B2CDE60AC00B880EC /* LateTimeRankingRequest.swift */,
+				2217BC3D2CDE624700B880EC /* LateCountRankingRequest.swift */,
+				2217BC3F2CDE641800B880EC /* LatePointRankingRequest.swift */,
+				2217BC332CDE371200B880EC /* Notification.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -301,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				22E709422C904C220009FE19 /* AuthView.swift */,
-				22C4F91F2CA5D53700C636C9 /* SignInView.swift */,
+				2217BC2D2CD3F62300B880EC /* AuthViewModel.swift */,
 				22C4F9212CA5D54300C636C9 /* SignUpView.swift */,
 			);
 			path = Auth;
@@ -371,12 +396,12 @@
 			children = (
 				221EAD8C2CBD64F400DBF31C /* WebSocket */,
 				22AABD572C8C328D0086644F /* RestAPI */,
-				228F57622CA0742F00EEA6E1 /* UserProfileModel.swift */,
 				22AE4ED92C9C922300B0BF82 /* Location.swift */,
 				228F57672CA1A19600EEA6E1 /* Event.swift */,
 				22E708E72C8D66EF0009FE19 /* APIKeyManager.swift */,
 				221EAD902CBD7AF400DBF31C /* UserRankingData.swift */,
 				22943BFE2CC808E5008078FB /* ArrivalUserData.swift */,
+				228F57622CA0742F00EEA6E1 /* SignupUserProfileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +422,7 @@
 				228F57412C9EE5A900EEA6E1 /* Requests */,
 				22220BD42C97103300DDB003 /* APIClient.swift */,
 				22BFE1DA2C9750E400C60622 /* RequestProtocol.swift */,
+				2217BC432CDE77CB00B880EC /* RankingParticipant.swift */,
 			);
 			path = RestAPI;
 			sourceTree = "<group>";
@@ -444,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				22AABD6D2C8C42490086644F /* ProfileView.swift */,
+				2217BC312CD66A6600B880EC /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -472,6 +499,8 @@
 			children = (
 				228F575C2CA0723D00EEA6E1 /* ImagePicker.swift */,
 				228F57642CA15D7600EEA6E1 /* AuthProfileImage.swift */,
+				2217BC412CDE712A00B880EC /* RankingSectionView.swift */,
+				2217BC452CDF407700B880EC /* LoadingRankingView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -485,6 +514,7 @@
 				22AC2A4D2CC2236700C6F3DE /* EventService.swift */,
 				22943C022CC80A97008078FB /* TikokuRankingService.swift */,
 				22242E042C994AB1001BEB14 /* TikokuRankingWebSocketService.swift */,
+				2217BC352CDE5F0900B880EC /* TotalUserRankingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -679,12 +709,14 @@
 				22AE4EDA2C9C922300B0BF82 /* Location.swift in Sources */,
 				A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */,
 				223484602C99ED62006BB113 /* SupabaseService.swift in Sources */,
+				2217BC402CDE641800B880EC /* LatePointRankingRequest.swift in Sources */,
 				22E321972CA3E49500457237 /* CountdownView.swift in Sources */,
 				228F57682CA1A19600EEA6E1 /* Event.swift in Sources */,
 				221EAD992CC17F4B00DBF31C /* VoteRequest.swift in Sources */,
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22943BFD2CC4134C008078FB /* EventDeleteRequest.swift in Sources */,
 				228F57702CA1A4EC00EEA6E1 /* TopBar.swift in Sources */,
+				2217BC342CDE371200B880EC /* Notification.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
 				22943BFF2CC808E5008078FB /* ArrivalUserData.swift in Sources */,
 				228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */,
@@ -700,22 +732,29 @@
 				22C4F9162CA54A8B00C636C9 /* InputField.swift in Sources */,
 				228F575D2CA0723D00EEA6E1 /* ImagePicker.swift in Sources */,
 				22CA07702CA7ABD600F0B60D /* ProfileImageView.swift in Sources */,
+				2217BC302CD53B3500B880EC /* SigninRequest.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				228F57782CA1A5D800EEA6E1 /* ParticipationStatusSection.swift in Sources */,
+				2217BC362CDE5F0900B880EC /* TotalUserRankingService.swift in Sources */,
 				22AC2A4E2CC2236700C6F3DE /* EventService.swift in Sources */,
-				22C4F9202CA5D53700C636C9 /* SignInView.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
 				A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */,
 				22C4F9222CA5D54300C636C9 /* SignUpView.swift in Sources */,
+				2217BC442CDE77CB00B880EC /* RankingParticipant.swift in Sources */,
 				22C4F90C2CA5495000C636C9 /* EventEditViewModel.swift in Sources */,
+				2217BC2E2CD3F62300B880EC /* AuthViewModel.swift in Sources */,
 				22872B062C9CCE8A0045B653 /* TikokuRankingViewModel.swift in Sources */,
 				228F57652CA15D7600EEA6E1 /* AuthProfileImage.swift in Sources */,
 				228F57532C9FFD4C00EEA6E1 /* UserProfileService.swift in Sources */,
+				2217BC462CDF407700B880EC /* LoadingRankingView.swift in Sources */,
 				084B6C592CA563FE00D7FE9B /* EventListCard.swift in Sources */,
+				2217BC3C2CDE60AC00B880EC /* LateTimeRankingRequest.swift in Sources */,
+				2217BC322CD66A6600B880EC /* ProfileViewModel.swift in Sources */,
 				22E3218B2CA3DC1400457237 /* EventDateLabel.swift in Sources */,
 				22E709432C904C220009FE19 /* AuthView.swift in Sources */,
+				2217BC3E2CDE624700B880EC /* LateCountRankingRequest.swift in Sources */,
 				22AABD722C8C42730086644F /* EventListView.swift in Sources */,
-				228F57632CA0742F00EEA6E1 /* UserProfileModel.swift in Sources */,
+				228F57632CA0742F00EEA6E1 /* SignupUserProfileModel.swift in Sources */,
 				22220BD32C970C7600DDB003 /* APIError.swift in Sources */,
 				22220BD52C97103300DDB003 /* APIClient.swift in Sources */,
 				220384792CB3703600A460A2 /* EventEditingRequest.swift in Sources */,
@@ -726,6 +765,7 @@
 				084B6C572CA55F4A00D7FE9B /* EventsRequest.swift in Sources */,
 				22943C012CC80925008078FB /* ArrivalRankingRequest.swift in Sources */,
 				228F576E2CA1A48A00EEA6E1 /* EventListViewModel.swift in Sources */,
+				2217BC422CDE712A00B880EC /* RankingSectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
