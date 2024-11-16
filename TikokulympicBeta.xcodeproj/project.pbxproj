@@ -128,6 +128,10 @@
 		A554F34C2CCBF18F00B905F6 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = A554F34B2CCBF18F00B905F6 /* GooglePlaces */; };
 		A55689982C9A84AC00E60BC6 /* RankingUserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */; };
 		A556899A2C9AC28100E60BC6 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55689992C9AC28100E60BC6 /* Rank.swift */; };
+		A56294A32CE86CB80049BA55 /* UserNameEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56294A22CE86CB80049BA55 /* UserNameEditRequest.swift */; };
+		A56294A52CE871470049BA55 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56294A42CE871470049BA55 /* UserService.swift */; };
+		A56294AF2CE8E12A0049BA55 /* NameEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56294AE2CE8E12A0049BA55 /* NameEditViewModel.swift */; };
+		A56294B32CE8E22E0049BA55 /* NameEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56294B22CE8E22E0049BA55 /* NameEditView.swift */; };
 		A5C0423F2CCBF34C00BF5173 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 084B6C502CA55A9D00D7FE9B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +216,10 @@
 		22E709422C904C220009FE19 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		A55689972C9A84AC00E60BC6 /* RankingUserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingUserCard.swift; sourceTree = "<group>"; };
 		A55689992C9AC28100E60BC6 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
+		A56294A22CE86CB80049BA55 /* UserNameEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameEditRequest.swift; sourceTree = "<group>"; };
+		A56294A42CE871470049BA55 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		A56294AE2CE8E12A0049BA55 /* NameEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewModel.swift; sourceTree = "<group>"; };
+		A56294B22CE8E22E0049BA55 /* NameEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +323,8 @@
 				2217BC3B2CDE60AC00B880EC /* LateTimeRankingRequest.swift */,
 				2217BC3D2CDE624700B880EC /* LateCountRankingRequest.swift */,
 				2217BC3F2CDE641800B880EC /* LatePointRankingRequest.swift */,
+				A56294A22CE86CB80049BA55 /* UserNameEditRequest.swift */,
+				A56294A42CE871470049BA55 /* UserService.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -466,8 +476,10 @@
 		22AABD692C8C3FCE0086644F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				A56294AE2CE8E12A0049BA55 /* NameEditViewModel.swift */,
 				22AABD6D2C8C42490086644F /* ProfileView.swift */,
 				2217BC312CD66A6600B880EC /* ProfileViewModel.swift */,
+				A56294B22CE8E22E0049BA55 /* NameEditView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -712,8 +724,11 @@
 				221EAD992CC17F4B00DBF31C /* VoteRequest.swift in Sources */,
 				22AABD482C875AE80086644F /* ContentView.swift in Sources */,
 				22943BFD2CC4134C008078FB /* EventDeleteRequest.swift in Sources */,
+				A56294A52CE871470049BA55 /* UserService.swift in Sources */,
 				228F57702CA1A4EC00EEA6E1 /* TopBar.swift in Sources */,
 				22AABD6E2C8C42490086644F /* ProfileView.swift in Sources */,
+				A56294B32CE8E22E0049BA55 /* NameEditView.swift in Sources */,
+				A56294A32CE86CB80049BA55 /* UserNameEditRequest.swift in Sources */,
 				22943BFF2CC808E5008078FB /* ArrivalUserData.swift in Sources */,
 				228F57472C9F4EBE00EEA6E1 /* AuthService.swift in Sources */,
 				228F577E2CA1A66200EEA6E1 /* ParticipationStatusRow.swift in Sources */,
@@ -731,6 +746,7 @@
 				2217BC302CD53B3500B880EC /* SigninRequest.swift in Sources */,
 				22BFE1DB2C9750E400C60622 /* RequestProtocol.swift in Sources */,
 				228F57782CA1A5D800EEA6E1 /* ParticipationStatusSection.swift in Sources */,
+				A56294AF2CE8E12A0049BA55 /* NameEditViewModel.swift in Sources */,
 				2217BC362CDE5F0900B880EC /* TotalUserRankingService.swift in Sources */,
 				22AC2A4E2CC2236700C6F3DE /* EventService.swift in Sources */,
 				22AABD462C875AE80086644F /* TikokulympicBetaApp.swift in Sources */,
